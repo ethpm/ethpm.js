@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "lib": [
+       "es2017"
+    ],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "allowJs": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "test/*": ["test/*"],
+      "ethpm": ["src"],
+      "ethpm/*": ["src/*"],
+      "schema": ["types/package-spec"]
+    }
+  },
+  "include": [
+    "src/**/*",
+    "types/**/*",
+    "test/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
