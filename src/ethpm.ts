@@ -1,7 +1,5 @@
 const debug = require("debug")("ethpm");
 
-import { ManifestBuilder } from "ethpm/package";
-
 debug("hello");
 
 export interface Config {
