@@ -50,10 +50,11 @@
     },
     "moduleNameMapper": {
       "^ethpm/(.*)": "<rootDir>/src/$1",
-      "^ethpm": "<rootDir>/src"
+      "^ethpm": "<rootDir>/src",
+      "^types": "<rootDir>/types"
     },
     "testMatch": [
-      "**/test/*.+(ts|ts|js)"
+      "**/test/*.+(ts|js)"
     ]
   },
   "jestWebpackResolver": {
