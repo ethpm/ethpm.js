@@ -17,8 +17,7 @@
       "test/*": ["test/*"],
       "ethpm": ["src"],
       "ethpm/*": ["src/*"],
-      "types": ["types"],
-      "schema": ["types/package-spec"]
+      "types": ["types"]
     }
   },
   "include": [

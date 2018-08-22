@@ -1,20 +1,16 @@
 import * as fs from "fs";
 import * as path from "path";
 
-import * as schema from "schema";
+import * as schema from "ethpm-spec";
 import readManifest from "ethpm/manifest/v2";
 
 import { Package } from "ethpm/package";
 
-const examplesDir = "../../../ethpm-spec/examples";
+import examples from "test/examples/manifests";
 
-function readExample(name: string): string {
-  const filename = path.resolve(__dirname, examplesDir, name, "1.0.0.json");
-  return fs.readFileSync(filename).toString();
-}
 
 it("reads examples", () => {
-  const wallet = readExample("wallet-with-send");
+  const wallet = examples["wallet-with-send"];
 
   const pkg: Package = readManifest(wallet);
 

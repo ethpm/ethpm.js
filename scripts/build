@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-json2ts ./ethpm-spec/spec/package.spec.json > ./types/package-spec.d.ts && \
-    webpack $@

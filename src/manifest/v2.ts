@@ -1,7 +1,7 @@
 import { URL } from "url";
 
 import { lift, lift2 } from "types";
-import * as schema from "schema";
+import * as schema from "ethpm-spec";
 import * as meta from "ethpm/package/meta";
 import * as pkg from "ethpm/package/package";
 
