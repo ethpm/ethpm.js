@@ -1,17 +1,32 @@
 import { URL } from "url";
+import * as stringify from "json-stable-stringify";
 
 import { lift, lift2 } from "types";
 import * as schema from "ethpm-spec";
 import * as meta from "ethpm/package/meta";
 import * as pkg from "ethpm/package/package";
 
-import { ManifestReader } from "./manifest";
+import { ManifestVersion } from "ethpm/manifest/types";
 
-export class Manifest implements pkg.Package {
+const VERSION = "2";
+
+export class Reader {
   private manifest: schema.PackageManifest;
 
   constructor (manifest: schema.PackageManifest) {
     this.manifest = manifest;
+  }
+
+  read (): pkg.Package {
+    return {
+      packageName: this.packageName,
+      version: this.version,
+      meta: this.meta,
+      sources: this.sources,
+      contractTypes: this.contractTypes,
+      deployments: this.deployments,
+      buildDependencies: this.buildDependencies
+    };
   }
 
   get packageName () {
@@ -204,11 +219,31 @@ export class Manifest implements pkg.Package {
   }
 }
 
+export class Writer {
+  private package: pkg.Package;
 
-const getPackage: ManifestReader = (json: string): pkg.Package => {
-  const manifest = JSON.parse(json) as schema.PackageManifest;
+  constructor (package_: pkg.Package) {
+    this.package = package_;
+  }
 
-  return new Manifest(manifest);
+  write (): schema.PackageManifest {
+    return {
+      manifest_version: VERSION,
+      package_name: this.package.packageName,
+      version: this.package.version,
+    };
+  }
 }
 
-export default getPackage;
+const v2: ManifestVersion = {
+  version: VERSION,
+
+  read: (json: string) =>
+    new Reader(JSON.parse(json) as schema.PackageManifest).read(),
+
+  write: (pkg: pkg.Package) =>
+    stringify(new Writer(pkg).write())
+}
+
+
+export default v2;

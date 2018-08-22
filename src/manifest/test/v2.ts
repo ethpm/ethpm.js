@@ -1,5 +1,5 @@
 import * as schema from "ethpm-spec";
-import readManifest from "ethpm/manifest/v2";
+import v2 from "ethpm/manifest/v2";
 
 import { Package } from "ethpm/package";
 
@@ -9,7 +9,7 @@ import examples from "test/examples/manifests";
 it("reads examples", () => {
   const wallet = examples["wallet-with-send"];
 
-  const pkg: Package = readManifest(wallet);
+  const pkg: Package = v2.read(wallet);
 
   expect(pkg.packageName).toEqual("wallet-with-send");
   expect(Object.keys(pkg.sources)).toContain("./contracts/WalletWithSend.sol");
@@ -23,7 +23,7 @@ it("converts package_name", () => {
     "version": "1.0.0",
   };
 
-  const pkg: Package = readManifest(JSON.stringify(manifest));
+  const pkg: Package = v2.read(JSON.stringify(manifest));
 
   expect(pkg).toHaveProperty("packageName");
   expect(pkg).toHaveProperty("version");
