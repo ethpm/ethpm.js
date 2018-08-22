@@ -1,6 +1,6 @@
 import { URL } from "url";
 
-import { lift } from "types";
+import { lift, lift2 } from "types";
 import * as schema from "schema";
 import * as meta from "ethpm/package/meta";
 import * as pkg from "ethpm/package/package";
@@ -57,7 +57,10 @@ export class Manifest implements pkg.Package {
   }
 
   get deployments () {
-    return this.readDeployments(this.manifest.deployments || {});
+    return this.readDeployments(
+      this.manifest.deployments || {},
+      this.contractTypes
+    );
   }
 
   get buildDependencies () {
@@ -86,14 +89,17 @@ export class Manifest implements pkg.Package {
     );
   }
 
-  private readDeployments (deployments: schema.Deployments): pkg.Deployments {
+  private readDeployments (
+    deployments: schema.Deployments,
+    types: pkg.ContractTypes
+  ): pkg.Deployments {
     return Object.assign(
       {},
       ...Object.entries(deployments)
         .map(
           ([ chainURI, deployment ]) => ([
             new URL(chainURI),
-            this.readDeployment(deployment)
+            this.readDeployment(deployment, types)
           ] as [pkg.ChainURI, pkg.Deployment])
         )
     );
@@ -105,21 +111,34 @@ export class Manifest implements pkg.Package {
   ): pkg.ContractType {
     return {
       contractName: contractType.contract_name || alias,
-      deploymentBytecode: lift(this.readBytecode)(contractType.deployment_bytecode),
-      runtimeBytecode: lift(this.readBytecode)(contractType.runtime_bytecode),
+      deploymentBytecode: lift(this.readUnlinkedBytecode)(contractType.deployment_bytecode),
+      runtimeBytecode: lift(this.readUnlinkedBytecode)(contractType.runtime_bytecode),
       abi: contractType.abi,
       natspec: contractType.natspec,
       compiler: lift(this.readCompiler)(contractType.compiler)
     };
   }
 
-  private readBytecode(bytecode: schema.BytecodeObject): pkg.Bytecode {
+  private readUnlinkedBytecode(
+    bytecode: schema.UnlinkedBytecodeObject
+  ): pkg.UnlinkedBytecode {
     return {
       bytecode: bytecode.bytecode,
-      linkReferences: [...(bytecode.link_references || [])],
-      linkDependencies: this.readLinkDependencies(bytecode.link_dependencies || []),
+      linkReferences: [...(bytecode.link_references || [])]
     };
   }
+
+  private readLinkedBytecode(
+    bytecode: schema.LinkedBytecodeObject,
+    parent: pkg.UnlinkedBytecode
+  ): pkg.LinkedBytecode {
+    return {
+      bytecode: bytecode.bytecode || parent.bytecode,
+      linkReferences: [...(bytecode.link_references || parent.linkReferences)],
+      linkDependencies: this.readLinkDependencies(bytecode.link_dependencies),
+    };
+  }
+
 
   private readLinkDependencies(
     linkDependencies: schema.LinkDependencies
@@ -151,26 +170,35 @@ export class Manifest implements pkg.Package {
     };
   }
 
-  private readDeployment (deployment: schemaDeployment): pkg.Deployment {
+  private readDeployment (
+    deployment: schemaDeployment,
+    types: pkg.ContractTypes
+  ): pkg.Deployment {
     return Object.assign(
       {},
       ...Object.entries(deployment)
         .map(
           ([ name, instance ]) => ([
             name,
-            this.readInstance(instance)
+            this.readInstance(instance, types)
           ] as [pkg.ContractInstanceName, pkg.ContractInstance])
         )
     );
   }
 
-  private readInstance (instance: schema.ContractInstance): pkg.ContractInstance {
+  private readInstance (
+    instance: schema.ContractInstance,
+    types: pkg.ContractTypes
+  ): pkg.ContractInstance {
     return {
       contractType: instance.contract_type,
       address: instance.address,
       transaction: instance.transaction,
       block: instance.block,
-      runtimeBytecode: lift(this.readBytecode)(instance.runtime_bytecode),
+      runtimeBytecode: lift2(this.readLinkedBytecode)(
+        instance.runtime_bytecode,
+        (types[instance.contract_type] || {}).runtimeBytecode
+      ),
       compiler: lift(this.readCompiler)(instance.compiler),
     }
   }
