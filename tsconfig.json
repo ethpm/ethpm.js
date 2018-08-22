@@ -9,7 +9,6 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "strict": true,
-    "noUnusedLocals": true,
     "allowJs": true,
     "sourceMap": true,
     "baseUrl": ".",
