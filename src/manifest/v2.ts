@@ -83,10 +83,9 @@ export class Reader {
       {},
       ...Object.entries(this.manifest.build_dependencies || {})
         .map(
-          ([ name, contentURI ]) => ([
-            name,
-            new URL(contentURI)
-          ])
+          ([ name, contentURI ]) => ({
+            [name]: new URL(contentURI)
+          })
         )
     );
   }
