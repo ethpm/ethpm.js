@@ -1,3 +1,4 @@
 dist/
 node_modules/
 types/package-spec.d.ts
+yarn-error.log
