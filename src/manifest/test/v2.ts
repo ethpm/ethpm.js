@@ -1,6 +1,3 @@
-import * as fs from "fs";
-import * as path from "path";
-
 import * as schema from "ethpm-spec";
 import readManifest from "ethpm/manifest/v2";
 
