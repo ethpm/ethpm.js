@@ -171,7 +171,7 @@ export class Manifest implements pkg.Package {
   }
 
   private readDeployment (
-    deployment: schemaDeployment,
+    deployment: schema.Deployment,
     types: pkg.ContractTypes
   ): pkg.Deployment {
     return Object.assign(
@@ -203,9 +203,6 @@ export class Manifest implements pkg.Package {
     }
   }
 }
-
-type schemaDeployment = { [k: string]: schema.ContractInstance };
-
 
 
 const getPackage: ManifestReader = (json: string): pkg.Package => {
