@@ -49,3 +49,16 @@ it("resolves build dependencies", async () => {
   expect(standardToken).toEqual(examples["standard-token"]);
 });
 
+
+it("resolves contract types from a dependent package", async () => {
+  let query = new WorkspaceQuery({
+    package: examples["piper-coin"],
+    resolver: examplesResolver,
+    read: v2.read,
+  });
+
+  const standardToken = await query.contractType("standard-token:StandardToken");
+  const expected = examples["standard-token"].contractTypes["StandardToken"];
+
+  expect(standardToken).toEqual(expected);
+});

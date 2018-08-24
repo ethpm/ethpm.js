@@ -10,6 +10,129 @@ import { ManifestVersion } from "ethpm/manifest/types";
 
 const VERSION = "2";
 
+namespace Fields {
+  export function readContractTypes (contractTypes: schema.ContractTypes): pkg.ContractTypes {
+    return Object.assign(
+      {},
+      ...Object.entries(contractTypes)
+        .map(
+          ([ alias, contractType ]) => ({
+            [alias]: readContractType(contractType, alias)
+          })
+        )
+    );
+  }
+
+  export function readDeployments (
+    deployments: schema.Deployments,
+    types: pkg.ContractTypes
+  ): pkg.Deployments {
+    return new Map(
+      Object.entries(deployments)
+        .map(
+          ([ chainURI, deployment ]) => ([
+            new URL(chainURI),
+            readDeployment(deployment, types)
+          ] as [pkg.ChainURI, pkg.Deployment])
+        )
+    );
+  }
+
+  export function readContractType (
+    contractType: schema.ContractType,
+    alias: string
+  ): pkg.ContractType {
+    return {
+      contractName: contractType.contract_name || alias,
+      deploymentBytecode: lift(readUnlinkedBytecode)(contractType.deployment_bytecode),
+      runtimeBytecode: lift(readUnlinkedBytecode)(contractType.runtime_bytecode),
+      abi: contractType.abi,
+      natspec: contractType.natspec,
+      compiler: lift(readCompiler)(contractType.compiler)
+    };
+  }
+
+  export function readUnlinkedBytecode(
+    bytecode: schema.UnlinkedBytecodeObject
+  ): pkg.UnlinkedBytecode {
+    return {
+      bytecode: bytecode.bytecode,
+      linkReferences: [...(bytecode.link_references || [])]
+    };
+  }
+
+  export function readLinkedBytecode(
+    bytecode: schema.LinkedBytecodeObject,
+    parent: pkg.UnlinkedBytecode
+  ): pkg.LinkedBytecode {
+    return {
+      bytecode: bytecode.bytecode || parent.bytecode,
+      linkReferences: [...(bytecode.link_references || parent.linkReferences)],
+      linkDependencies: readLinkDependencies(bytecode.link_dependencies),
+    };
+  }
+
+  export function readLinkDependencies(
+    linkDependencies: schema.LinkDependencies
+  ): Array<pkg.link.Value> {
+    return [
+      ...(linkDependencies || [])
+        .map(
+          ({ offsets, value, type }) => ({
+            offsets,
+            value: (type === "literal")
+              ? {
+                value: value as string,
+                type: type as "literal"
+              }
+              : {
+                value: value as string,
+                type: type as "reference"
+              }
+          })
+        )
+      ];
+  }
+
+  export function readCompiler(compiler: schema.CompilerInformation): pkg.Compiler {
+    return {
+      name: compiler.name,
+      version: compiler.version,
+      settings: compiler.settings || {},
+    };
+  }
+
+  export function readDeployment (
+    deployment: schema.Deployment,
+    types: pkg.ContractTypes
+  ): pkg.Deployment {
+    return Object.assign(
+      {}, ...Object.entries(deployment) .map(
+        ([ name, instance ]) => ({
+          [name]: readInstance(instance, types)
+        })
+      )
+    );
+  }
+
+  export function readInstance (
+    instance: schema.ContractInstance,
+    types: pkg.ContractTypes
+  ): pkg.ContractInstance {
+    return {
+      contractType: instance.contract_type,
+      address: instance.address,
+      transaction: instance.transaction,
+      block: instance.block,
+      runtimeBytecode: lift2(readLinkedBytecode)(
+        instance.runtime_bytecode,
+        (types[instance.contract_type] || {}).runtimeBytecode
+      ),
+      compiler: lift(readCompiler)(instance.compiler),
+    }
+  }
+}
+
 export class Reader {
   private manifest: schema.PackageManifest;
 
@@ -68,11 +191,11 @@ export class Reader {
   }
 
   get contractTypes () {
-    return this.readContractTypes(this.manifest.contract_types || {});
+    return Fields.readContractTypes(this.manifest.contract_types || {});
   }
 
   get deployments () {
-    return this.readDeployments(
+    return Fields.readDeployments(
       this.manifest.deployments || {},
       this.contractTypes
     );
@@ -90,128 +213,6 @@ export class Reader {
     );
   }
 
-  readContractTypes (contractTypes: schema.ContractTypes): pkg.ContractTypes {
-    return Object.assign(
-      {},
-      ...Object.entries(contractTypes)
-        .map(
-          ([ alias, contractType ]) => ([
-            alias,
-            this.readContractType(contractType, alias)
-          ])
-        )
-    );
-  }
-
-  private readDeployments (
-    deployments: schema.Deployments,
-    types: pkg.ContractTypes
-  ): pkg.Deployments {
-    return new Map(
-      Object.entries(deployments)
-        .map(
-          ([ chainURI, deployment ]) => ([
-            new URL(chainURI),
-            this.readDeployment(deployment, types)
-          ] as [pkg.ChainURI, pkg.Deployment])
-        )
-    );
-  }
-
-  private readContractType (
-    contractType: schema.ContractType,
-    alias: string
-  ): pkg.ContractType {
-    return {
-      contractName: contractType.contract_name || alias,
-      deploymentBytecode: lift(this.readUnlinkedBytecode)(contractType.deployment_bytecode),
-      runtimeBytecode: lift(this.readUnlinkedBytecode)(contractType.runtime_bytecode),
-      abi: contractType.abi,
-      natspec: contractType.natspec,
-      compiler: lift(this.readCompiler)(contractType.compiler)
-    };
-  }
-
-  private readUnlinkedBytecode(
-    bytecode: schema.UnlinkedBytecodeObject
-  ): pkg.UnlinkedBytecode {
-    return {
-      bytecode: bytecode.bytecode,
-      linkReferences: [...(bytecode.link_references || [])]
-    };
-  }
-
-  private readLinkedBytecode(
-    bytecode: schema.LinkedBytecodeObject,
-    parent: pkg.UnlinkedBytecode
-  ): pkg.LinkedBytecode {
-    return {
-      bytecode: bytecode.bytecode || parent.bytecode,
-      linkReferences: [...(bytecode.link_references || parent.linkReferences)],
-      linkDependencies: this.readLinkDependencies(bytecode.link_dependencies),
-    };
-  }
-
-
-  private readLinkDependencies(
-    linkDependencies: schema.LinkDependencies
-  ): Array<pkg.link.Value> {
-    return [
-      ...(linkDependencies || [])
-        .map(
-          ({ offsets, value, type }) => ({
-            offsets,
-            value: (type === "literal")
-              ? {
-                value: value as string,
-                type: type as "literal"
-              }
-              : {
-                value: value as string,
-                type: type as "reference"
-              }
-          })
-        )
-      ];
-  }
-
-  private readCompiler(compiler: schema.CompilerInformation): pkg.Compiler {
-    return {
-      name: compiler.name,
-      version: compiler.version,
-      settings: compiler.settings || {},
-    };
-  }
-
-  private readDeployment (
-    deployment: schema.Deployment,
-    types: pkg.ContractTypes
-  ): pkg.Deployment {
-    return Object.assign(
-      {}, ...Object.entries(deployment) .map(
-        ([ name, instance ]) => ({
-          [name]: this.readInstance(instance, types)
-        })
-      )
-    );
-  }
-
-  private readInstance (
-    instance: schema.ContractInstance,
-    types: pkg.ContractTypes
-  ): pkg.ContractInstance {
-    return {
-      contractType: instance.contract_type,
-      address: instance.address,
-      transaction: instance.transaction,
-      block: instance.block,
-      runtimeBytecode: lift2(this.readLinkedBytecode)(
-        instance.runtime_bytecode,
-        (types[instance.contract_type] || {}).runtimeBytecode
-      ),
-      compiler: lift(this.readCompiler)(instance.compiler),
-    }
-  }
 }
 
 export class Writer {

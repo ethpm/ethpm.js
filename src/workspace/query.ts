@@ -22,9 +22,36 @@ export class WorkspaceQuery implements PackageQuery {
     this.read = options.read;
   }
 
+  async scope (dependencyName: pkg.PackageName): Promise<PackageQuery> {
+    const dependency = await this.buildDependency(dependencyName);
+
+    const resolver = new WorkspaceQuery({
+      package: dependency,
+      resolver: this.resolver,
+      read: this.read
+    });
+
+    return resolver;
+  }
+
   async contractType(ref: pkg.ContractTypeReference)
     : Promise<pkg.ContractType>
   {
+    const terms = ref.split(":");
+
+    const packages = terms.slice(0, -1);
+    const type = terms.slice(-1);
+
+    const [ dependencyName, ...rest ] = packages;
+
+    if (dependencyName) {
+      const subquery = await this.scope(dependencyName);
+      const innerRef = [...rest, type].join(":");
+
+      return await subquery.contractType(innerRef);
+    }
+
+    // plain type reference
     return this.package.contractTypes[ref];
   }
 
