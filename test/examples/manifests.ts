@@ -1,17 +1,6 @@
-function example(
-  name: string,
-  version: string = "1.0.0",
-  pretty: boolean = false
-): string {
-  const basename = (pretty)
-    ? `${version}-pretty.json`
-    : `${version}.json`;
+import { exampleManifest } from "./utils";
 
-  return `ethpm-spec/examples/${name}/${basename}`;
-}
-
-
-const manifests = Object.assign(
+const manifests: Record<string, string> = Object.assign(
   {},
   ...[
     "owned",
@@ -23,7 +12,7 @@ const manifests = Object.assign(
     "wallet",
     "wallet-with-send",
   ].map(name => ({
-    [name]: JSON.stringify(require(example(name)))
+    [name]: exampleManifest(name)
   }))
 );
 
