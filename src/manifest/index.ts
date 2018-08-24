@@ -1,4 +1,4 @@
-import { ManifestVersion } from "./types";
-import * as v2 from "./v2";
+export * from "./types";
 
-export { ManifestVersion, v2 };
+import * as v2 from "./v2";
+export { v2 };

@@ -1,7 +1,10 @@
 import { Package } from "ethpm/package";
 
+export type Reader = (json: string) => Package;
+export type Writer = (pkg: Package) => string;
+
 export interface ManifestVersion {
   version: string;
-  read: (json: string) => Package;
-  write: (pkg: Package) => string;
+  read: Reader;
+  write: Writer;
 }

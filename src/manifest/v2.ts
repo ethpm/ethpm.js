@@ -107,9 +107,8 @@ export class Reader {
     deployments: schema.Deployments,
     types: pkg.ContractTypes
   ): pkg.Deployments {
-    return Object.assign(
-      {},
-      ...Object.entries(deployments)
+    return new Map(
+      Object.entries(deployments)
         .map(
           ([ chainURI, deployment ]) => ([
             new URL(chainURI),
@@ -189,14 +188,11 @@ export class Reader {
     types: pkg.ContractTypes
   ): pkg.Deployment {
     return Object.assign(
-      {},
-      ...Object.entries(deployment)
-        .map(
-          ([ name, instance ]) => ([
-            name,
-            this.readInstance(instance, types)
-          ] as [pkg.ContractInstanceName, pkg.ContractInstance])
-        )
+      {}, ...Object.entries(deployment) .map(
+        ([ name, instance ]) => ({
+          [name]: this.readInstance(instance, types)
+        })
+      )
     );
   }
 
