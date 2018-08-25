@@ -1348,6 +1348,10 @@ esutils@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/esutils/-/esutils-2.0.2.tgz#0abf4f1caa5bcb1f7a9d8acc6dea4faaa04bac9b"
 
+"ethpm-spec@git+https://github.com/ethpm/ethpm-spec.git#ethpm.js":
+  version "1.0.1"
+  resolved "git+https://github.com/ethpm/ethpm-spec.git#ce41b37d9a89e9d44f61cb8bb5a4760b63b229c8"
+
 events@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/events/-/events-1.1.1.tgz#9ebdb7635ad099c70dcc4c2a1f5004288e8bd924"
