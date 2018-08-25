@@ -27,7 +27,7 @@ it("resolves deployed instances", async () => {
   });
 
   const [chain] = examples["piper-coin"].deployments.keys()
-  const deployment = examples["piper-coin"].deployments.get(chain);
+  const deployment = examples["piper-coin"].deployments.get(chain) || {};
 
   const expectedInstance = deployment["PiperCoin"];
 
