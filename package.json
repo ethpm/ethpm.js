@@ -4,7 +4,7 @@
   "description": "Javascript library for EthPM (EIPs 1123 / 1319)",
   "main": "dist/index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --verbose",
     "build": "webpack --mode production",
     "watch": "webpack --watch --mode development"
   },
