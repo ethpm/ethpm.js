@@ -62,3 +62,18 @@ it("resolves contract types from a dependent package", async () => {
 
   expect(standardToken).toEqual(expected);
 });
+
+it("resolves contract types from a dependency's dependency", async () => {
+  let query = new WorkspaceQuery({
+    package: examples["wallet-with-send"],
+    resolver: examplesResolver,
+    read: v2.read,
+  });
+
+  const ref = "wallet:safe-math-lib:SafeMathLib";
+
+  const standardToken = await query.contractType(ref);
+  const expected = examples["safe-math-lib"].contractTypes["SafeMathLib"];
+
+  expect(standardToken).toEqual(expected);
+});
