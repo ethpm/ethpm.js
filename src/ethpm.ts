@@ -1,3 +1,6 @@
+/**
+ * @module "ethpm/ethpm"
+ */
 const debug = require("debug")("ethpm");
 
 debug("hello");

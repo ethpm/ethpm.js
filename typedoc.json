@@ -1,0 +1,15 @@
+{
+  "name": "EthPM.js",
+  "mode": "file",
+  "out": "docs",
+  "theme": "default",
+  "ignoreCompilerErrors": false,
+  "preserveConstEnums": true,
+  "entryPoint": "EthPM",
+  "exclude": [
+    "**/test/*"
+  ],
+  "stripInternal": "true",
+  "target": "ES5"
+}
+
