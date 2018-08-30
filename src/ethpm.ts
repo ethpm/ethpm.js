@@ -4,19 +4,31 @@
 const debug = require("debug")("ethpm");
 require("source-map-support/register");
 
-debug("hello");
+import { Config, Configurable } from "ethpm/config";
+import { Workspace } from "ethpm/workspace";
 
-export interface Config {
-}
 
-export interface Options {
-  config: string | Config;
-}
+namespace EthPM {
+  export class Session<T extends Configurable> {
+    private config: Config<T>;
 
-export default class EthPM {
-  options: Options;
+    constructor (config: Config<T>) {
+      this.config = config;
+    }
 
-  constructor (options: Options) {
-    this.options = options;
+    async connect (options?: any): Promise<Workspace<T>> {
+      return Object.assign(
+        {}, ...Object.keys(this.config)
+          .map( (service) => ({
+            [service]: require(this.config[service]).default
+          }))
+      );
+    }
+  }
+
+  export function configure<T extends Configurable> (config: Config<T>): Session<T> {
+    return new Session(config);
   }
 }
+
+export default EthPM;

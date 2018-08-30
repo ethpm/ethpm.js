@@ -1,12 +1,14 @@
-import * as pkg from "ethpm/package/package";
+import { Config, Configurable } from "ethpm/config";
+import * as manifest from "ethpm/manifest";
 
-export type PackageReference = Array<pkg.PackageName>;
-
-export interface WorkspacePackage {
-  knownPaths: Set<PackageReference>,
-  package: pkg.Package
+export type Services<T extends Configurable> = {
+  [K in keyof T]:
+    K extends "manifest" ? manifest.ManifestVersion :
+    // K extends "storage" ? object :
+    // K extends "registry" ? object :
+    never
 }
 
-export interface Workspace {
-  packages: Array<WorkspacePackage>
+export type Workspace<T extends Configurable> = {
+  [K in keyof Services<T>]: Services<T>[K]
 }
