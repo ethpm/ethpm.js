@@ -37,6 +37,9 @@ module.exports = {
       }
     ]
   },
+  externals: {
+    "original-require": "original-require"
+  },
   resolve: {
     extensions: [ '.ts', '.js' ],
     plugins: [
