@@ -1,17 +1,27 @@
 'use strict';
 
+const glob = require("glob");
 const path = require("path");
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
+const entry = Object.assign(
+  {}, ...glob.sync(`./src/**/*.ts`)
+    .map( (path) => {
+      const name = path.match(/^\.\/src\/(.*)\.ts$/)[1];
+      return { [name]: path };
+    })
+);
+
 module.exports = {
   devtool: 'inline-source-map',
-  entry: './src/index.ts',
+  entry: entry,
   target: "node",
   output: {
-    library: 'EthPM',
+    libraryExport: "default",
     libraryTarget: "umd",
-    filename: 'index.js'
+    filename: '[name].js',
+    umdNamedDefine: true
   },
   module: {
     rules: [
