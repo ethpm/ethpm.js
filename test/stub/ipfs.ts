@@ -16,11 +16,8 @@ export class Resolver {
     this.contents[`ipfs://${hash}`] = content;
   }
 
-  async read (uri: string | URL): Promise<Maybe<string>> {
-    if (uri instanceof URL) {
-      uri = uri.href;
-    }
-    return this.contents[uri];
+  async read (uri: URL): Promise<Maybe<string>> {
+    return this.contents[uri.href];
   }
 }
 
@@ -37,7 +34,7 @@ export class ExamplesResolver extends Resolver {
     );
   }
 
-  async read (uri: any): Promise<Maybe<string>> {
+  async read (uri: URL): Promise<Maybe<string>> {
     await this.ready;
 
     return await super.read(uri);

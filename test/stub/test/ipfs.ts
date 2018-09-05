@@ -26,7 +26,7 @@ describe("StubResolver", () => {
 
     // test URI lookup
     for (let [idx, uri] of expectedUris.entries()) {
-      const retrieved = await resolver.read(uri);
+      const retrieved = await resolver.read(new URL(uri));
 
       expect(retrieved).toEqual(contents[idx]);
     }
