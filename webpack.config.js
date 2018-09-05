@@ -33,6 +33,7 @@ module.exports = {
       new TsconfigPathsPlugin()
     ]
   },
+  devtool: "source-map",
   plugins: [
     new ForkTsCheckerWebpackPlugin()
   ]

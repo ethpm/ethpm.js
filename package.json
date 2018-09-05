@@ -39,7 +39,8 @@
     "ethpm-spec": "git+https://github.com/ethpm/ethpm-spec.git#ethpm.js",
     "ipfs-unixfs": "^0.1.15",
     "ipld-dag-pb": "^0.14.8",
-    "json-stable-stringify": "^1.0.1"
+    "json-stable-stringify": "^1.0.1",
+    "source-map-support": "^0.5.9"
   },
   "jest": {
     "moduleFileExtensions": [

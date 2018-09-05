@@ -2,6 +2,7 @@
  * @module "ethpm/ethpm"
  */
 const debug = require("debug")("ethpm");
+require("source-map-support/register");
 
 debug("hello");
 
