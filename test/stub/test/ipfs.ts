@@ -2,7 +2,8 @@ import hash from "ethpm/storage/ipfs/hash";
 
 import { URL } from "url";
 
-import { Resolver as StubResolver, exampleStorage } from "test/stub/ipfs";
+import { Resolver as StubResolver } from "test/stub/ipfs";
+import exampleStorage from "test/stub/ipfs";
 import examples from "test/examples/manifests";
 
 describe("StubResolver", () => {

@@ -50,4 +50,4 @@ const exampleStorage = {
   read: (uri: URL) => examplesResolver.read(uri)
 }
 
-export { exampleStorage };
+export default exampleStorage;
