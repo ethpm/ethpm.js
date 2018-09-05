@@ -6,20 +6,20 @@ import * as storage from "ethpm/storage";
 
 export interface Options {
   package: pkg.Package;
-  resolver: storage.Resolver;
-  read: manifest.Reader;
+  storage: storage.Service;
+  manifest: manifest.Service;
 }
 
 export class WorkspaceQuery implements PackageQuery {
   package: pkg.Package;
 
-  private resolver: storage.Resolver;
-  private read: manifest.Reader;
+  private storage: storage.Service;
+  private manifest: manifest.Service;
 
   constructor (options: Options) {
     this.package = options.package;
-    this.resolver = options.resolver;
-    this.read = options.read;
+    this.storage = options.storage;
+    this.manifest = options.manifest;
   }
 
   async scope (dependencyName: pkg.PackageName): Promise<PackageQuery> {
@@ -27,8 +27,8 @@ export class WorkspaceQuery implements PackageQuery {
 
     const resolver = new WorkspaceQuery({
       package: dependency,
-      resolver: this.resolver,
-      read: this.read
+      storage: this.storage,
+      manifest: this.manifest
     });
 
     return resolver;
@@ -78,9 +78,9 @@ export class WorkspaceQuery implements PackageQuery {
     : Promise<pkg.Package>
   {
     const uri = this.package.buildDependencies[name];
-    const contents = await this.resolver.get(uri);
+    const contents = await this.storage.read(uri);
     if (contents !== undefined) {
-      return this.read(contents);
+      return this.manifest.read(contents);
     }
 
     throw new Error(`Could not find build dependency "${name}"`);

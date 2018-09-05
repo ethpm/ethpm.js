@@ -1,6 +1,8 @@
 import hash from "ethpm/storage/ipfs/hash";
 
-import { Resolver as StubResolver, examplesResolver } from "test/stub/ipfs";
+import { URL } from "url";
+
+import { Resolver as StubResolver, exampleStorage } from "test/stub/ipfs";
 import examples from "test/examples/manifests";
 
 describe("StubResolver", () => {
@@ -23,7 +25,7 @@ describe("StubResolver", () => {
 
     // test URI lookup
     for (let [idx, uri] of expectedUris.entries()) {
-      const retrieved = await resolver.get(uri);
+      const retrieved = await resolver.read(uri);
 
       expect(retrieved).toEqual(contents[idx]);
     }
@@ -33,7 +35,7 @@ describe("StubResolver", () => {
 it("retrives examples", async () => {
   const owned = examples["owned"];
   const hashed = await hash(owned);
-  const uri = `ipfs://${hashed}`;
+  const uri = new URL(`ipfs://${hashed}`);
 
-  expect(await examplesResolver.get(uri)).toEqual(owned);
+  expect(await exampleStorage.read(uri)).toEqual(owned);
 });

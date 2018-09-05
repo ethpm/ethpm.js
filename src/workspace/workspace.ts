@@ -3,7 +3,7 @@ import * as manifest from "ethpm/manifest";
 
 export type Services<T extends Configurable> = {
   [K in keyof T]:
-    K extends "manifest" ? manifest.ManifestVersion :
+    K extends "manifest" ? manifest.Service :
     // K extends "storage" ? object :
     // K extends "registry" ? object :
     never

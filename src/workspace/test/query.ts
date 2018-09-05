@@ -1,4 +1,4 @@
-import { examplesResolver } from "test/stub/ipfs";
+import { exampleStorage } from "test/stub/ipfs";
 import examples from "test/examples/packages";
 
 import { WorkspaceQuery } from "ethpm/workspace/query";
@@ -8,8 +8,8 @@ import v2 from "ethpm/manifest/v2";
 it("resolves package-level contract types", async () => {
   let query = new WorkspaceQuery({
     package: examples["standard-token"],
-    resolver: examplesResolver,
-    read: v2.read,
+    storage: exampleStorage,
+    manifest: v2,
   });
 
   const standardToken = await query.contractType("StandardToken");
@@ -22,8 +22,8 @@ it("resolves package-level contract types", async () => {
 it("resolves deployed instances", async () => {
   let query = new WorkspaceQuery({
     package: examples["piper-coin"],
-    resolver: examplesResolver,
-    read: v2.read,
+    storage: exampleStorage,
+    manifest: v2,
   });
 
   const [chain] = examples["piper-coin"].deployments.keys()
@@ -40,8 +40,8 @@ it("resolves deployed instances", async () => {
 it("resolves build dependencies", async () => {
   let query = new WorkspaceQuery({
     package: examples["piper-coin"],
-    resolver: examplesResolver,
-    read: v2.read,
+    storage: exampleStorage,
+    manifest: v2,
   });
 
   const standardToken = await query.buildDependency("standard-token");
@@ -53,8 +53,8 @@ it("resolves build dependencies", async () => {
 it("resolves contract types from a dependent package", async () => {
   let query = new WorkspaceQuery({
     package: examples["piper-coin"],
-    resolver: examplesResolver,
-    read: v2.read,
+    storage: exampleStorage,
+    manifest: v2,
   });
 
   const standardToken = await query.contractType("standard-token:StandardToken");
@@ -66,8 +66,8 @@ it("resolves contract types from a dependent package", async () => {
 it("resolves contract types from a dependency's dependency", async () => {
   let query = new WorkspaceQuery({
     package: examples["wallet-with-send"],
-    resolver: examplesResolver,
-    read: v2.read,
+    storage: exampleStorage,
+    manifest: v2,
   });
 
   const ref = "wallet:safe-math-lib:SafeMathLib";

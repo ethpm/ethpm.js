@@ -1,6 +1,8 @@
 import { Maybe } from "types";
 import { URL } from "url";
 
-export interface Resolver {
-  get(uri: URL): Promise<Maybe<string>>;
+export type Reader = (uri: URL) => Promise<Maybe<string>>
+
+export interface Service {
+  read: Reader;
 }

@@ -8,3 +8,8 @@ export interface ManifestVersion {
   read: Reader;
   write: Writer;
 }
+
+export interface Service {
+  read: Reader;
+  write: Writer;
+}
