@@ -6,11 +6,15 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const entry = Object.assign(
-  {}, ...glob.sync(`./src/**/*.ts`)
-    .map( (path) => {
-      const name = path.match(/^\.\/src\/(.*)\.ts$/)[1];
-      return { [name]: path };
-    })
+  {},
+  ...glob.sync(`./src/**/*.ts`).map( (path) => {
+    const name = path.match(/^\.\/src\/(.*)\.ts$/)[1];
+    return { [name]: path };
+  }),
+  ...glob.sync(`./test/**/*.ts`).map( (path) => {
+    const name = path.match(/^\.\/test\/(.*)\.ts$/)[1];
+    return { [`test/${name}`]: path };
+  })
 );
 
 module.exports = {
