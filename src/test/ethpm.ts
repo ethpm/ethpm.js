@@ -26,4 +26,27 @@ describe("Configuration", () => {
 
     expect(manifest).toEqual(examples["wallet"]);
   });
+
+  it("loads manifest and storage plugins", async () => {
+    const ethpm = await EthPM.configure<Manifest & Storage>({
+      manifest: "ethpm/manifest/v2",
+      storage: "test/stub/ipfs",
+    }).connect();
+
+    const walletWithSend = ethpm.manifest.read(examples["wallet-with-send"]);
+    const manifest = await ethpm.storage.read(
+      walletWithSend.buildDependencies["wallet"]
+    );
+
+    expect(manifest).toBeDefined();
+
+    // to get past typecheck
+    if (manifest === undefined) {
+      return;
+    }
+
+    const wallet = ethpm.manifest.read(manifest);
+
+    expect(wallet).toEqual(packages["wallet"]);
+  });
 });
