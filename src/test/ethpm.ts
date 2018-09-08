@@ -10,7 +10,7 @@ describe("Configuration", () => {
       manifest: "ethpm/manifest/v2",
     }).connect();
 
-    const pkg = ethpm.manifest.read(examples["wallet-with-send"]);
+    const pkg = await ethpm.manifest.read(examples["wallet-with-send"]);
 
     expect(pkg.packageName).toEqual("wallet-with-send");
 
@@ -33,7 +33,7 @@ describe("Configuration", () => {
       storage: "test/stub/storage/examples",
     }).connect();
 
-    const walletWithSend = ethpm.manifest.read(examples["wallet-with-send"]);
+    const walletWithSend = await ethpm.manifest.read(examples["wallet-with-send"]);
     const manifest = await ethpm.storage.read(
       walletWithSend.buildDependencies["wallet"]
     );
@@ -45,7 +45,7 @@ describe("Configuration", () => {
       return;
     }
 
-    const wallet = ethpm.manifest.read(manifest);
+    const wallet = await ethpm.manifest.read(manifest);
 
     expect(wallet).toEqual(packages["wallet"]);
   });

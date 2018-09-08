@@ -8,7 +8,7 @@ it("hashes manifests", async () => {
   const standardToken = examples["standard-token"];
   const piperCoin = examples["piper-coin"];
 
-  const buildDependencies = v2.read(piperCoin).buildDependencies;
+  const buildDependencies = (await v2.read(piperCoin)).buildDependencies;
 
   const { hostname: expected } = buildDependencies["standard-token"];
   const actual: string = await hash(standardToken);

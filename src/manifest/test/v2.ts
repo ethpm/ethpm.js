@@ -6,24 +6,24 @@ import { Package } from "ethpm/package";
 import examples from "test/examples/manifests";
 
 
-it("reads examples", () => {
+it("reads examples", async () => {
   const wallet = examples["wallet-with-send"];
 
-  const pkg: Package = v2.read(wallet);
+  const pkg: Package = await v2.read(wallet);
 
   expect(pkg.packageName).toEqual("wallet-with-send");
   expect(Object.keys(pkg.sources)).toContain("./contracts/WalletWithSend.sol");
   // expect(Object.keys(pkg.contractTypes)).toContain("WalletWithSend");
 });
 
-it("converts package_name", () => {
+it("converts package_name", async () => {
   const manifest: schema.PackageManifest = {
     "manifest_version": "2",
     "package_name": "Foo",
     "version": "1.0.0",
   };
 
-  const pkg: Package = v2.read(JSON.stringify(manifest));
+  const pkg: Package = await v2.read(JSON.stringify(manifest));
 
   expect(pkg).toHaveProperty("packageName");
   expect(pkg).toHaveProperty("version");

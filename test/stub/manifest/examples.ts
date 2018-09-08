@@ -5,7 +5,7 @@ import StubConnector from "./service";
 import packages from "test/examples/packages";
 
 export default class ExamplesConnector extends StubConnector {
-  static connect(options: t.mixed): Promise<manifest.Service> {
+  static async connect(options: t.mixed): Promise<manifest.Service> {
     return super.connect({
       packages: Object.values(packages)
     });

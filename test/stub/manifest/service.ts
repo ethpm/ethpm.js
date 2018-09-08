@@ -24,11 +24,11 @@ export class StubService implements manifest.Service {
     this.packages[pkg.packageName] = pkg;
   }
 
-  read (packageName: string): Package {
+  async read (packageName: string): Promise<Package> {
     return this.packages[packageName];
   }
 
-  write (pkg: Package): string {
+  async write (pkg: Package): Promise<string> {
     return pkg.packageName;
   }
 }

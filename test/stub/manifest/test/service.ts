@@ -16,7 +16,7 @@ describe("StubService", () => {
 
     // test manifest "reading"
     for (let [packageName, expected] of Object.entries(packages)) {
-      const actual = service.read(packageName);
+      const actual = await service.read(packageName);
 
       expect(actual).toEqual(expected);
     }

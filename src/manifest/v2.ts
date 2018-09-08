@@ -6,8 +6,6 @@ import * as schema from "ethpm-spec";
 import * as meta from "ethpm/package/meta";
 import * as pkg from "ethpm/package/package";
 
-import { ManifestVersion } from "ethpm/manifest/types";
-
 const VERSION = "2";
 
 namespace Fields {
@@ -231,14 +229,17 @@ export class Writer {
   }
 }
 
-const v2: ManifestVersion = {
+const v2 = {
   version: VERSION,
 
-  read: (json: string) =>
+  readSync: (json: string) =>
     new Reader(JSON.parse(json) as schema.PackageManifest).read(),
 
-  write: (pkg: pkg.Package) =>
-    stringify(new Writer(pkg).write())
+  read: async (json: string) =>
+    new Reader(JSON.parse(json) as schema.PackageManifest).read(),
+
+  write: async (pkg: pkg.Package) =>
+    stringify(await new Writer(pkg).write())
 }
 
 

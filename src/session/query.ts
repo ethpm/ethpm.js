@@ -84,7 +84,7 @@ export class WorkspaceQuery implements PackageQuery {
     const uri = this.package.buildDependencies[name];
     const contents = await this.storage.read(uri);
     if (contents !== undefined) {
-      return this.manifest.read(contents);
+      return await this.manifest.read(contents);
     }
 
     throw new Error(`Could not find build dependency "${name}"`);

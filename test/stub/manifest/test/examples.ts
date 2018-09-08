@@ -6,5 +6,5 @@ it("retrives examples", async () => {
 
   const owned = packages["owned"];
 
-  expect(service.read("owned")).toEqual(owned);
+  expect(await service.read("owned")).toEqual(owned);
 });
