@@ -5,3 +5,16 @@ ethpm.js
 
 Work in progress library for interacting with EthPM packages in
 Javascript and TypeScript.
+
+## Usage Example
+
+```typescript
+const ethpm: Session = await EthPM.configure<HasManifest>({
+  manifest: "ethpm/manifest/v2",
+}).connect();
+
+const pkg = await ethpm.manifest.read(examples["wallet-with-send"]);
+```
+
+See [[Session]] for API
+
