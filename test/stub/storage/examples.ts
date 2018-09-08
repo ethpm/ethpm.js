@@ -19,6 +19,16 @@ const exampleStorage = {
     const service = await singletonPromise;
     return await service.read(uri);
   },
+
+  hash: async (content: string) => {
+    const service = await singletonPromise;
+    return await service.hash(content);
+  },
+
+  predictUri: async (content: string) => {
+    const service = await singletonPromise;
+    return await service.predictUri(content);
+  }
 }
 
 export default exampleStorage;
