@@ -4,9 +4,9 @@
 
 export type ConfigValue = string;
 
-export type HasManifest = { manifest: true };
-export type HasStorage = { storage: true };
-export type HasRegistry = { registry: true };
+export type HasManifest = { manifest: any };
+export type HasStorage = { storage: any };
+export type HasRegistry = { registry: any };
 
 export type Config =
     HasManifest | HasStorage | HasRegistry |
