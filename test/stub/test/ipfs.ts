@@ -2,13 +2,13 @@ import hash from "ethpm/storage/ipfs/hash";
 
 import { URL } from "url";
 
-import { Resolver as StubResolver } from "test/stub/ipfs";
-import exampleStorage from "test/stub/ipfs";
+import { StubService } from "test/stub/storage";
+import exampleStorage from "test/stub/examples";
 import examples from "test/examples/manifests";
 
-describe("StubResolver", () => {
+describe("StubService", () => {
   it("records and retrieves string values by hash", async () => {
-    const resolver = new StubResolver()
+    const service = new StubService()
 
     const contents = [
       'hello world',
@@ -18,7 +18,7 @@ describe("StubResolver", () => {
 
     // setup
     for (let content of contents) {
-      resolver.add(content);
+      await service.add(content);
     }
 
     const hashes = await Promise.all(contents.map(hash))
@@ -26,7 +26,7 @@ describe("StubResolver", () => {
 
     // test URI lookup
     for (let [idx, uri] of expectedUris.entries()) {
-      const retrieved = await resolver.read(new URL(uri));
+      const retrieved = await service.read(new URL(uri));
 
       expect(retrieved).toEqual(contents[idx]);
     }
