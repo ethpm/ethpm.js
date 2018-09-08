@@ -1,3 +1,10 @@
+/**
+ * @module "ethpm/manifest"
+ */
+
+import * as t from "io-ts";
+import { ThrowReporter } from "io-ts/lib/ThrowReporter";
+
 import { URL } from "url";
 import * as stringify from "json-stable-stringify";
 
@@ -5,6 +12,8 @@ import { lift, lift2 } from "types";
 import * as schema from "ethpm-spec";
 import * as meta from "ethpm/package/meta";
 import * as pkg from "ethpm/package/package";
+
+import { Service } from "ethpm/manifest/types";
 
 const VERSION = "2";
 
@@ -242,5 +251,19 @@ const v2 = {
     stringify(await new Writer(pkg).write())
 }
 
+export { v2 };
 
-export default v2;
+export const OptionsType = t.interface({
+});
+
+export class V2Service {
+  static async connect(options: t.mixed): Promise<Service> {
+    const validation = OptionsType.decode(options)
+    if (validation.isLeft()) {
+      ThrowReporter.report(validation);
+    }
+
+    return v2;
+  }
+}
+export default V2Service;

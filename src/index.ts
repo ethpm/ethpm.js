@@ -1,4 +1,6 @@
-/** @module "ethpm" */
+/**
+ * @module "ethpm"
+ */
 
 import EthPM from "./ethpm";
 

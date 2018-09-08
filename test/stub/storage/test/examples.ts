@@ -2,7 +2,7 @@ import { URL } from "url";
 
 import hash from "ethpm/storage/ipfs/hash";
 
-import exampleStorage from "test/stub/storage/examples";
+import { exampleStorage } from "test/stub/storage/examples";
 import examples from "test/examples/manifests";
 
 it("retrives examples", async () => {

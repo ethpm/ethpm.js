@@ -2,25 +2,58 @@
  * @module "ethpm/session"
  */
 
-const originalRequire: any = require("original-require");
+import * as t from "io-ts";
 
 import * as config from "ethpm/config";
-import { Config, RawConfig } from "ethpm/config";
-import { Workspace } from "./workspace";
+import { Config, HasManifest, HasStorage, HasRegistry } from "ethpm/config";
+
+import * as manifest from "ethpm/manifest";
+import * as storage from "ethpm/storage";
+
+export type Workspace<T extends Config> = {
+  [K in keyof T]:
+    K extends "manifest" ? manifest.Service :
+    K extends "storage" ? storage.Service :
+    // K extends "registry" ? object :
+    never
+}
+
+export interface Connector<S> {
+  connect (options: t.mixed): Promise<S>
+}
+
+export type Connectors<T extends Config> = {
+  [K in keyof Workspace<T>]: Connector<Workspace<T>[K]>
+} & { [k: string]: Connector<any> }
 
 export class Session<T extends Config> {
-  private config: RawConfig<T>;
+  private workspace: Workspace<T>;
 
-  constructor (config_: RawConfig<T>) {
-    this.config = config_;
+  constructor (workspace: Workspace<T>) {
+    this.workspace = workspace;
   }
 
-  async connect (options?: any): Promise<Workspace<T>> {
-    return Object.assign(
-      {}, ...Object.keys(this.config)
-        .map((service) => ({
-          [service]: config.load(this.config[service])
-        }))
-    );
+  get manifest(): Workspace<HasManifest>["manifest"] | never {
+    if ("manifest" in this.workspace) {
+      return (<Workspace<HasManifest>>this.workspace).manifest;
+    }
+
+    throw new Error("No manifest");
+  }
+
+  get storage(): Workspace<HasStorage>["storage"] | never {
+    if ("storage" in this.workspace) {
+      return (<Workspace<HasStorage>>this.workspace).storage;
+    }
+
+    throw new Error("No storage");
+  }
+
+  get registry(): Workspace<HasRegistry>["registry"] | never {
+    if ("registry" in this.workspace) {
+      return (<Workspace<HasRegistry>>this.workspace).registry;
+    }
+
+    throw new Error("No registry");
   }
 }

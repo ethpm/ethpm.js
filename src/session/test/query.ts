@@ -1,8 +1,8 @@
-import exampleStorage from "test/stub/storage/examples";
+import { exampleStorage } from "test/stub/storage/examples";
 import examples from "test/examples/packages";
 
 import { WorkspaceQuery } from "ethpm/session/query";
-import v2 from "ethpm/manifest/v2";
+import { v2 } from "ethpm/manifest/v2";
 
 
 it("resolves package-level contract types", async () => {

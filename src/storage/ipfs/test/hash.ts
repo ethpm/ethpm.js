@@ -1,4 +1,4 @@
-import v2 from "ethpm/manifest/v2";
+import { v2 } from "ethpm/manifest/v2";
 
 import hash from "ethpm/storage/ipfs/hash";
 

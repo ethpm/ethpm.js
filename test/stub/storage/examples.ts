@@ -4,7 +4,7 @@ import * as storage from "ethpm/storage";
 import StubConnector from "./service";
 import examples from "test/examples/manifests";
 
-export class ExamplesConnector extends StubConnector {
+export default class ExamplesConnector extends StubConnector {
   static connect(options: t.mixed): Promise<storage.Service> {
     return super.connect({
       contents: Object.values(examples)
@@ -14,7 +14,7 @@ export class ExamplesConnector extends StubConnector {
 
 const singletonPromise: Promise<storage.Service> = ExamplesConnector.connect({});
 
-const exampleStorage = {
+export const exampleStorage = {
   read: async (uri: URL) => {
     const service = await singletonPromise;
     return await service.read(uri);
@@ -30,5 +30,3 @@ const exampleStorage = {
     return await service.predictUri(content);
   }
 }
-
-export default exampleStorage;

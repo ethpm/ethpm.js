@@ -1,3 +1,7 @@
+/**
+ * @module "ethpm/manifest"
+ */
+
 import { Package } from "ethpm/package";
 
 export type Read = (json: string) => Promise<Package>;

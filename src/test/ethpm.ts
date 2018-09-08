@@ -49,4 +49,48 @@ describe("Configuration", () => {
 
     expect(wallet).toEqual(packages["wallet"]);
   });
+
+  it("fails to load plugin without required options", async () => {
+    const missingOptions = EthPM.configure<HasStorage>({
+      storage: "test/stub/storage"
+    }).connect({
+      /* ... ??? ... */
+    });
+
+    await expect(missingOptions).rejects.toBeTruthy();
+  });
+
+  it("loads plugins with required options", async () => {
+    const storedContent = '{"package_name": "registry"}';
+    const ethpm = await EthPM.configure<HasStorage>({
+      storage: "test/stub/storage"
+    }).connect({
+      contents: [storedContent]
+    });
+
+    const uri = await ethpm.storage.predictUri(storedContent);
+    const retrievedContent = await ethpm.storage.read(uri);
+
+    expect(retrievedContent).toEqual(storedContent);
+  });
+
+  it("loads multiple plugins with required options", async () => {
+    const storedContent = "some file\n\n\n";
+
+    const ethpm = await EthPM.configure<HasManifest & HasStorage>({
+      manifest: "test/stub/manifest",
+      storage: "test/stub/storage"
+    }).connect({
+      packages: Object.values(packages),
+      contents: [storedContent]
+    });
+
+    // test package lookup via fake manifest
+    expect(packages["wallet"]).toEqual(await ethpm.manifest.read("wallet"));
+
+    // test stored content retrieval
+    const uri = await ethpm.storage.predictUri(storedContent);
+    const retrievedContent = await ethpm.storage.read(uri);
+    expect(retrievedContent).toEqual(storedContent);
+  });
 });
