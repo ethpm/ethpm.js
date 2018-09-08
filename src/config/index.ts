@@ -1,15 +1,15 @@
 export type ConfigValue = string;
 
-export type Manifest = { manifest: true };
-export type Storage = { storage: true };
-export type Registry = { registry: true };
+export type HasManifest = { manifest: true };
+export type HasStorage = { storage: true };
+export type HasRegistry = { registry: true };
 
 export type Config =
-    Manifest | Storage | Registry |
-      Manifest & Storage |
-      Manifest & Registry |
-      Storage & Registry |
-      Manifest & Storage & Registry
+    HasManifest | HasStorage | HasRegistry |
+      HasManifest & HasStorage |
+      HasManifest & HasRegistry |
+      HasStorage & HasRegistry |
+      HasManifest & HasStorage & HasRegistry
 
 export type RawConfig<T extends Config> = {
   [K in keyof T]: ConfigValue

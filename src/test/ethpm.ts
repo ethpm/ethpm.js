@@ -1,12 +1,12 @@
 import EthPM from "ethpm";
-import { Manifest, Storage, Registry } from "ethpm/config";
+import { HasManifest, HasStorage, HasRegistry } from "ethpm/config";
 
 import examples from "test/examples/manifests";
 import packages from "test/examples/packages";
 
 describe("Configuration", () => {
   it("loads manifest plugin", async () => {
-    const ethpm = await EthPM.configure<Manifest>({
+    const ethpm = await EthPM.configure<HasManifest>({
       manifest: "ethpm/manifest/v2",
     }).connect();
 
@@ -17,7 +17,7 @@ describe("Configuration", () => {
   });
 
   it("loads storage plugin", async () => {
-    const ethpm = await EthPM.configure<Storage>({
+    const ethpm = await EthPM.configure<HasStorage>({
       storage: "test/stub/ipfs",
     }).connect();
 
@@ -28,7 +28,7 @@ describe("Configuration", () => {
   });
 
   it("loads manifest and storage plugins", async () => {
-    const ethpm = await EthPM.configure<Manifest & Storage>({
+    const ethpm = await EthPM.configure<HasManifest & HasStorage>({
       manifest: "ethpm/manifest/v2",
       storage: "test/stub/ipfs",
     }).connect();
