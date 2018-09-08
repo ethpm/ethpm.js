@@ -1,6 +1,7 @@
-import * as pkg from "ethpm/package/package";
-import manifests from "./manifests";
+import * as pkg from "ethpm/package";
 import { v2 } from "ethpm/manifest/v2";
+
+import manifests from "./manifests";
 
 interface PackageMap {
   [name: string]: pkg.Package

@@ -1,8 +1,11 @@
+/**
+ * @module "ethpm/package"
+ */
+
 import { URL } from "url";
 
 import { Maybe } from "types";
 import { PackageMeta } from "./meta";
-export { PackageMeta };
 import * as link from "./link";
 export { link };
 

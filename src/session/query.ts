@@ -3,9 +3,9 @@
  */
 
 import { Maybe } from "types";
-import { PackageQuery } from "ethpm/package/query";
+
+import * as pkg from "ethpm/package";
 import * as manifest from "ethpm/manifest";
-import * as pkg from "ethpm/package/package";
 import * as storage from "ethpm/storage";
 
 export interface Options {
@@ -14,7 +14,7 @@ export interface Options {
   manifest: manifest.Service;
 }
 
-export class WorkspaceQuery implements PackageQuery {
+export class WorkspaceQuery implements pkg.PackageQuery {
   package: pkg.Package;
 
   private storage: storage.Service;
@@ -26,7 +26,7 @@ export class WorkspaceQuery implements PackageQuery {
     this.manifest = options.manifest;
   }
 
-  async scope (dependencyName: pkg.PackageName): Promise<PackageQuery> {
+  async scope (dependencyName: pkg.PackageName): Promise<pkg.PackageQuery> {
     const dependency = await this.buildDependency(dependencyName);
 
     const resolver = new WorkspaceQuery({

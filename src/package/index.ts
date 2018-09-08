@@ -1,4 +1,13 @@
-export { Package } from "./package";
-export { PackageMeta } from "./meta";
+/**
+ * @module "ethpm/package"
+ */
 
-export { PackageQuery } from "./query";
+export * from "./package";
+
+import * as meta from "./meta";
+export { meta } ;
+
+import * as link from "./link";
+export { link };
+
+export * from "./query";

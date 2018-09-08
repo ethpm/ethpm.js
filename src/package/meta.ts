@@ -1,8 +1,13 @@
+/**
+ * @module "ethpm/package/meta"
+ */
+
 export type Author = string;
 export type License = string;
 export type Description = string;
 export type Keyword = string;
-export interface Link {
+
+export interface PackageMetaLink {
   resource: string,
   uri: string
 }
@@ -12,5 +17,5 @@ export interface PackageMeta {
   license?: License,
   description?: Description,
   keywords?: Array<Keyword>,
-  links?: Array<Link>
+  links?: Array<PackageMetaLink>
 }

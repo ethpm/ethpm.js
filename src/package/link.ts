@@ -1,3 +1,7 @@
+/**
+ * @module "ethpm/package/link"
+ */
+
 export type Offset = number;
 export type Length = number;
 

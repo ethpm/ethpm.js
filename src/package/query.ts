@@ -1,3 +1,7 @@
+/**
+ * @module "ethpm/package"
+ */
+
 import * as pkg from "./package";
 
 export interface PackageQuery {

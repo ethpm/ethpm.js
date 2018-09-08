@@ -10,8 +10,7 @@ import * as stringify from "json-stable-stringify";
 
 import { lift, lift2 } from "types";
 import * as schema from "ethpm-spec";
-import * as meta from "ethpm/package/meta";
-import * as pkg from "ethpm/package/package";
+import * as pkg from "ethpm/package";
 
 import { Service } from "ethpm/manifest/types";
 
@@ -173,8 +172,8 @@ export class Reader {
     return {
       authors: metadata.authors,
       license: metadata.license,
-      description: metadata.description as meta.Description,
-      keywords: metadata.keywords as Array<meta.Keyword>,
+      description: metadata.description as pkg.meta.Description,
+      keywords: metadata.keywords as Array<pkg.meta.Keyword>,
       links: Object.entries(metadata.links || {}).map(
         ([ resource, uri ]) => ({ resource, uri })
       ),
