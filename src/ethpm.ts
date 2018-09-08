@@ -7,42 +7,30 @@ require("source-map-support/register");
 const originalRequire: any = require("original-require");
 const Module = require("module");
 
+import * as config from "ethpm/config";
 import { Config, RawConfig } from "ethpm/config";
 import { Workspace } from "ethpm/workspace";
-
-namespace Loader {
-  export function load<T>(path: string): T {
-    const required = originalRequire.main.require(path);
-
-    // HACK check for .default
-    if (typeof required == "object" && required.default) {
-      return required.default;
-    }
-
-    return required;
-  }
-}
 
 namespace EthPM {
   export class Session<T extends Config> {
     private config: RawConfig<T>;
 
-    constructor (config: RawConfig<T>) {
-      this.config = config;
+    constructor (config_: RawConfig<T>) {
+      this.config = config_;
     }
 
     async connect (options?: any): Promise<Workspace<T>> {
       return Object.assign(
         {}, ...Object.keys(this.config)
           .map((service) => ({
-            [service]: Loader.load(this.config[service])
+            [service]: config.load(this.config[service])
           }))
       );
     }
   }
 
-  export function configure<T extends Config> (config: RawConfig<T>): Session<T> {
-    return new Session(config);
+  export function configure<T extends Config> (config_: RawConfig<T>): Session<T> {
+    return new Session(config_);
   }
 }
 
