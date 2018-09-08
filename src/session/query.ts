@@ -1,3 +1,7 @@
+/**
+ * @module "ethpm/session"
+ */
+
 import { Maybe } from "types";
 import { PackageQuery } from "ethpm/package/query";
 import * as manifest from "ethpm/manifest";

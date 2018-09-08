@@ -1,7 +1,7 @@
 import exampleStorage from "test/stub/ipfs";
 import examples from "test/examples/packages";
 
-import { WorkspaceQuery } from "ethpm/workspace/query";
+import { WorkspaceQuery } from "ethpm/session/query";
 import v2 from "ethpm/manifest/v2";
 
 

@@ -9,7 +9,7 @@ const Module = require("module");
 
 import * as config from "ethpm/config";
 import { Config, RawConfig } from "ethpm/config";
-import { Workspace } from "ethpm/workspace";
+import { Workspace } from "ethpm/session";
 
 namespace EthPM {
   export class Session<T extends Config> {

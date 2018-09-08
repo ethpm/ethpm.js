@@ -1,3 +1,7 @@
+/**
+ * @module "ethpm/session"
+ */
+
 import { Config, RawConfig } from "ethpm/config";
 import * as manifest from "ethpm/manifest";
 import * as storage from "ethpm/storage";
