@@ -1,3 +1,7 @@
+/**
+ * @module "test/examples"
+ */
+
 import * as pkg from "ethpm/package";
 import { v2 } from "ethpm/manifest/v2";
 

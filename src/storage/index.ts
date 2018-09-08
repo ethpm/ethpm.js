@@ -1,3 +1,7 @@
+/**
+ * @module "ethpm/storage"
+ */
+
 import { Maybe } from "types";
 import { URL } from "url";
 

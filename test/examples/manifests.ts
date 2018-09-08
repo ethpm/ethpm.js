@@ -1,3 +1,7 @@
+/**
+ * @module "test/examples"
+ */
+
 import { exampleManifest } from "./utils";
 
 const manifests: Record<string, string> = Object.assign(

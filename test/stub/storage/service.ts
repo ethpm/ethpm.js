@@ -1,3 +1,7 @@
+/**
+ * @module "test/stub/storage"
+ */
+
 import { URL } from "url";
 import * as t from "io-ts";
 import { ThrowReporter } from "io-ts/lib/ThrowReporter";

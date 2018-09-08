@@ -1,3 +1,7 @@
+/**
+ * @module "test/examples"
+ */
+
 export function exampleManifest(
   name: string,
   version: string = "1.0.0",

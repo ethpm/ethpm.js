@@ -1,3 +1,7 @@
+/**
+ * @module "ethpm/storage/ipfs"
+ */
+
 import { promisify } from "util";
 
 const Unixfs = require("ipfs-unixfs");

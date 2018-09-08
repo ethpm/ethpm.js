@@ -1,3 +1,7 @@
+/**
+ * @module "test/stub/manifest/examples"
+ */
+
 import { URL } from "url";
 import * as t from "io-ts";
 import * as manifest from "ethpm/manifest";
