@@ -1,5 +1,5 @@
 /**
- * @module "ethpm/ethpm"
+ * @module "ethpm"
  */
 const debug = require("debug")("ethpm");
 require("source-map-support/register");
