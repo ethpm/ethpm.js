@@ -7,7 +7,7 @@ require("source-map-support/register");
 const originalRequire: any = require("original-require");
 const Module = require("module");
 
-import { Config, Configurable } from "ethpm/config";
+import { Config, RawConfig } from "ethpm/config";
 import { Workspace } from "ethpm/workspace";
 
 namespace Loader {
@@ -24,10 +24,10 @@ namespace Loader {
 }
 
 namespace EthPM {
-  export class Session<T extends Configurable> {
-    private config: Config<T>;
+  export class Session<T extends Config> {
+    private config: RawConfig<T>;
 
-    constructor (config: Config<T>) {
+    constructor (config: RawConfig<T>) {
       this.config = config;
     }
 
@@ -41,7 +41,7 @@ namespace EthPM {
     }
   }
 
-  export function configure<T extends Configurable> (config: Config<T>): Session<T> {
+  export function configure<T extends Config> (config: RawConfig<T>): Session<T> {
     return new Session(config);
   }
 }
