@@ -39,6 +39,7 @@
   "dependencies": {
     "debug": "^3.1.0",
     "ethpm-spec": "git+https://github.com/ethpm/ethpm-spec.git#ethpm.js",
+    "io-ts": "^1.3.0",
     "ipfs-unixfs": "^0.1.15",
     "ipld-dag-pb": "^0.14.8",
     "json-stable-stringify": "^1.0.1",
