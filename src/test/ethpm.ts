@@ -18,7 +18,7 @@ describe("Configuration", () => {
 
   it("loads storage plugin", async () => {
     const ethpm = await EthPM.configure<HasStorage>({
-      storage: "test/stub/examples",
+      storage: "test/stub/storage/examples",
     }).connect();
 
     const wallet = packages["wallet-with-send"].buildDependencies["wallet"];
@@ -30,7 +30,7 @@ describe("Configuration", () => {
   it("loads manifest and storage plugins", async () => {
     const ethpm = await EthPM.configure<HasManifest & HasStorage>({
       manifest: "ethpm/manifest/v2",
-      storage: "test/stub/examples",
+      storage: "test/stub/storage/examples",
     }).connect();
 
     const walletWithSend = ethpm.manifest.read(examples["wallet-with-send"]);

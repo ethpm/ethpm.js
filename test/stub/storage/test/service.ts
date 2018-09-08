@@ -1,10 +1,8 @@
-import hash from "ethpm/storage/ipfs/hash";
-
 import { URL } from "url";
 
+import hash from "ethpm/storage/ipfs/hash";
+
 import { StubService } from "test/stub/storage";
-import exampleStorage from "test/stub/examples";
-import examples from "test/examples/manifests";
 
 describe("StubService", () => {
   it("records and retrieves string values by hash", async () => {
@@ -31,12 +29,4 @@ describe("StubService", () => {
       expect(retrieved).toEqual(contents[idx]);
     }
   });
-});
-
-it("retrives examples", async () => {
-  const owned = examples["owned"];
-  const hashed = await hash(owned);
-  const uri = new URL(`ipfs://${hashed}`);
-
-  expect(await exampleStorage.read(uri)).toEqual(owned);
 });

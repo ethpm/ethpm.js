@@ -1,7 +1,7 @@
 import { URL } from "url";
 import * as t from "io-ts";
 import * as storage from "ethpm/storage";
-import StubConnector from "./storage";
+import StubConnector from "./service";
 import examples from "test/examples/manifests";
 
 export class ExamplesConnector extends StubConnector {
