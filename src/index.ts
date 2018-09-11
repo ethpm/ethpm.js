@@ -9,7 +9,7 @@ import * as config from "ethpm/config";
 import { Config, RawConfig } from "ethpm/config";
 
 import * as session from "ethpm/session";
-import { Session, Workspace } from "ethpm/session";
+import { Session } from "ethpm/session";
 
 namespace EthPM {
   export class Builder<T extends Config> {

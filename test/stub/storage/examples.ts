@@ -9,14 +9,15 @@ import StubConnector from "./service";
 import examples from "test/examples/manifests";
 
 export default class ExamplesConnector extends StubConnector {
-  static connect(options: t.mixed): Promise<storage.Service> {
+  async connect(options: t.mixed): Promise<storage.Service> {
     return super.connect({
       contents: Object.values(examples)
     });
   }
 }
 
-const singletonPromise: Promise<storage.Service> = ExamplesConnector.connect({});
+const singletonPromise: Promise<storage.Service> =
+  new ExamplesConnector().connect({});
 
 export const exampleStorage = {
   read: async (uri: URL) => {

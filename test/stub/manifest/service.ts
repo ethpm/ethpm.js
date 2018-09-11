@@ -7,12 +7,9 @@ import * as t from "io-ts";
 import { ThrowReporter } from "io-ts/lib/ThrowReporter";
 
 import { Maybe } from "types";
+import * as config from "ethpm/config";
 import * as manifest from "ethpm/manifest";
 import { Package } from "ethpm/package";
-
-export const OptionsType = t.interface({
-  packages: t.Array
-});
 
 /**
  * @dev Preloaded packages where "manifest" is the raw package name string
@@ -37,18 +34,17 @@ export class StubService implements manifest.Service {
   }
 }
 
-export default class StubConnector {
-  static async connect(options: t.mixed): Promise<manifest.Service> {
-    const validation = OptionsType.decode(options)
-    if (validation.isLeft()) {
-      ThrowReporter.report(validation);
-    }
+export default class StubConnector extends config.Connector<manifest.Service> {
+  optionsType = t.interface({
+    packages: t.Array
+  });
 
+  async init (
+    { packages }: { packages: Array<Package> }
+  ): Promise<manifest.Service> {
     const service = new StubService();
-    if (validation.isRight()) {
-      for (let content of validation.value.packages) {
-        await service.add(<Package>content);
-      }
+    for (let package_ of packages) {
+      await service.add(package_);
     }
 
     return service;

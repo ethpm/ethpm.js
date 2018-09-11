@@ -2,8 +2,6 @@
  * @module "ethpm/session"
  */
 
-import * as t from "io-ts";
-
 import * as config from "ethpm/config";
 import { Config, HasManifest, HasStorage, HasRegistry } from "ethpm/config";
 
@@ -18,13 +16,10 @@ export type Workspace<T extends Config> = {
     never
 }
 
-export interface Connector<S> {
-  connect (options: t.mixed): Promise<S>
-}
-
 export type Connectors<T extends Config> = {
-  [K in keyof Workspace<T>]: Connector<Workspace<T>[K]>
-} & { [k: string]: Connector<any> }
+  [K in keyof Workspace<T>]: config.Connector<Workspace<T>[K]>
+} & { [k: string]: config.Connector<any> }
+
 
 export class Session<T extends Config> {
   private workspace: Workspace<T>;

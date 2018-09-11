@@ -10,9 +10,9 @@ import * as stringify from "json-stable-stringify";
 
 import { lift, lift2 } from "types";
 import * as schema from "ethpm-spec";
+import * as config from "ethpm/config";
 import * as pkg from "ethpm/package";
-
-import { Service } from "ethpm/manifest/service";
+import * as manifest from "ethpm/manifest/service";
 
 const VERSION = "2";
 
@@ -252,17 +252,10 @@ const v2 = {
 
 export { v2 };
 
-export const OptionsType = t.interface({
-});
+export default class Connector extends config.Connector<manifest.Service> {
+  optionsType = t.interface({});
 
-export class V2Service {
-  static async connect(options: t.mixed): Promise<Service> {
-    const validation = OptionsType.decode(options)
-    if (validation.isLeft()) {
-      ThrowReporter.report(validation);
-    }
-
+  async init (): Promise<manifest.Service> {
     return v2;
   }
 }
-export default V2Service;
