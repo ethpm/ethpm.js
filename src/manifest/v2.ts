@@ -12,7 +12,7 @@ import { lift, lift2 } from "types";
 import * as schema from "ethpm-spec";
 import * as pkg from "ethpm/package";
 
-import { Service } from "ethpm/manifest/types";
+import { Service } from "ethpm/manifest/service";
 
 const VERSION = "2";
 
