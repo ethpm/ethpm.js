@@ -5,9 +5,8 @@
 import { URL } from "url";
 
 import { Maybe } from "types";
-import { PackageMeta } from "./meta";
-import * as link from "./link";
-export { link };
+import { Meta } from "./meta";
+import { Link } from "./link";
 
 export type Address = string;
 export type TransactionHash = string;
@@ -39,13 +38,13 @@ export interface Compiler {
 
 export interface UnlinkedBytecode {
   bytecode: bytecode,
-  linkReferences: Array<link.Reference>,
+  linkReferences: Array<Link.Reference>,
 }
 
 export interface LinkedBytecode {
   bytecode: bytecode,
-  linkReferences: Array<link.Reference>,
-  linkDependencies: Array<link.Value>,
+  linkReferences: Array<Link.Reference>,
+  linkDependencies: Array<Link.Value>,
 }
 
 export interface ContractType {
@@ -77,7 +76,7 @@ export type BuildDependencies = Record<PackageName, ContentURI>;
 export interface Package {
   packageName: PackageName,
   version: Version,
-  meta: PackageMeta,
+  meta: Meta.PackageMeta,
   sources: Sources,
   contractTypes: ContractTypes,
   deployments: Deployments,

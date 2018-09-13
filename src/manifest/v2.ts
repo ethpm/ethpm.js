@@ -80,7 +80,7 @@ namespace Fields {
 
   export function readLinkDependencies(
     linkDependencies: schema.LinkDependencies
-  ): Array<pkg.link.Value> {
+  ): Array<pkg.Link.Value> {
     return [
       ...(linkDependencies || [])
         .map(
@@ -172,8 +172,8 @@ export class Reader {
     return {
       authors: metadata.authors,
       license: metadata.license,
-      description: metadata.description as pkg.meta.Description,
-      keywords: metadata.keywords as Array<pkg.meta.Keyword>,
+      description: metadata.description as pkg.Meta.Description,
+      keywords: metadata.keywords as Array<pkg.Meta.Keyword>,
       links: Object.entries(metadata.links || {}).map(
         ([ resource, uri ]) => ({ resource, uri })
       ),

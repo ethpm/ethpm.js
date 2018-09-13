@@ -3,11 +3,6 @@
  */
 
 export * from "./package";
-
-import * as meta from "./meta";
-export { meta } ;
-
-import * as link from "./link";
-export { link };
-
+export * from "./link";
+export * from "./meta";
 export * from "./query";
