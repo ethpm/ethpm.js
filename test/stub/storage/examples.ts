@@ -1,5 +1,5 @@
 /**
- * @module "test/stub/storage/examples"
+ * @module "test/stub/storage"
  */
 
 import { URL } from "url";

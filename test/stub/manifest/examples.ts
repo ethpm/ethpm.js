@@ -1,5 +1,5 @@
 /**
- * @module "test/stub/manifest/examples"
+ * @module "test/stub/manifest"
  */
 
 import * as t from "io-ts";

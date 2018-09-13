@@ -1,5 +1,5 @@
 /**
- * @module "test/stub/manifest/examples"
+ * @module "test/stub/registry"
  */
 
 import { URL } from "url";
