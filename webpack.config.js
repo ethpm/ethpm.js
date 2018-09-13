@@ -4,6 +4,7 @@ const glob = require("glob");
 const path = require("path");
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const WebpackShellPlugin = require('webpack-shell-plugin-next');
 
 const entry = Object.assign(
   {},
@@ -55,6 +56,12 @@ module.exports = {
   },
   devtool: "source-map",
   plugins: [
+    new WebpackShellPlugin({
+      onBuildExit: {
+        scripts: ['./bin/generate-docs'],
+        blocking: true
+      }
+    }),
     new ForkTsCheckerWebpackPlugin()
   ]
 };
