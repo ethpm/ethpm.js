@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;test/examples&quot; | EthPM.js</title>
+	<title>Service | EthPM.js</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,118 +56,144 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="_test_examples_.html">&quot;test/examples&quot;</a>
+					<a href="../modules/_ethpm_registry_.html">&quot;ethpm/registry&quot;</a>
+				</li>
+				<li>
+					<a href="_ethpm_registry_.service.html">Service</a>
 				</li>
 			</ul>
-			<h1>External module &quot;test/examples&quot;</h1>
+			<h1>Interface Service</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">Service</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implemented by</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../classes/_test_stub_manifest_.stubservice-1.html" class="tsd-signature-type">StubService</a></li>
+				</ul>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section tsd-is-not-exported">
-							<h3>Interfaces</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported"><a href="../interfaces/_test_examples_.packagemap.html" class="tsd-kind-icon">Package<wbr>Map</a></li>
-							</ul>
-						</section>
 						<section class="tsd-index-section ">
-							<h3>Variables</h3>
+							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_test_examples_.html#manifests" class="tsd-kind-icon">manifests</a></li>
-								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_test_examples_.html#packages" class="tsd-kind-icon">packages</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Functions</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_test_examples_.html#examplemanifest" class="tsd-kind-icon">example<wbr>Manifest</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported"><a href="_test_examples_.html#getpackages" class="tsd-kind-icon">get<wbr>Packages</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_ethpm_registry_.service.html#package" class="tsd-kind-icon">package</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_ethpm_registry_.service.html#packages" class="tsd-kind-icon">packages</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Variables</h2>
-				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
-					<a name="manifests" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> manifests</h3>
-					<div class="tsd-signature tsd-kind-icon">manifests<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;Object.assign({},...[&quot;owned&quot;,&quot;transferable&quot;,&quot;standard-token&quot;,&quot;safe-math-lib&quot;,&quot;piper-coin&quot;,&quot;escrow&quot;,&quot;wallet&quot;,&quot;wallet-with-send&quot;,].map(name &#x3D;&gt; ({[name]: exampleManifest(name)})))</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/2694a07/test/examples/manifests.ts#L7">test/examples/manifests.ts:7</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
-					<a name="packages" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> packages</h3>
-					<div class="tsd-signature tsd-kind-icon">packages<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_test_examples_.packagemap.html" class="tsd-signature-type">PackageMap</a><span class="tsd-signature-symbol"> =&nbsp;getPackages()</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/2694a07/test/examples/packages.ts#L24">test/examples/packages.ts:24</a></li>
-						</ul>
-					</aside>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Functions</h2>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="examplemanifest" class="tsd-anchor"></a>
-					<h3>example<wbr>Manifest</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">example<wbr>Manifest<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, version<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, pretty<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="package" class="tsd-anchor"></a>
+					<h3>package</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">package<span class="tsd-signature-symbol">(</span>packageName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">pkg.PackageName</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/2694a07/test/examples/utils.ts#L5">test/examples/utils.ts:5</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/2694a07/src/registry/service.ts#L19">src/registry/service.ts:19</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
-								<dl class="tsd-comment-tags">
-									<dt>module</dt>
-									<dd><p>&quot;test/examples&quot;</p>
-									</dd>
-								</dl>
+								<div class="lead">
+									<p>Query a particular package</p>
+								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>name: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> version: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;1.0.0&quot;</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> pretty: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+									<h5>packageName: <span class="tsd-signature-type">pkg.PackageName</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter">
+									<h5>release<span class="tsd-signature-symbol">: </span>function</h5>
+									<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-type-literal tsd-is-not-exported">
+										<li class="tsd-signature tsd-kind-icon">release<span class="tsd-signature-symbol">(</span>version<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">pkg.Version</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">URL</span><span class="tsd-signature-symbol">&gt;</span></li>
+									</ul>
+									<ul class="tsd-descriptions">
+										<li class="tsd-description">
+											<aside class="tsd-sources">
+												<ul>
+													<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/2694a07/src/registry/service.ts#L29">src/registry/service.ts:29</a></li>
+												</ul>
+											</aside>
+											<div class="tsd-comment tsd-typography">
+												<div class="lead">
+													<p>Retrieve manifest URI for specific version</p>
+												</div>
+											</div>
+											<h4 class="tsd-parameters-title">Parameters</h4>
+											<ul class="tsd-parameters">
+												<li>
+													<h5>version: <span class="tsd-signature-type">pkg.Version</span></h5>
+												</li>
+											</ul>
+											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">URL</span><span class="tsd-signature-symbol">&gt;</span></h4>
+										</li>
+								</ul>        </li>
+								<li class="tsd-parameter">
+									<h5>releases<span class="tsd-signature-symbol">: </span>function</h5>
+									<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-type-literal tsd-is-not-exported">
+										<li class="tsd-signature tsd-kind-icon">releases<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">pkg.Version</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+									</ul>
+									<ul class="tsd-descriptions">
+										<li class="tsd-description">
+											<aside class="tsd-sources">
+												<ul>
+													<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/2694a07/src/registry/service.ts#L23">src/registry/service.ts:23</a></li>
+												</ul>
+											</aside>
+											<div class="tsd-comment tsd-typography">
+												<div class="lead">
+													<p>List all releases</p>
+												</div>
+											</div>
+											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">pkg.Version</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+										</li>
+								</ul>        </li>
+							</ul>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
-					<a name="getpackages" class="tsd-anchor"></a>
-					<h3>get<wbr>Packages</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Packages<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_test_examples_.packagemap.html" class="tsd-signature-type">PackageMap</a></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="packages" class="tsd-anchor"></a>
+					<h3>packages</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">packages<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">pkg.PackageName</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/2694a07/test/examples/packages.ts#L14">test/examples/packages.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/2694a07/src/registry/service.ts#L14">src/registry/service.ts:14</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_test_examples_.packagemap.html" class="tsd-signature-type">PackageMap</a></h4>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>List all packages</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">pkg.PackageName</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -180,69 +206,69 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_ethpm_.html">"ethpm"</a>
+						<a href="../modules/_ethpm_.html">"ethpm"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_ethpm_config_.html">"ethpm/config"</a>
+						<a href="../modules/_ethpm_config_.html">"ethpm/config"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_ethpm_manifest_.html">"ethpm/manifest"</a>
+						<a href="../modules/_ethpm_manifest_.html">"ethpm/manifest"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_ethpm_manifest_v2_.html">"ethpm/manifest/v2"</a>
+						<a href="../modules/_ethpm_manifest_v2_.html">"ethpm/manifest/v2"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_ethpm_package_.html">"ethpm/package"</a>
+						<a href="../modules/_ethpm_package_.html">"ethpm/package"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_ethpm_package_link_.html">"ethpm/package/link"</a>
+						<a href="../modules/_ethpm_package_link_.html">"ethpm/package/link"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_ethpm_package_meta_.html">"ethpm/package/meta"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_ethpm_registry_.html">"ethpm/registry"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_ethpm_session_.html">"ethpm/session"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_ethpm_storage_.html">"ethpm/storage"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_ethpm_storage_ipfs_.html">"ethpm/storage/ipfs"</a>
+						<a href="../modules/_ethpm_package_meta_.html">"ethpm/package/meta"</a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="_test_examples_.html">"test/examples"</a>
+						<a href="../modules/_ethpm_registry_.html">"ethpm/registry"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_test_stub_manifest_.html">"test/stub/manifest"</a>
+						<a href="../modules/_ethpm_session_.html">"ethpm/session"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_test_stub_storage_.html">"test/stub/storage"</a>
+						<a href="../modules/_ethpm_storage_.html">"ethpm/storage"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_types_index_.html">"types/index"</a>
+						<a href="../modules/_ethpm_storage_ipfs_.html">"ethpm/storage/ipfs"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_test_examples_.html">"test/examples"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_test_stub_manifest_.html">"test/stub/manifest"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_test_stub_storage_.html">"test/stub/storage"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_types_index_.html">"types/index"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="../interfaces/_test_examples_.packagemap.html" class="tsd-kind-icon">Package<wbr>Map</a>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_ethpm_registry_.service.html" class="tsd-kind-icon">Service</a>
+						<ul>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_ethpm_registry_.service.html#package" class="tsd-kind-icon">package</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_ethpm_registry_.service.html#packages" class="tsd-kind-icon">packages</a>
+							</li>
+						</ul>
 					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
-						<a href="_test_examples_.html#manifests" class="tsd-kind-icon">manifests</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
-						<a href="_test_examples_.html#packages" class="tsd-kind-icon">packages</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="_test_examples_.html#examplemanifest" class="tsd-kind-icon">example<wbr>Manifest</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_test_examples_.html#getpackages" class="tsd-kind-icon">get<wbr>Packages</a>
-					</li>
+				</ul>
+				<ul class="after-current">
 				</ul>
 			</nav>
 		</div>
