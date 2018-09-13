@@ -3,3 +3,4 @@ node_js:
   - "8"
 before_install:
   - yarn install --network-concurrency 1
+  - openssl aes-256-cbc -K $encrypted_4a42c2c3e956_key -iv $encrypted_4a42c2c3e956_iv -in deploy-key.enc -out deploy-key -d
