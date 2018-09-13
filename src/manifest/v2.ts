@@ -1,5 +1,5 @@
 /**
- * @module "ethpm/manifest"
+ * @module "ethpm/manifest/v2"
  */
 
 import * as t from "io-ts";
