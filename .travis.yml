@@ -5,5 +5,5 @@ before_install:
   - yarn install --network-concurrency 1
 
 after_success:
-  - yarn docs
+  - ./bin/generate-docs
   - ./bin/deploy
