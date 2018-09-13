@@ -4,6 +4,7 @@ const glob = require("glob");
 const path = require("path");
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const ForkTsCheckerNotifierWebpackPlugin = require('fork-ts-checker-notifier-webpack-plugin');
 const WebpackShellPlugin = require('webpack-shell-plugin-next');
 
 const entry = Object.assign(
@@ -62,6 +63,7 @@ module.exports = {
         blocking: true
       }
     }),
-    new ForkTsCheckerWebpackPlugin()
+    new ForkTsCheckerWebpackPlugin(),
+    new ForkTsCheckerNotifierWebpackPlugin()
   ]
 };
