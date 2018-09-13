@@ -30,7 +30,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(ts|js)?$/,
+        test: /\.(ts|js)$/,
         loader: 'ts-loader',
         options: {
           transpileOnly: true,
@@ -38,6 +38,9 @@ module.exports = {
             isolatedModules: true
           }
         }
+      }, {
+        test: /\.sol$/,
+        loader: 'raw-loader'
       }
     ]
   },
