@@ -3,13 +3,15 @@
  */
 
 import * as config from "ethpm/config";
-import { Config, HasManifest, HasStorage, HasRegistry } from "ethpm/config";
+import {
+  Config, RawConfig, HasManifest, HasStorage, HasRegistry
+} from "ethpm/config";
 
 import * as manifest from "ethpm/manifest";
 import * as storage from "ethpm/storage";
 import * as registry from "ethpm/registry";
 
-export type Workspace<T extends Config> = {
+type Workspace<T extends Config> = {
   [K in keyof T]:
     K extends "manifest" ? manifest.Service :
     K extends "storage" ? storage.Service :
@@ -17,10 +19,9 @@ export type Workspace<T extends Config> = {
     never
 }
 
-export type Connectors<T extends Config> = {
+type Connectors<T extends Config> = {
   [K in keyof Workspace<T>]: config.Connector<Workspace<T>[K]>
 } & { [k: string]: config.Connector<any> }
-
 
 export class Session<T extends Config> {
   private workspace: Workspace<T>;
@@ -51,5 +52,28 @@ export class Session<T extends Config> {
     }
 
     throw new Error("No registry");
+  }
+}
+
+export class Builder<T extends Config> {
+  private connectors: Connectors<T>;
+
+  constructor (config_: RawConfig<T>) {
+    this.connectors = Object.assign(
+      {}, ...Object.keys(config_)
+        .map((service) => ({
+          [service]: config.load(config_[service])
+        }))
+    );
+  }
+
+  async connect (options: any = {}): Promise<Session<T>> {
+    const workspace = Object.assign({}, ...await Promise.all(
+      Object.keys(this.connectors).map( async (service) => ({
+        [service]: await this.connectors[service].connect(options)
+      }))
+    ));
+
+    return new Session(workspace);
   }
 }

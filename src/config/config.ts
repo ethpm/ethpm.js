@@ -11,6 +11,10 @@ export type HasManifest = { manifest: any };
 export type HasStorage = { storage: any };
 export type HasRegistry = { registry: any };
 
+/**
+ * Polymorphic type alias for any object that exposes keys for any or all
+ * available services, i.e. `manifest`, `registry`, `storage`
+ */
 export type Config =
     HasManifest | HasStorage | HasRegistry |
       HasManifest & HasStorage |

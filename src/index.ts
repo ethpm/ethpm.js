@@ -6,39 +6,40 @@
 require("source-map-support/register");
 
 import * as config from "ethpm/config";
-import { Config, RawConfig } from "ethpm/config";
-
 import * as session from "ethpm/session";
-import { Session } from "ethpm/session";
 
+/**
+ * This module provides the external interface for configuring an EthPM
+ * session object.
+ *
+ * Usage:
+ * ```javascript
+ * import EthPM from "ethpm";
+ *
+ * ```
+ */
 namespace EthPM {
-  export class Builder<T extends Config> {
-    private connectors: session.Connectors<T>;
-
-    constructor (config_: RawConfig<T>) {
-      this.connectors = Object.assign(
-        {}, ...Object.keys(config_)
-          .map((service) => ({
-            [service]: config.load(config_[service])
-          }))
-      );
-    }
-
-    async connect (options: any = {}): Promise<Session<T>> {
-      const workspace = Object.assign({}, ...await Promise.all(
-        Object.keys(this.connectors).map( async (service) => ({
-          [service]: await this.connectors[service].connect(options)
-        }))
-      ));
-
-      return new Session(workspace);
-    }
-  }
-
-  export function configure<T extends Config> (
-    config_: RawConfig<T>
-  ): Builder<T> {
-    return new Builder(config_);
+  /**
+   * Configure EthPM with specified Node modules to load for various
+   * services
+   *
+   * Example Usage:
+   * ```javascript
+   * import EthPM from "ethpm";
+   * const builder = EthPM.configure({
+   *   manifest: "ethpm/manifest/v2",
+   *   storage: "ethpm/storage/ipfs",
+   *   registry: "ethpm/registry/web3"
+   * })
+   * ```
+   *
+   * EthPM.js will `require()` the specified modules from your project's
+   * `node_modules/` folder.
+   */
+  export function configure<T extends config.Config> (
+    config: config.RawConfig<T>
+  ): session.Builder<T> {
+    return new session.Builder(config);
   }
 }
 
