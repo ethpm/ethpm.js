@@ -14,6 +14,8 @@ export interface Options {
   manifest: manifest.Service;
 }
 
+import { Workspace } from "./workspace";
+
 export interface Queryable {
   package: pkg.Package
 

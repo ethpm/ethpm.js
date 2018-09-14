@@ -10,14 +10,7 @@ import {
 import * as manifest from "ethpm/manifest";
 import * as storage from "ethpm/storage";
 import * as registry from "ethpm/registry";
-
-type Workspace<T extends Config> = {
-  [K in keyof T]:
-    K extends "manifest" ? manifest.Service :
-    K extends "storage" ? storage.Service :
-    K extends "registry" ? registry.Service :
-    never
-}
+import { Workspace } from "ethpm/session";
 
 type Connectors<T extends Config> = {
   [K in keyof Workspace<T>]: config.Connector<Workspace<T>[K]>
