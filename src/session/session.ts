@@ -5,16 +5,26 @@
 import * as config from "ethpm/config";
 import { Config, HasManifest, HasStorage, HasRegistry } from "ethpm/config";
 
+import * as pkg from "ethpm/package";
 import * as manifest from "ethpm/manifest";
 import * as storage from "ethpm/storage";
 import * as registry from "ethpm/registry";
-import { Workspace } from "ethpm/session";
+
+import { Workspace } from "./workspace";
+import { Query } from "./query";
 
 export class Session<T extends Config> {
   private workspace: Workspace<T>;
 
   constructor (workspace: Workspace<T>) {
     this.workspace = workspace;
+  }
+
+  query (package_: pkg.Package): Query<T> {
+    return new Query({
+      package: package_,
+      workspace: this.workspace
+    });
   }
 
   get manifest(): Workspace<HasManifest>["manifest"] | never {
