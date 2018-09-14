@@ -9,23 +9,9 @@ import * as pkg from "ethpm/package";
 import * as manifest from "ethpm/manifest";
 import * as storage from "ethpm/storage";
 
-
 import { Workspace } from "./workspace";
 
-export interface Queryable {
-  package: pkg.Package
-
-  contractType(ref: pkg.ContractTypeReference)
-    : Promise<pkg.ContractType>;
-
-  contractInstance(chain: pkg.ChainURI, instance: pkg.ContractInstanceName)
-    : Promise<pkg.ContractInstance>;
-
-  buildDependency(name: pkg.PackageName)
-    : Promise<pkg.Package> | never;
-}
-
-export class Query<T extends config.Config> implements Queryable {
+export class Query<T extends config.Config> {
   package: pkg.Package;
 
   private workspace: Workspace<T>;
@@ -38,7 +24,7 @@ export class Query<T extends config.Config> implements Queryable {
     this.workspace = options.workspace;
   }
 
-  async scope (dependencyName: pkg.PackageName): Promise<Queryable> {
+  async scope (dependencyName: pkg.PackageName): Promise<Query<T>> {
     const dependency = await this.buildDependency(dependencyName);
 
     const resolver = new Query({
