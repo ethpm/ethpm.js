@@ -14,7 +14,20 @@ export interface Options {
   manifest: manifest.Service;
 }
 
-export class Query implements pkg.PackageQuery {
+export interface Queryable {
+  package: pkg.Package
+
+  contractType(ref: pkg.ContractTypeReference)
+    : Promise<pkg.ContractType>;
+
+  contractInstance(chain: pkg.ChainURI, instance: pkg.ContractInstanceName)
+    : Promise<pkg.ContractInstance>;
+
+  buildDependency(name: pkg.PackageName)
+    : Promise<pkg.Package>;
+}
+
+export class Query implements Queryable {
   package: pkg.Package;
 
   private storage: storage.Service;
@@ -26,7 +39,7 @@ export class Query implements pkg.PackageQuery {
     this.manifest = options.manifest;
   }
 
-  async scope (dependencyName: pkg.PackageName): Promise<pkg.PackageQuery> {
+  async scope (dependencyName: pkg.PackageName): Promise<Queryable> {
     const dependency = await this.buildDependency(dependencyName);
 
     const resolver = new Query({

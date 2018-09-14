@@ -5,4 +5,3 @@
 export * from "./package";
 export * from "./link";
 export * from "./meta";
-export * from "./query";
