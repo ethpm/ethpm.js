@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;ethpm/manifest&quot; | EthPM.js</title>
+	<title>PackageMeta | EthPM.js</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,27 +56,98 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="_ethpm_manifest_.html">&quot;ethpm/manifest&quot;</a>
+					<a href="../modules/_ethpm_package_.html">&quot;ethpm/package&quot;</a>
+				</li>
+				<li>
+					<a href="../modules/_ethpm_package_.meta.html">Meta</a>
+				</li>
+				<li>
+					<a href="_ethpm_package_.meta.packagemeta.html">PackageMeta</a>
 				</li>
 			</ul>
-			<h1>External module &quot;ethpm/manifest&quot;</h1>
+			<h1>Interface PackageMeta</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">PackageMeta</span>
+					</li>
+				</ul>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Interfaces</h3>
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_ethpm_manifest_.service.html" class="tsd-kind-icon">Service</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ethpm_package_.meta.packagemeta.html#authors" class="tsd-kind-icon">authors</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ethpm_package_.meta.packagemeta.html#description" class="tsd-kind-icon">description</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ethpm_package_.meta.packagemeta.html#keywords" class="tsd-kind-icon">keywords</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ethpm_package_.meta.packagemeta.html#license" class="tsd-kind-icon">license</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ethpm_package_.meta.packagemeta.html#links" class="tsd-kind-icon">links</a></li>
 							</ul>
 						</section>
 					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="authors" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> authors</h3>
+					<div class="tsd-signature tsd-kind-icon">authors<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_ethpm_package_.meta.html#author" class="tsd-signature-type">Author</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/6a2a700/src/package/meta.ts#L17">src/package/meta.ts:17</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="description" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> description</h3>
+					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <a href="../modules/_ethpm_package_.meta.html#description" class="tsd-signature-type">Description</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/6a2a700/src/package/meta.ts#L19">src/package/meta.ts:19</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="keywords" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> keywords</h3>
+					<div class="tsd-signature tsd-kind-icon">keywords<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_ethpm_package_.meta.html#keyword" class="tsd-signature-type">Keyword</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/6a2a700/src/package/meta.ts#L20">src/package/meta.ts:20</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="license" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> license</h3>
+					<div class="tsd-signature tsd-kind-icon">license<span class="tsd-signature-symbol">:</span> <a href="../modules/_ethpm_package_.meta.html#license" class="tsd-signature-type">License</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/6a2a700/src/package/meta.ts#L18">src/package/meta.ts:18</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="links" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> links</h3>
+					<div class="tsd-signature tsd-kind-icon">links<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_ethpm_package_.meta.packagemetalink.html" class="tsd-signature-type">PackageMetaLink</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/6a2a700/src/package/meta.ts#L21">src/package/meta.ts:21</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -87,53 +158,97 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_ethpm_.html">"ethpm"</a>
+						<a href="../modules/_ethpm_.html">"ethpm"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_ethpm_config_.html">"ethpm/config"</a>
+						<a href="../modules/_ethpm_config_.html">"ethpm/config"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_ethpm_manifest_.html">"ethpm/manifest"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_ethpm_manifest_v2_.html">"ethpm/manifest/v2"</a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="_ethpm_manifest_.html">"ethpm/manifest"</a>
+						<a href="../modules/_ethpm_package_.html">"ethpm/package"</a>
+						<ul>
+							<li class=" tsd-kind-module tsd-parent-kind-external-module">
+								<a href="../modules/_ethpm_package_.link.html">Link</a>
+							</li>
+							<li class="current tsd-kind-module tsd-parent-kind-external-module">
+								<a href="../modules/_ethpm_package_.meta.html">Meta</a>
+							</li>
+						</ul>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_ethpm_manifest_v2_.html">"ethpm/manifest/v2"</a>
+						<a href="../modules/_ethpm_registry_.html">"ethpm/registry"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_ethpm_package_.html">"ethpm/package"</a>
+						<a href="../modules/_ethpm_session_.html">"ethpm/session"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_ethpm_registry_.html">"ethpm/registry"</a>
+						<a href="../modules/_ethpm_storage_.html">"ethpm/storage"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_ethpm_session_.html">"ethpm/session"</a>
+						<a href="../modules/_ethpm_storage_ipfs_.html">"ethpm/storage/ipfs"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_ethpm_storage_.html">"ethpm/storage"</a>
+						<a href="../modules/_test_examples_.html">"test/examples"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_ethpm_storage_ipfs_.html">"ethpm/storage/ipfs"</a>
+						<a href="../modules/_test_stub_manifest_.html">"test/stub/manifest"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_test_examples_.html">"test/examples"</a>
+						<a href="../modules/_test_stub_registry_.html">"test/stub/registry"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_test_stub_manifest_.html">"test/stub/manifest"</a>
+						<a href="../modules/_test_stub_storage_.html">"test/stub/storage"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_test_stub_registry_.html">"test/stub/registry"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_test_stub_storage_.html">"test/stub/storage"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_types_index_.html">"types/index"</a>
+						<a href="../modules/_types_index_.html">"types/index"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/_ethpm_manifest_.service.html" class="tsd-kind-icon">Service</a>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-module">
+						<a href="_ethpm_package_.meta.packagemeta.html" class="tsd-kind-icon">Package<wbr>Meta</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_ethpm_package_.meta.packagemeta.html#authors" class="tsd-kind-icon">authors</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_ethpm_package_.meta.packagemeta.html#description" class="tsd-kind-icon">description</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_ethpm_package_.meta.packagemeta.html#keywords" class="tsd-kind-icon">keywords</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_ethpm_package_.meta.packagemeta.html#license" class="tsd-kind-icon">license</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_ethpm_package_.meta.packagemeta.html#links" class="tsd-kind-icon">links</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_ethpm_package_.meta.packagemetalink.html" class="tsd-kind-icon">Package<wbr>Meta<wbr>Link</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/_ethpm_package_.meta.html#author" class="tsd-kind-icon">Author</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/_ethpm_package_.meta.html#description" class="tsd-kind-icon">Description</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/_ethpm_package_.meta.html#keyword" class="tsd-kind-icon">Keyword</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/_ethpm_package_.meta.html#license" class="tsd-kind-icon">License</a>
 					</li>
 				</ul>
 			</nav>
