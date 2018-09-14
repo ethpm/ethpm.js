@@ -1,12 +1,12 @@
 import { exampleStorage } from "test/stub/storage/examples";
 import examples from "test/examples/packages";
 
-import { WorkspaceQuery } from "ethpm/session/query";
+import { Query } from "ethpm/session/query";
 import { v2 } from "ethpm/manifest/v2";
 
 
 it("resolves package-level contract types", async () => {
-  let query = new WorkspaceQuery({
+  let query = new Query({
     package: examples["standard-token"],
     storage: exampleStorage,
     manifest: v2,
@@ -20,7 +20,7 @@ it("resolves package-level contract types", async () => {
 });
 
 it("resolves deployed instances", async () => {
-  let query = new WorkspaceQuery({
+  let query = new Query({
     package: examples["piper-coin"],
     storage: exampleStorage,
     manifest: v2,
@@ -38,7 +38,7 @@ it("resolves deployed instances", async () => {
 });
 
 it("resolves build dependencies", async () => {
-  let query = new WorkspaceQuery({
+  let query = new Query({
     package: examples["piper-coin"],
     storage: exampleStorage,
     manifest: v2,
@@ -51,7 +51,7 @@ it("resolves build dependencies", async () => {
 
 
 it("resolves contract types from a dependent package", async () => {
-  let query = new WorkspaceQuery({
+  let query = new Query({
     package: examples["piper-coin"],
     storage: exampleStorage,
     manifest: v2,
@@ -64,7 +64,7 @@ it("resolves contract types from a dependent package", async () => {
 });
 
 it("resolves contract types from a dependency's dependency", async () => {
-  let query = new WorkspaceQuery({
+  let query = new Query({
     package: examples["wallet-with-send"],
     storage: exampleStorage,
     manifest: v2,

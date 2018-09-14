@@ -14,7 +14,7 @@ export interface Options {
   manifest: manifest.Service;
 }
 
-export class WorkspaceQuery implements pkg.PackageQuery {
+export class Query implements pkg.PackageQuery {
   package: pkg.Package;
 
   private storage: storage.Service;
@@ -29,7 +29,7 @@ export class WorkspaceQuery implements pkg.PackageQuery {
   async scope (dependencyName: pkg.PackageName): Promise<pkg.PackageQuery> {
     const dependency = await this.buildDependency(dependencyName);
 
-    const resolver = new WorkspaceQuery({
+    const resolver = new Query({
       package: dependency,
       storage: this.storage,
       manifest: this.manifest
