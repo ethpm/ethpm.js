@@ -8,8 +8,10 @@ import { v2 } from "ethpm/manifest/v2";
 it("resolves package-level contract types", async () => {
   let query = new Query({
     package: examples["standard-token"],
-    storage: exampleStorage,
-    manifest: v2,
+    workspace: {
+      storage: exampleStorage,
+      manifest: v2,
+    }
   });
 
   const standardToken = await query.contractType("StandardToken");
@@ -22,8 +24,10 @@ it("resolves package-level contract types", async () => {
 it("resolves deployed instances", async () => {
   let query = new Query({
     package: examples["piper-coin"],
-    storage: exampleStorage,
-    manifest: v2,
+    workspace: {
+      storage: exampleStorage,
+      manifest: v2,
+    }
   });
 
   const [chain] = examples["piper-coin"].deployments.keys()
@@ -40,8 +44,10 @@ it("resolves deployed instances", async () => {
 it("resolves build dependencies", async () => {
   let query = new Query({
     package: examples["piper-coin"],
-    storage: exampleStorage,
-    manifest: v2,
+    workspace: {
+      storage: exampleStorage,
+      manifest: v2,
+    }
   });
 
   const standardToken = await query.buildDependency("standard-token");
@@ -53,8 +59,10 @@ it("resolves build dependencies", async () => {
 it("resolves contract types from a dependent package", async () => {
   let query = new Query({
     package: examples["piper-coin"],
-    storage: exampleStorage,
-    manifest: v2,
+    workspace: {
+      storage: exampleStorage,
+      manifest: v2,
+    }
   });
 
   const standardToken = await query.contractType("standard-token:StandardToken");
@@ -66,8 +74,10 @@ it("resolves contract types from a dependent package", async () => {
 it("resolves contract types from a dependency's dependency", async () => {
   let query = new Query({
     package: examples["wallet-with-send"],
-    storage: exampleStorage,
-    manifest: v2,
+    workspace: {
+      storage: exampleStorage,
+      manifest: v2,
+    }
   });
 
   const ref = "wallet:safe-math-lib:SafeMathLib";

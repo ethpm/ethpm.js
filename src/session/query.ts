@@ -4,15 +4,11 @@
 
 import { Maybe } from "types";
 
+import * as config from "ethpm/config";
 import * as pkg from "ethpm/package";
 import * as manifest from "ethpm/manifest";
 import * as storage from "ethpm/storage";
 
-export interface Options {
-  package: pkg.Package;
-  storage: storage.Service;
-  manifest: manifest.Service;
-}
 
 import { Workspace } from "./workspace";
 
@@ -26,19 +22,20 @@ export interface Queryable {
     : Promise<pkg.ContractInstance>;
 
   buildDependency(name: pkg.PackageName)
-    : Promise<pkg.Package>;
+    : Promise<pkg.Package> | never;
 }
 
-export class Query implements Queryable {
+export class Query<T extends config.Config> implements Queryable {
   package: pkg.Package;
 
-  private storage: storage.Service;
-  private manifest: manifest.Service;
+  private workspace: Workspace<T>;
 
-  constructor (options: Options) {
+  constructor (options: {
+    package: pkg.Package,
+    workspace: Workspace<T>
+  }) {
     this.package = options.package;
-    this.storage = options.storage;
-    this.manifest = options.manifest;
+    this.workspace = options.workspace;
   }
 
   async scope (dependencyName: pkg.PackageName): Promise<Queryable> {
@@ -46,8 +43,7 @@ export class Query implements Queryable {
 
     const resolver = new Query({
       package: dependency,
-      storage: this.storage,
-      manifest: this.manifest
+      workspace: this.workspace,
     });
 
     return resolver;
@@ -94,12 +90,24 @@ export class Query implements Queryable {
   }
 
   async buildDependency(name: pkg.PackageName)
-    : Promise<pkg.Package>
+    : Promise<pkg.Package> | never
   {
+    if (!("storage" in this.workspace)) {
+      throw new Error("Storage not configured!");
+    }
+
+    if (!("manifest" in this.workspace)) {
+      throw new Error("Manifest not configured!");
+    }
+
+    const workspace = <
+      Workspace<config.HasManifest & config.HasStorage>
+    >this.workspace;
+
     const uri = this.package.buildDependencies[name];
-    const contents = await this.storage.read(uri);
+    const contents = await workspace.storage.read(uri);
     if (contents !== undefined) {
-      return await this.manifest.read(contents);
+      return await workspace.manifest.read(contents);
     }
 
     throw new Error(`Could not find build dependency "${name}"`);
