@@ -30,3 +30,14 @@ it("converts package_name", async () => {
   expect(pkg.packageName).toEqual(manifest.package_name);
   expect(pkg.version).toEqual(manifest.version);
 });
+
+describe("read -> write isomorphism", () => {
+  for (let [packageName, manifest] of Object.entries(examples)) {
+    it(`holds true for example "${packageName}"`, async () => {
+      const actual = await v2.write(await v2.read(manifest));
+
+      expect(JSON.parse(actual)).toEqual(JSON.parse(manifest));
+      expect(actual).toEqual(manifest);
+    });
+  }
+})

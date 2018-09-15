@@ -2,6 +2,7 @@
  * @module "ethpm/manifest/v2"
  */
 
+import deepEqual = require("deep-equal");
 import * as t from "io-ts";
 import { ThrowReporter } from "io-ts/lib/ThrowReporter";
 
@@ -161,6 +162,149 @@ namespace Fields {
       compiler: lift(readCompiler)(instance.compiler),
     }
   }
+
+
+  export function writeContractTypes (contractTypes: pkg.ContractTypes): schema.ContractTypes {
+    return Object.assign(
+      {},
+      ...Object.entries(contractTypes)
+        .map(
+          ([ alias, contractType ]) => ({
+            [alias]: writeContractType(contractType, alias)
+          })
+        )
+    );
+  }
+
+  export function writeDeployments (
+    deployments: pkg.Deployments,
+    types: pkg.ContractTypes,
+  ): schema.Deployments {
+    return Object.assign({}, ...
+      Array.from(deployments.entries())
+        .map( ([ chainURI, deployment ]) => ({
+          [chainURI.href]: writeDeployment(deployment, types)
+        }))
+    );
+  }
+
+  export function writeContractType (
+    contractType: pkg.ContractType,
+    alias: pkg.ContractAlias
+  ): schema.ContractType {
+    return Object.assign(
+      {
+        deployment_bytecode: lift(writeUnlinkedBytecode)(contractType.deploymentBytecode),
+        runtime_bytecode: lift(writeUnlinkedBytecode)(contractType.runtimeBytecode),
+        abi: contractType.abi,
+        natspec: contractType.natspec,
+        compiler: lift(writeCompiler)(contractType.compiler)
+      },
+
+      (contractType.contractName != alias)
+        ? { contract_name: contractType.contractName }
+        : {}
+    );
+  }
+
+  export function writeUnlinkedBytecode(
+    bytecode: pkg.UnlinkedBytecode
+  ): schema.UnlinkedBytecodeObject {
+    return {
+      bytecode: bytecode.bytecode,
+      link_references: [...bytecode.linkReferences]
+    };
+  }
+
+  export function writeLinkedBytecode(
+    bytecode: pkg.LinkedBytecode,
+    parent?: pkg.UnlinkedBytecode
+  ): schema.LinkedBytecodeObject {
+    return Object.assign(
+      {
+        link_dependencies: writeLinkDependencies(bytecode.linkDependencies),
+      },
+
+      (!parent || !deepEqual(bytecode.linkReferences, parent.linkReferences))
+        ? { link_references: [...bytecode.linkReferences] }
+        : {},
+
+      (!parent || bytecode.bytecode != parent.bytecode)
+        ? { bytecode: bytecode.bytecode }
+        : {}
+    );
+  }
+
+  export function writeLinkDependencies(
+    linkDependencies: Array<pkg.Link.Value>
+  ): schema.LinkDependencies {
+    return [
+      ...(linkDependencies || [])
+        .map(
+          ({ offsets, value }) => Object.assign(
+            { offsets },
+            "type" in value ? { type: value.type } : {},
+            "value" in value ? { value: value.value } : {}
+          )
+        )
+      ];
+  }
+
+  export function writeCompiler(compiler: pkg.Compiler): schema.CompilerInformation {
+    return {
+      name: compiler.name,
+      version: compiler.version,
+      settings: compiler.settings,
+    };
+  }
+
+  export function writeDeployment (
+    deployment: pkg.Deployment,
+    types: pkg.ContractTypes
+  ): schema.Deployment {
+    return Object.assign(
+      {}, ...Object.entries(deployment).map(
+        ([ name, instance ]) => ({
+          [name]: writeInstance(instance, types)
+        })
+      )
+    );
+  }
+
+  export function writeInstance (
+    instance: pkg.ContractInstance,
+    types: pkg.ContractTypes
+  ): schema.ContractInstance {
+    return Object.assign(
+      {
+        contract_type: instance.contractType,
+        address: instance.address as schema.Address,
+        compiler: lift(writeCompiler)(instance.compiler),
+      },
+
+      (instance.deploymentBytecode)
+        ? {
+            deployment_bytecode: writeLinkedBytecode(
+              instance.deploymentBytecode,
+              (types[instance.contractType] || {}).deploymentBytecode
+            )
+          }
+        : {},
+
+      (instance.runtimeBytecode)
+        ? {
+            runtime_bytecode: writeLinkedBytecode(
+              instance.runtimeBytecode,
+              (types[instance.contractType] || {}).runtimeBytecode
+            )
+          }
+        : {},
+
+      instance.transaction ? { transaction: instance.transaction } : {},
+
+      instance.block ? { block: instance.block } : {},
+    )
+  }
 }
 
 export class Reader {
@@ -251,12 +395,106 @@ export class Writer {
     this.package = package_;
   }
 
+  get package_name () {
+    return this.package.packageName;
+  }
+
+  get version () {
+    return this.package.version;
+  }
+
+  get meta () {
+    const metadata = this.package.meta;
+
+    return Object.assign(
+      (metadata.authors && metadata.authors.length > 0)
+        ? { authors: metadata.authors }
+        : {},
+
+      (metadata.license)
+        ? { license: metadata.license }
+        : {},
+
+      (metadata.description)
+        ? { description: metadata.description }
+        : {},
+
+      (metadata.keywords && metadata.keywords.length > 0)
+        ? { keywords: metadata.keywords }
+        : {},
+
+      (metadata.links && metadata.links.length > 0)
+        ? {
+            links: Object.assign({}, ...metadata.links.map(
+              ({ resource, uri }) => ({ [resource]: uri })
+            ))
+          }
+        : {}
+    );
+  }
+
+  get sources () {
+    const sources = this.package.sources;
+
+    return Object.assign(
+      {},
+      ...Object.entries(sources)
+        .map(
+          ([ path, source ]) => (source instanceof URL)
+             ? { [path]: source.href }
+             : { [path]: source }
+        )
+    );
+  }
+
+  get contract_types () {
+    return Fields.writeContractTypes(this.package.contractTypes);
+  }
+
+  get deployments () {
+    return Fields.writeDeployments(this.package.deployments, this.package.contractTypes);
+  }
+
+  get build_dependencies () {
+    return Object.assign(
+      {},
+      ...Object.entries(this.package.buildDependencies)
+        .map(
+          ([ name, contentURI ]) => ({
+            [name]: contentURI.href
+          })
+        )
+    );
+  }
+
   write (): schema.PackageManifest {
-    return {
-      manifest_version: VERSION,
-      package_name: this.package.packageName,
-      version: this.package.version,
-    };
+    return Object.assign(
+      {
+        manifest_version: VERSION,
+        package_name: this.package_name,
+        version: this.version,
+      },
+
+      (Object.keys(this.deployments).length > 0)
+        ? { deployments: this.deployments }
+        : {},
+
+      (Object.keys(this.contract_types).length > 0)
+        ? { contract_types: this.contract_types }
+        : {},
+
+      (Object.keys(this.sources).length > 0)
+        ? { sources: this.sources }
+        : {},
+
+      (Object.keys(this.build_dependencies).length > 0)
+        ? { build_dependencies: this.build_dependencies }
+        : {},
+
+      (Object.keys(this.meta).length > 0)
+        ? { meta: this.meta }
+        : {}
+    ) as schema.PackageManifest;
   }
 }
 
