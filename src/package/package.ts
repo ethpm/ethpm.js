@@ -61,6 +61,7 @@ export interface ContractInstance {
   address: Address,
   transaction: Maybe<TransactionHash>,
   block: Maybe<BlockHash>,
+  deploymentBytecode: Maybe<LinkedBytecode>,
   runtimeBytecode: Maybe<LinkedBytecode>,
   compiler: Maybe<Compiler>,
 }

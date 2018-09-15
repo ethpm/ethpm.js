@@ -68,12 +68,32 @@ namespace Fields {
   }
 
   export function readLinkedBytecode(
-    bytecode: schema.LinkedBytecodeObject,
-    parent: pkg.UnlinkedBytecode
-  ): pkg.LinkedBytecode {
+    bytecode?: schema.LinkedBytecodeObject,
+    parent?: pkg.UnlinkedBytecode
+  ): pkg.LinkedBytecode | undefined {
+    // bytecode of some kind is required
+    if (!bytecode) {
+      return undefined;
+    }
+
+    const bytestring = (bytecode.bytecode)
+      ? bytecode.bytecode
+      : parent && parent.bytecode;
+
+    // needs bytestring itself or from parent
+    if (!bytestring) {
+      return undefined;
+    }
+
     return {
-      bytecode: bytecode.bytecode || parent.bytecode,
-      linkReferences: [...(bytecode.link_references || parent.linkReferences)],
+      bytecode: bytestring,
+      linkReferences: [...(
+        (bytecode.link_references)
+          ? bytecode.link_references
+          : (parent && parent.linkReferences)
+            ? parent.linkReferences
+            : []
+      )],
       linkDependencies: readLinkDependencies(bytecode.link_dependencies),
     };
   }
@@ -130,7 +150,11 @@ namespace Fields {
       address: instance.address,
       transaction: instance.transaction,
       block: instance.block,
-      runtimeBytecode: lift2(readLinkedBytecode)(
+      deploymentBytecode: readLinkedBytecode(
+        instance.deployment_bytecode,
+        (types[instance.contract_type] || {}).deploymentBytecode
+      ),
+      runtimeBytecode: readLinkedBytecode(
         instance.runtime_bytecode,
         (types[instance.contract_type] || {}).runtimeBytecode
       ),
@@ -218,7 +242,6 @@ export class Reader {
         )
     );
   }
-
 }
 
 export class Writer {
