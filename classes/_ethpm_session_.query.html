@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>StubService | EthPM.js</title>
+	<title>Query | EthPM.js</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,31 +56,33 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_test_stub_storage_.html">&quot;test/stub/storage&quot;</a>
+					<a href="../modules/_ethpm_session_.html">&quot;ethpm/session&quot;</a>
 				</li>
 				<li>
-					<a href="_test_stub_storage_.stubservice.html">StubService</a>
+					<a href="_ethpm_session_.query.html">Query</a>
 				</li>
 			</ul>
-			<h1>Class StubService</h1>
+			<h1>Class Query&lt;T&gt;</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">config.Config</span></h4>
+					</li>
+				</ul>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">StubService</span>
+						<span class="target">Query</span>
 					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel">
-				<h3>Implements</h3>
-				<ul class="tsd-hierarchy">
-					<li><a href="../interfaces/_ethpm_storage_.service.html" class="tsd-signature-type">Service</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -90,22 +92,23 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_test_stub_storage_.stubservice.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_ethpm_session_.query.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
+						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_test_stub_storage_.stubservice.html#contents" class="tsd-kind-icon">contents</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_ethpm_session_.query.html#package" class="tsd-kind-icon">package</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_ethpm_session_.query.html#workspace" class="tsd-kind-icon">workspace</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_test_stub_storage_.stubservice.html#add" class="tsd-kind-icon">add</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_test_stub_storage_.stubservice.html#hash" class="tsd-kind-icon">hash</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_test_stub_storage_.stubservice.html#predicturi" class="tsd-kind-icon">predict<wbr>Uri</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_test_stub_storage_.stubservice.html#read" class="tsd-kind-icon">read</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ethpm_session_.query.html#builddependency" class="tsd-kind-icon">build<wbr>Dependency</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ethpm_session_.query.html#contractinstance" class="tsd-kind-icon">contract<wbr>Instance</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ethpm_session_.query.html#contracttype" class="tsd-kind-icon">contract<wbr>Type</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ethpm_session_.query.html#scope" class="tsd-kind-icon">scope</a></li>
 							</ul>
 						</section>
 					</div>
@@ -117,29 +120,53 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Stub<wbr>Service<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_test_stub_storage_.stubservice.html" class="tsd-signature-type">StubService</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Query<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_ethpm_session_.query.html" class="tsd-signature-type">Query</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/f5ea740/test/stub/storage/service.ts#L15">test/stub/storage/service.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/f5ea740/src/session/query.ts#L17">src/session/query.ts:17</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="_test_stub_storage_.stubservice.html" class="tsd-signature-type">StubService</a></h4>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>options: <span class="tsd-signature-type">object</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5>package<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">pkg.Package</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>workspace<span class="tsd-signature-symbol">: </span><a href="../modules/_ethpm_session_.html#workspace" class="tsd-signature-type">Workspace</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_ethpm_session_.query.html" class="tsd-signature-type">Query</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="contents" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> contents</h3>
-					<div class="tsd-signature tsd-kind-icon">contents<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="package" class="tsd-anchor"></a>
+					<h3>package</h3>
+					<div class="tsd-signature tsd-kind-icon">package<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">pkg.Package</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/f5ea740/test/stub/storage/service.ts#L15">test/stub/storage/service.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/f5ea740/src/session/query.ts#L15">src/session/query.ts:15</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="workspace" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> workspace</h3>
+					<div class="tsd-signature tsd-kind-icon">workspace<span class="tsd-signature-symbol">:</span> <a href="../modules/_ethpm_session_.html#workspace" class="tsd-signature-type">Workspace</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/f5ea740/src/session/query.ts#L17">src/session/query.ts:17</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -147,97 +174,100 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="add" class="tsd-anchor"></a>
-					<h3>add</h3>
+					<a name="builddependency" class="tsd-anchor"></a>
+					<h3>build<wbr>Dependency</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">add<span class="tsd-signature-symbol">(</span>content<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">build<wbr>Dependency<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">pkg.PackageName</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">pkg.Package</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">never</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/f5ea740/test/stub/storage/service.ts#L21">test/stub/storage/service.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/f5ea740/src/session/query.ts#L78">src/session/query.ts:78</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>content: <span class="tsd-signature-type">string</span></h5>
+									<h5>name: <span class="tsd-signature-type">pkg.PackageName</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">pkg.Package</span><span class="tsd-signature-symbol">&gt;</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">never</span>
+							</h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="hash" class="tsd-anchor"></a>
-					<h3>hash</h3>
+					<a name="contractinstance" class="tsd-anchor"></a>
+					<h3>contract<wbr>Instance</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">hash<span class="tsd-signature-symbol">(</span>content<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">contract<wbr>Instance<span class="tsd-signature-symbol">(</span>chain<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">pkg.ChainURI</span>, name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">pkg.ContractInstanceName</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">pkg.ContractInstance</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_ethpm_storage_.service.html">Service</a>.<a href="../interfaces/_ethpm_storage_.service.html#hash">hash</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/f5ea740/test/stub/storage/service.ts#L30">test/stub/storage/service.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/f5ea740/src/session/query.ts#L59">src/session/query.ts:59</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>content: <span class="tsd-signature-type">string</span></h5>
+									<h5>chain: <span class="tsd-signature-type">pkg.ChainURI</span></h5>
+								</li>
+								<li>
+									<h5>name: <span class="tsd-signature-type">pkg.ContractInstanceName</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">pkg.ContractInstance</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="predicturi" class="tsd-anchor"></a>
-					<h3>predict<wbr>Uri</h3>
+					<a name="contracttype" class="tsd-anchor"></a>
+					<h3>contract<wbr>Type</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">predict<wbr>Uri<span class="tsd-signature-symbol">(</span>content<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">URL</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">contract<wbr>Type<span class="tsd-signature-symbol">(</span>ref<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">pkg.ContractTypeReference</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">pkg.ContractType</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_ethpm_storage_.service.html">Service</a>.<a href="../interfaces/_ethpm_storage_.service.html#predicturi">predictUri</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/f5ea740/test/stub/storage/service.ts#L35">test/stub/storage/service.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/f5ea740/src/session/query.ts#L38">src/session/query.ts:38</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>content: <span class="tsd-signature-type">string</span></h5>
+									<h5>ref: <span class="tsd-signature-type">pkg.ContractTypeReference</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">URL</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">pkg.ContractType</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="read" class="tsd-anchor"></a>
-					<h3>read</h3>
+					<a name="scope" class="tsd-anchor"></a>
+					<h3>scope</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">read<span class="tsd-signature-symbol">(</span>uri<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">URL</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_types_index_.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">scope<span class="tsd-signature-symbol">(</span>dependencyName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">pkg.PackageName</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_ethpm_session_.query.html" class="tsd-signature-type">Query</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_ethpm_storage_.service.html">Service</a>.<a href="../interfaces/_ethpm_storage_.service.html#read">read</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/f5ea740/test/stub/storage/service.ts#L26">test/stub/storage/service.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/f5ea740/src/session/query.ts#L27">src/session/query.ts:27</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>uri: <span class="tsd-signature-type">URL</span></h5>
+									<h5>dependencyName: <span class="tsd-signature-type">pkg.PackageName</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_types_index_.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_ethpm_session_.query.html" class="tsd-signature-type">Query</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -267,7 +297,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_ethpm_registry_.html">"ethpm/registry"</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/_ethpm_session_.html">"ethpm/session"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -285,7 +315,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_test_stub_registry_.html">"test/stub/registry"</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_test_stub_storage_.html">"test/stub/storage"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -295,44 +325,47 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_test_stub_storage_.examplesconnector.html" class="tsd-kind-icon">Examples<wbr>Connector</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_test_stub_storage_.stubconnector.html" class="tsd-kind-icon">Stub<wbr>Connector</a>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_ethpm_session_.builder.html" class="tsd-kind-icon">Builder</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_test_stub_storage_.stubservice.html" class="tsd-kind-icon">Stub<wbr>Service</a>
+					<li class="current tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_ethpm_session_.query.html" class="tsd-kind-icon">Query</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="_test_stub_storage_.stubservice.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="_ethpm_session_.query.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_ethpm_session_.query.html#package" class="tsd-kind-icon">package</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_test_stub_storage_.stubservice.html#contents" class="tsd-kind-icon">contents</a>
+								<a href="_ethpm_session_.query.html#workspace" class="tsd-kind-icon">workspace</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_test_stub_storage_.stubservice.html#add" class="tsd-kind-icon">add</a>
+								<a href="_ethpm_session_.query.html#builddependency" class="tsd-kind-icon">build<wbr>Dependency</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_test_stub_storage_.stubservice.html#hash" class="tsd-kind-icon">hash</a>
+								<a href="_ethpm_session_.query.html#contractinstance" class="tsd-kind-icon">contract<wbr>Instance</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_test_stub_storage_.stubservice.html#predicturi" class="tsd-kind-icon">predict<wbr>Uri</a>
+								<a href="_ethpm_session_.query.html#contracttype" class="tsd-kind-icon">contract<wbr>Type</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_test_stub_storage_.stubservice.html#read" class="tsd-kind-icon">read</a>
+								<a href="_ethpm_session_.query.html#scope" class="tsd-kind-icon">scope</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="../modules/_test_stub_storage_.html#singletonpromise" class="tsd-kind-icon">singleton<wbr>Promise</a>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_ethpm_session_.session.html" class="tsd-kind-icon">Session</a>
 					</li>
-					<li class=" tsd-kind-object-literal tsd-parent-kind-external-module">
-						<a href="../modules/_test_stub_storage_.html#examplestorage" class="tsd-kind-icon">example<wbr>Storage</a>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
+						<a href="../modules/_ethpm_session_.html#connectors" class="tsd-kind-icon">Connectors</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="../modules/_ethpm_session_.html#workspace" class="tsd-kind-icon">Workspace</a>
 					</li>
 				</ul>
 			</nav>

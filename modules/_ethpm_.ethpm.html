@@ -69,16 +69,21 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>This module provides the external interface for configuring an EthPM
+						session object.</p>
+					</div>
+					<p>Usage:</p>
+					<pre><code class="language-javascript"><span class="hljs-keyword">import</span> EthPM <span class="hljs-keyword">from</span> <span class="hljs-string">"ethpm"</span>;
+</code></pre>
+				</div>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section ">
-							<h3>Classes</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter"><a href="../classes/_ethpm_.ethpm.builder.html" class="tsd-kind-icon">Builder</a></li>
-							</ul>
-						</section>
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
@@ -94,28 +99,43 @@
 					<a name="configure" class="tsd-anchor"></a>
 					<h3>configure</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">configure&lt;T&gt;<span class="tsd-signature-symbol">(</span>config_<span class="tsd-signature-symbol">: </span><a href="_ethpm_config_.html#rawconfig" class="tsd-signature-type">RawConfig</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_ethpm_.ethpm.builder.html" class="tsd-signature-type">Builder</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">configure&lt;T&gt;<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">config.RawConfig</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">session.Builder</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/6a2a700/src/index.ts#L38">src/index.ts:38</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/f5ea740/src/index.ts#L39">src/index.ts:39</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Configure EthPM with specified Node modules to load for various
+									services</p>
+								</div>
+								<p>Example Usage:</p>
+								<pre><code class="language-javascript"><span class="hljs-keyword">import</span> EthPM <span class="hljs-keyword">from</span> <span class="hljs-string">"ethpm"</span>;
+<span class="hljs-keyword">const</span> builder = EthPM.configure({
+  <span class="hljs-attr">manifest</span>: <span class="hljs-string">"ethpm/manifest/v2"</span>,
+  <span class="hljs-attr">storage</span>: <span class="hljs-string">"ethpm/storage/ipfs"</span>,
+  <span class="hljs-attr">registry</span>: <span class="hljs-string">"ethpm/registry/web3"</span>
+})</code></pre>
+								<p>EthPM.js will <code>require()</code> the specified modules from your project&#39;s
+								<code>node_modules/</code> folder.</p>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
-									<h4>T<span class="tsd-signature-symbol">: </span><a href="_ethpm_config_.html#config" class="tsd-signature-type">Config</a></h4>
+									<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">config.Config</span></h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>config_: <a href="_ethpm_config_.html#rawconfig" class="tsd-signature-type">RawConfig</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>config: <span class="tsd-signature-type">config.RawConfig</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../classes/_ethpm_.ethpm.builder.html" class="tsd-signature-type">Builder</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">session.Builder</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -178,9 +198,6 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="../classes/_ethpm_.ethpm.builder.html" class="tsd-kind-icon">Builder</a>
-					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
 						<a href="_ethpm_.ethpm.html#configure" class="tsd-kind-icon">configure</a>
 					</li>
