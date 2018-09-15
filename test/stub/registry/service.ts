@@ -21,7 +21,11 @@ export class StubService implements registry.Service {
     this.releases = {};
   }
 
-  add ({ packageName, version }: pkg.Package, manifest: URL) {
+  async publish (
+    packageName: pkg.PackageName,
+    version: pkg.Version,
+    manifest: URL
+  ): Promise<any> {
     if (!this.releases[packageName]) {
       this.releases[packageName] = {};
     }
@@ -64,8 +68,8 @@ export default class StubConnector extends config.Connector<registry.Service> {
     { releases }: { releases: Array<{package: pkg.Package, manifest: URL}> }
   ): Promise<registry.Service> {
     const service = new StubService();
-    for (let { package: package_ , manifest } of releases) {
-      await service.add(package_, manifest);
+    for (let { package: { packageName, version } , manifest } of releases) {
+      await service.publish(packageName, version, manifest);
     }
 
     return service;

@@ -28,4 +28,13 @@ export interface Service {
      */
     release (version: pkg.Version): Promise<URL>;
   };
+
+  /**
+   * Publish a release
+   */
+  publish (
+    packageName: pkg.PackageName,
+    version: pkg.Version,
+    manifest: URL
+  ): Promise<any>
 }
