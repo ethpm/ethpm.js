@@ -16,7 +16,7 @@ describe("StubService", () => {
 
     // setup
     for (let content of contents) {
-      await service.add(content);
+      await service.write(content);
     }
 
     const hashes = await Promise.all(contents.map(hash))

@@ -18,9 +18,10 @@ export class StubService implements storage.Service {
     this.contents = {};
   }
 
-  async add (content: string) {
+  async write (content: string): Promise<URL> {
     const uri = await this.predictUri(content);
     this.contents[uri.href] = content;
+    return uri;
   }
 
   async read (uri: URL): Promise<Maybe<string>> {
@@ -53,7 +54,7 @@ export default class StubConnector extends config.Connector<storage.Service> {
     const service = new StubService();
 
     for (let content of contents) {
-      await service.add(content);
+      await service.write(content);
     }
 
     return service;

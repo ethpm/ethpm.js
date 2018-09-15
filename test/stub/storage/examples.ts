@@ -20,6 +20,11 @@ const singletonPromise: Promise<storage.Service> =
   new ExamplesConnector().connect({});
 
 export const exampleStorage = {
+  write: async (content: string) => {
+    const service = await singletonPromise;
+    return await service.write(content);
+  },
+
   read: async (uri: URL) => {
     const service = await singletonPromise;
     return await service.read(uri);
