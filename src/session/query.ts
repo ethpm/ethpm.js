@@ -9,16 +9,15 @@ import * as pkg from "ethpm/package";
 import * as manifest from "ethpm/manifest";
 import * as storage from "ethpm/storage";
 
-import { Workspace } from "./workspace";
 
 export class Query<T extends config.Config> {
   package: pkg.Package;
 
-  private workspace: Workspace<T>;
+  private workspace: config.Workspace<T>;
 
   constructor (options: {
     package: pkg.Package,
-    workspace: Workspace<T>
+    workspace: config.Workspace<T>
   }) {
     this.package = options.package;
     this.workspace = options.workspace;
@@ -87,7 +86,7 @@ export class Query<T extends config.Config> {
     }
 
     const workspace = <
-      Workspace<config.HasManifest & config.HasStorage>
+      config.Workspace<config.HasManifest & config.HasStorage>
     >this.workspace;
 
     const uri = this.package.buildDependencies[name];

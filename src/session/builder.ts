@@ -4,16 +4,10 @@
 
 import * as config from "ethpm/config";
 
-import { Workspace } from "./workspace";
 import { Session } from "./session";
 
-type Connectors<T extends config.Config> = {
-  [K in keyof Workspace<T>]: config.Connector<Workspace<T>[K]>
-} & { [k: string]: config.Connector<any> }
-
-
 export class Builder<T extends config.Config> {
-  private connectors: Connectors<T>;
+  private connectors: config.Connectors<T>;
 
   constructor (config_: config.RawConfig<T>) {
     this.connectors = Object.assign(
