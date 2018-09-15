@@ -55,6 +55,7 @@ module.exports = {
       new TsconfigPathsPlugin()
     ]
   },
+  stats: "minimal",
   devtool: "source-map",
   plugins: [
     new WebpackShellPlugin({
