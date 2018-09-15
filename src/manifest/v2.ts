@@ -475,25 +475,17 @@ export class Writer {
         version: this.version,
       },
 
-      (Object.keys(this.deployments).length > 0)
-        ? { deployments: this.deployments }
-        : {},
-
-      (Object.keys(this.contract_types).length > 0)
-        ? { contract_types: this.contract_types }
-        : {},
-
-      (Object.keys(this.sources).length > 0)
-        ? { sources: this.sources }
-        : {},
-
-      (Object.keys(this.build_dependencies).length > 0)
-        ? { build_dependencies: this.build_dependencies }
-        : {},
-
-      (Object.keys(this.meta).length > 0)
-        ? { meta: this.meta }
-        : {}
+      ...Object.entries({
+        "deployments": this.deployments,
+        "contract_types": this.contract_types,
+        "sources": this.sources,
+        "build_dependencies": this.build_dependencies,
+        "meta": this.meta
+      }).map(
+        ([field, obj]) => (Object.keys(obj).length > 0)
+          ? { [field]: obj }
+          : {}
+      )
     ) as schema.PackageManifest;
   }
 }
