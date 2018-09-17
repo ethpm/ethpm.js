@@ -4,6 +4,7 @@
     "lib": [
        "es2017"
     ],
+    "outDir": "dist",
     "module": "commonjs",
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
