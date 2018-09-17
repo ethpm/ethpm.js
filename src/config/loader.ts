@@ -4,8 +4,16 @@
 
 const originalRequire: any = require("original-require");
 
-export function load<T>(path: string): T {
-  const required = originalRequire.main.require(path);
+import * as config from "./config";
+
+export function load<S>(plugin: config.ConfigValue<S>): config.Connector<S> {
+  const required =
+    (typeof plugin == "string")
+      ? originalRequire.main.require(plugin) :
+    (typeof plugin == "function")
+      ? plugin :
+    (typeof plugin == "object" && plugin.default)
+      ? plugin.default : undefined;
 
   // HACK check for .default
   const connector = (typeof required == "object" && required.default)

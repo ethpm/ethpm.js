@@ -5,7 +5,8 @@
 import * as t from "io-ts";
 import { ThrowReporter } from "io-ts/lib/ThrowReporter";
 
-export type ConfigValue = string;
+export type ConfigValue<S = any> =
+  string | (() => Connector<S>) | ({ default: () => Connector<S> });
 
 export type HasManifest = { manifest: any };
 export type HasStorage = { storage: any };
@@ -28,7 +29,7 @@ export type Config =
       HasManifest & HasStorage & HasRegistry
 
 export type RawConfig<T extends Config> = {
-  [K in keyof T]: ConfigValue
+  [K in keyof T]: ConfigValue<Workspace<T>[K]>
 } & { [k: string]: ConfigValue };
 
 export abstract class Connector<S> {
