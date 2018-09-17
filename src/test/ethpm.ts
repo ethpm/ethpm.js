@@ -1,12 +1,11 @@
 import EthPM from "ethpm";
-import { HasManifest, HasStorage, HasRegistry } from "ethpm/config";
 
 import examples from "test/examples/manifests";
 import packages from "test/examples/packages";
 
 describe("Configuration", () => {
   it("loads manifest plugin", async () => {
-    const ethpm = await EthPM.configure<HasManifest>({
+    const ethpm = await EthPM.configure({
       manifest: "ethpm/manifest/v2",
     }).connect();
 
@@ -17,7 +16,7 @@ describe("Configuration", () => {
   });
 
   it("loads storage plugin", async () => {
-    const ethpm = await EthPM.configure<HasStorage>({
+    const ethpm = await EthPM.configure({
       storage: "test/stub/storage/examples",
     }).connect();
 
@@ -28,7 +27,7 @@ describe("Configuration", () => {
   });
 
   it("loads manifest and storage plugins", async () => {
-    const ethpm = await EthPM.configure<HasManifest & HasStorage>({
+    const ethpm = await EthPM.configure({
       manifest: "ethpm/manifest/v2",
       storage: "test/stub/storage/examples",
     }).connect();
@@ -51,7 +50,7 @@ describe("Configuration", () => {
   });
 
   it("fails to load plugin without required options", async () => {
-    const missingOptions = EthPM.configure<HasStorage>({
+    const missingOptions = EthPM.configure({
       storage: "test/stub/storage"
     }).connect({
       /* ... ??? ... */
@@ -62,7 +61,7 @@ describe("Configuration", () => {
 
   it("loads plugins with required options", async () => {
     const storedContent = '{"package_name": "registry"}';
-    const ethpm = await EthPM.configure<HasStorage>({
+    const ethpm = await EthPM.configure({
       storage: "test/stub/storage"
     }).connect({
       contents: [storedContent]
@@ -77,7 +76,7 @@ describe("Configuration", () => {
   it("loads multiple plugins with required options", async () => {
     const storedContent = "some file\n\n\n";
 
-    const ethpm = await EthPM.configure<HasManifest & HasStorage>({
+    const ethpm = await EthPM.configure({
       manifest: "test/stub/manifest",
       storage: "test/stub/storage"
     }).connect({
@@ -95,7 +94,7 @@ describe("Configuration", () => {
   });
 
   it("loads pre-required plugins", async () => {
-    const ethpm = await EthPM.configure<HasManifest & HasStorage>({
+    const ethpm = await EthPM.configure({
       manifest: require("ethpm/manifest/v2"),
       storage: require("test/stub/storage/examples"),
     }).connect();
