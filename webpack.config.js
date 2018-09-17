@@ -35,10 +35,7 @@ module.exports = {
         test: /\.(ts|js)$/,
         loader: 'ts-loader',
         options: {
-          transpileOnly: true,
-          compilerOptions: {
-            isolatedModules: true
-          }
+          transpileOnly: true
         }
       }, {
         test: /\.sol$/,
