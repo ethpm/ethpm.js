@@ -79,12 +79,15 @@
 						<section class="tsd-index-section ">
 							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="_ethpm_config_.html#complete" class="tsd-kind-icon">Complete</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="_ethpm_config_.html#config" class="tsd-kind-icon">Config</a></li>
-								<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="_ethpm_config_.html#configvalue" class="tsd-kind-icon">Config<wbr>Value</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_ethpm_config_.html#configvalue" class="tsd-kind-icon">Config<wbr>Value</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_ethpm_config_.html#connectors" class="tsd-kind-icon">Connectors</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="_ethpm_config_.html#hasmanifest" class="tsd-kind-icon">Has<wbr>Manifest</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="_ethpm_config_.html#hasregistry" class="tsd-kind-icon">Has<wbr>Registry</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="_ethpm_config_.html#hasstorage" class="tsd-kind-icon">Has<wbr>Storage</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_ethpm_config_.html#rawconfig" class="tsd-kind-icon">Raw<wbr>Config</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_ethpm_config_.html#workspace" class="tsd-kind-icon">Workspace</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-not-exported">
@@ -105,12 +108,22 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Type aliases</h2>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module">
+					<a name="complete" class="tsd-anchor"></a>
+					<h3>Complete</h3>
+					<div class="tsd-signature tsd-kind-icon">Complete<span class="tsd-signature-symbol">:</span> <a href="_ethpm_config_.html#hasmanifest" class="tsd-signature-type">HasManifest</a><span class="tsd-signature-symbol"> &amp; </span><a href="_ethpm_config_.html#hasstorage" class="tsd-signature-type">HasStorage</a><span class="tsd-signature-symbol"> &amp; </span><a href="_ethpm_config_.html#hasregistry" class="tsd-signature-type">HasRegistry</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/ddbb477/src/config/config.ts#L14">src/config/config.ts:14</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module">
 					<a name="config" class="tsd-anchor"></a>
 					<h3>Config</h3>
 					<div class="tsd-signature tsd-kind-icon">Config<span class="tsd-signature-symbol">:</span> <a href="_ethpm_config_.html#hasmanifest" class="tsd-signature-type">HasManifest</a><span class="tsd-signature-symbol"> | </span><a href="_ethpm_config_.html#hasstorage" class="tsd-signature-type">HasStorage</a><span class="tsd-signature-symbol"> | </span><a href="_ethpm_config_.html#hasregistry" class="tsd-signature-type">HasRegistry</a><span class="tsd-signature-symbol"> | </span><a href="_ethpm_config_.html#hasmanifest" class="tsd-signature-type">HasManifest</a><span class="tsd-signature-symbol"> &amp; </span><a href="_ethpm_config_.html#hasstorage" class="tsd-signature-type">HasStorage</a><span class="tsd-signature-symbol"> | </span><a href="_ethpm_config_.html#hasmanifest" class="tsd-signature-type">HasManifest</a><span class="tsd-signature-symbol"> &amp; </span><a href="_ethpm_config_.html#hasregistry" class="tsd-signature-type">HasRegistry</a><span class="tsd-signature-symbol"> | </span><a href="_ethpm_config_.html#hasstorage" class="tsd-signature-type">HasStorage</a><span class="tsd-signature-symbol"> &amp; </span><a href="_ethpm_config_.html#hasregistry" class="tsd-signature-type">HasRegistry</a><span class="tsd-signature-symbol"> | </span><a href="_ethpm_config_.html#hasmanifest" class="tsd-signature-type">HasManifest</a><span class="tsd-signature-symbol"> &amp; </span><a href="_ethpm_config_.html#hasstorage" class="tsd-signature-type">HasStorage</a><span class="tsd-signature-symbol"> &amp; </span><a href="_ethpm_config_.html#hasregistry" class="tsd-signature-type">HasRegistry</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/f5ea740/src/config/config.ts#L18">src/config/config.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/ddbb477/src/config/config.ts#L24">src/config/config.ts:24</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -120,13 +133,23 @@
 						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module">
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
 					<a name="configvalue" class="tsd-anchor"></a>
 					<h3>Config<wbr>Value</h3>
-					<div class="tsd-signature tsd-kind-icon">Config<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<div class="tsd-signature tsd-kind-icon">Config<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/f5ea740/src/config/config.ts#L8">src/config/config.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/ddbb477/src/config/config.ts#L8">src/config/config.ts:8</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="connectors" class="tsd-anchor"></a>
+					<h3>Connectors</h3>
+					<div class="tsd-signature tsd-kind-icon">Connectors<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/ddbb477/src/config/config.ts#L58">src/config/config.ts:58</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -136,7 +159,7 @@
 					<div class="tsd-signature tsd-kind-icon">Has<wbr>Manifest<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/f5ea740/src/config/config.ts#L10">src/config/config.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/ddbb477/src/config/config.ts#L11">src/config/config.ts:11</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -154,7 +177,7 @@
 					<div class="tsd-signature tsd-kind-icon">Has<wbr>Registry<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/f5ea740/src/config/config.ts#L12">src/config/config.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/ddbb477/src/config/config.ts#L13">src/config/config.ts:13</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -172,7 +195,7 @@
 					<div class="tsd-signature tsd-kind-icon">Has<wbr>Storage<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/f5ea740/src/config/config.ts#L11">src/config/config.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/ddbb477/src/config/config.ts#L12">src/config/config.ts:12</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -190,9 +213,24 @@
 					<div class="tsd-signature tsd-kind-icon">Raw<wbr>Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/f5ea740/src/config/config.ts#L25">src/config/config.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/ddbb477/src/config/config.ts#L31">src/config/config.ts:31</a></li>
 						</ul>
 					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="workspace" class="tsd-anchor"></a>
+					<h3>Workspace</h3>
+					<div class="tsd-signature tsd-kind-icon">Workspace<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/ddbb477/src/config/config.ts#L50">src/config/config.ts:50</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+						</ul>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
@@ -203,7 +241,7 @@
 					<div class="tsd-signature tsd-kind-icon">original<wbr>Require<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;require(&quot;original-require&quot;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/f5ea740/src/config/loader.ts#L5">src/config/loader.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/ddbb477/src/config/loader.ts#L5">src/config/loader.ts:5</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -216,28 +254,28 @@
 					<a name="load" class="tsd-anchor"></a>
 					<h3>load</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">load&lt;T&gt;<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+						<li class="tsd-signature tsd-kind-icon">load&lt;S&gt;<span class="tsd-signature-symbol">(</span>plugin<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">config.ConfigValue</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">config.Connector</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/f5ea740/src/config/loader.ts#L7">src/config/loader.ts:7</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/ddbb477/src/config/loader.ts#L9">src/config/loader.ts:9</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
-									<h4>T</h4>
+									<h4>S</h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>path: <span class="tsd-signature-type">string</span></h5>
+									<h5>plugin: <span class="tsd-signature-type">config.ConfigValue</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">config.Connector</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -299,10 +337,16 @@
 						<a href="../classes/_ethpm_config_.connector.html" class="tsd-kind-icon">Connector</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="_ethpm_config_.html#config" class="tsd-kind-icon">Config</a>
+						<a href="_ethpm_config_.html#complete" class="tsd-kind-icon">Complete</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="_ethpm_config_.html#config" class="tsd-kind-icon">Config</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_ethpm_config_.html#configvalue" class="tsd-kind-icon">Config<wbr>Value</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_ethpm_config_.html#connectors" class="tsd-kind-icon">Connectors</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
 						<a href="_ethpm_config_.html#hasmanifest" class="tsd-kind-icon">Has<wbr>Manifest</a>
@@ -315,6 +359,9 @@
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_ethpm_config_.html#rawconfig" class="tsd-kind-icon">Raw<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_ethpm_config_.html#workspace" class="tsd-kind-icon">Workspace</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
 						<a href="_ethpm_config_.html#originalrequire" class="tsd-kind-icon">original<wbr>Require</a>
