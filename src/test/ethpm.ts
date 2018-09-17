@@ -93,4 +93,27 @@ describe("Configuration", () => {
     const retrievedContent = await ethpm.storage.read(uri);
     expect(retrievedContent).toEqual(storedContent);
   });
+
+  it("loads pre-required plugins", async () => {
+    const ethpm = await EthPM.configure<HasManifest & HasStorage>({
+      manifest: require("ethpm/manifest/v2"),
+      storage: require("test/stub/storage/examples"),
+    }).connect();
+
+    const walletWithSend = await ethpm.manifest.read(examples["wallet-with-send"]);
+    const manifest = await ethpm.storage.read(
+      walletWithSend.buildDependencies["wallet"]
+    );
+
+    expect(manifest).toBeDefined();
+
+    // to get past typecheck
+    if (manifest === undefined) {
+      return;
+    }
+
+    const wallet = await ethpm.manifest.read(manifest);
+
+    expect(wallet).toEqual(packages["wallet"]);
+  });
 });
