@@ -16,7 +16,7 @@ const tsProject = ts.createProject('tsconfig.json', {
   typescript: typescript
 });
 
-gulp.task('compile-source', ['clean-package'], () => {
+gulp.task('compile-source', ['clean-symlinks'], () => {
   return gulp.src([
     "src/**/*.ts",
     "!**/test/*.ts"
@@ -57,8 +57,11 @@ gulp.task('declarations', ['compile'], function() {
   });
 });
 
-gulp.task('clean-package', () => (
-  vfs.src('dist/package.json', {
+gulp.task('clean-symlinks', () => (
+  vfs.src([
+    'dist/package.json',
+    'dist/README.md',
+  ], {
     resolveSymlinks: false,
     allowEmpty: true
   })
@@ -66,12 +69,15 @@ gulp.task('clean-package', () => (
 ));
 
 
-gulp.task('package', () => (
-  vfs.src('package.json', { resolveSymlinks: false })
+gulp.task('copy-symlinks', () => (
+  vfs.src([
+    'package.json',
+    'README.md'
+  ], { resolveSymlinks: false })
     .pipe(vfs.symlink('dist'))
 ));
 
-gulp.task('build', ['declarations', 'package']);
+gulp.task('build', ['declarations', 'copy-symlinks']);
 
 gulp.task('watch', ['build'], () => {
   gulp.watch([
