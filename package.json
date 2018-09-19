@@ -81,6 +81,7 @@
     ]
   },
   "_moduleAliases": {
-    "ethpm": "dist"
+    "ethpm": "dist",
+    "test": "dist/test"
   }
 }

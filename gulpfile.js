@@ -16,9 +16,8 @@ const tsProject = ts.createProject('tsconfig.json', {
   typescript: typescript
 });
 
-gulp.task('compile', ['clean-package'], () => {
+gulp.task('compile-source', ['clean-package'], () => {
   return gulp.src([
-    "test/**/*.ts",
     "src/**/*.ts",
     "!**/test/*.ts"
   ])
@@ -32,6 +31,22 @@ gulp.task('compile', ['clean-package'], () => {
     .pipe(gulp.dest('dist'))
 });
 
+gulp.task('compile-test', ['compile-source'], () => {
+  return gulp.src([
+    "test/**/*.ts",
+    "!**/test/*.ts"
+  ])
+    .pipe(plumber())
+    .pipe(sourcemaps.init())
+    .pipe(tsProject())
+    .pipe(babel({
+      ignore: ["**/*.d.ts"]
+    }))
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('dist/test'))
+});
+
+gulp.task('compile', ['compile-test']);
 
 gulp.task('declarations', ['compile'], function() {
   dts.bundle({
