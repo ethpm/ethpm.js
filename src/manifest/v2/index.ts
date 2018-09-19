@@ -2,12 +2,12 @@
  * @module "ethpm/manifest/v2"
  */
 
-import deepEqual = require("deep-equal");
+const deepEqual = require("deep-equal");
 import * as t from "io-ts";
 import { ThrowReporter } from "io-ts/lib/ThrowReporter";
 
 import { URL } from "url";
-import * as stringify from "json-stable-stringify";
+import stringify from "json-stable-stringify";
 
 import { lift, lift2 } from "ethpm/types";
 import * as schema from "ethpm-spec";

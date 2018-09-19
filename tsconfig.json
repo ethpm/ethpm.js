@@ -1,18 +1,23 @@
 {
   "compilerOptions": {
-    "target": "es2015",
+    "target": "es6",
     "lib": [
        "es2017"
     ],
     "outDir": "dist",
+    "allowSyntheticDefaultImports": true,
     "module": "commonjs",
+    "esModuleInterop": true,
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "strict": true,
-    "allowJs": true,
+    "allowJs": false,
+    "declaration": true,
     "sourceMap": true,
     "baseUrl": ".",
+    "rootDir": ".",
+    "sourceRoot": ".",
     "paths": {
       "test/*": ["test/*"],
       "ethpm": ["src"],

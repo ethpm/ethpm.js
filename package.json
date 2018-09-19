@@ -37,6 +37,7 @@
     "ipfs-unixfs": "^0.1.15",
     "ipld-dag-pb": "^0.14.8",
     "json-stable-stringify": "^1.0.1",
+    "module-alias": "^2.1.0",
     "original-require": "^1.0.1",
     "source-map-support": "^0.5.9"
   },
@@ -63,5 +64,8 @@
     "testMatch": [
       "**/test/*.+(ts|js)"
     ]
+  },
+  "_moduleAliases": {
+    "ethpm": "dist"
   }
 }
