@@ -2,7 +2,8 @@
   "compilerOptions": {
     "target": "es6",
     "lib": [
-       "es2017"
+       "es2017",
+       "es2015"
     ],
     "outDir": "dist",
     "allowSyntheticDefaultImports": true,
@@ -17,7 +18,6 @@
     "sourceMap": true,
     "baseUrl": ".",
     "rootDir": ".",
-    "sourceRoot": ".",
     "paths": {
       "test/*": ["test/*"],
       "ethpm": ["src"],

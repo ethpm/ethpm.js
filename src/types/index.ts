@@ -1,3 +1,7 @@
+/**
+ * @module "ethpm/types"
+ */
+
 export type Maybe<T> = T | undefined;
 export function maybe<T> (t: T | undefined): Maybe<T> {
   return (t !== undefined)

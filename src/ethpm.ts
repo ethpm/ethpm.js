@@ -1,3 +1,7 @@
+/**
+ * @module "ethpm"
+ */
+
 import * as config from "ethpm/config";
 import * as session from "ethpm/session";
 

@@ -11,6 +11,7 @@ const sourcemaps = require('gulp-sourcemaps');
 const ts = require('gulp-typescript');
 const typescript = require('typescript');
 const dts = require('dts-bundle');
+const typedoc = require('gulp-typedoc');
 
 const tsProject = ts.createProject('tsconfig.json', {
   typescript: typescript
@@ -77,10 +78,23 @@ gulp.task('copy-symlinks', () => (
     .pipe(vfs.symlink('dist'))
 ));
 
-gulp.task('build', ['declarations', 'copy-symlinks']);
+gulp.task('docs', () => {
+  return gulp.src([
+    "src/**/*.ts",
+    "!src/index.ts",
+    "!**/test/*.ts",
+    "test/**/*.ts"
+  ])
+    .pipe(typedoc({
+      ...require("./typedoc.json"),
+      logger: 'none'
+    }));
+});
+
+gulp.task('build', ['declarations', 'docs', 'copy-symlinks']);
 
 gulp.task('watch', ['build'], () => {
-  gulp.watch([
+  return gulp.watch([
     'src/**/*.ts',
     'test/**/*.ts',
     'types/**/*.ts',

@@ -33,6 +33,7 @@
     "gulp-debug": "^4.0.0",
     "gulp-plumber": "^1.2.0",
     "gulp-sourcemaps": "^2.6.4",
+    "gulp-typedoc": "^2.2.0",
     "gulp-typescript": "^5.0.0-alpha.3",
     "jest": "^23.5.0",
     "ts-jest": "^23.1.3",

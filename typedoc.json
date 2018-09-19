@@ -1,6 +1,7 @@
 {
   "name": "EthPM.js",
   "mode": "modules",
+  "tsconfig": "tsconfig.json",
   "out": "docs",
   "theme": "default",
   "ignoreCompilerErrors": false,
@@ -9,6 +10,6 @@
   "exclude": [
     "**/test/*"
   ],
-  "target": "ES5"
+  "target": "ES6"
 }
 

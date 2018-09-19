@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-echo "Generating TypeDoc documentation..."
-
-./node_modules/.bin/typedoc --options ./typedoc.json >/dev/null && \
-    echo "Done generating TypeDoc documentation." || \
-    echo "Error generating TypeDoc documentation. Check for type errors."
