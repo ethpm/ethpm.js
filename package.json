@@ -4,7 +4,6 @@
   "description": "Javascript library for EthPM (EIPs 1123 / 1319)",
   "main": "index.js",
   "scripts": {
-    "link": "cp package.json dist && cp README.md dist && cd dist && yarn link",
     "test": "jest --verbose",
     "build": "tsc --build tsconfig.json",
     "watch": "tsc --build tsconfig.json --watch"
