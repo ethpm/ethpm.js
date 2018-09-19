@@ -3,7 +3,6 @@
  */
 
 import { URL } from "url";
-import { Maybe } from "types";
 
 import * as pkg from "ethpm/package";
 

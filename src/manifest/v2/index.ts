@@ -9,7 +9,7 @@ import { ThrowReporter } from "io-ts/lib/ThrowReporter";
 import { URL } from "url";
 import * as stringify from "json-stable-stringify";
 
-import { lift, lift2 } from "types";
+import { lift, lift2 } from "ethpm/types";
 import * as schema from "ethpm-spec";
 import * as config from "ethpm/config";
 import * as pkg from "ethpm/package";

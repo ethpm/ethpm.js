@@ -2,8 +2,6 @@
  * @module "ethpm/session"
  */
 
-import { Maybe } from "types";
-
 import * as config from "ethpm/config";
 import * as pkg from "ethpm/package";
 import * as manifest from "ethpm/manifest";

@@ -6,7 +6,6 @@ import { URL } from "url";
 import * as t from "io-ts";
 import { ThrowReporter } from "io-ts/lib/ThrowReporter";
 
-import { Maybe } from "types";
 import * as config from "ethpm/config";
 import * as manifest from "ethpm/manifest";
 import { Package } from "ethpm/package";

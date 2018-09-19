@@ -16,13 +16,11 @@
     "paths": {
       "test/*": ["test/*"],
       "ethpm": ["src"],
-      "ethpm/*": ["src/*"],
-      "types": ["types"]
+      "ethpm/*": ["src/*"]
     }
   },
   "include": [
     "src/**/*",
-    "types/**/*",
     "test/**/*"
   ],
   "exclude": [

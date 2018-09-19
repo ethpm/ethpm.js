@@ -2,7 +2,7 @@
  * @module "ethpm/storage"
  */
 
-import { Maybe } from "types";
+import { Maybe } from "ethpm/types";
 import { URL } from "url";
 
 export interface Service {

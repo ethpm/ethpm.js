@@ -1,4 +1,4 @@
-import EthPM from "ethpm";
+import { EthPM } from "ethpm";
 
 import examples from "test/examples/manifests";
 import packages from "test/examples/packages";

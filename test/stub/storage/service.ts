@@ -6,7 +6,7 @@ import { URL } from "url";
 import * as t from "io-ts";
 import { ThrowReporter } from "io-ts/lib/ThrowReporter";
 
-import { Maybe } from "types";
+import { Maybe } from "ethpm/types";
 import getHash from "ethpm/storage/ipfs/hash";
 import * as config from "ethpm/config";
 import * as storage from "ethpm/storage";
