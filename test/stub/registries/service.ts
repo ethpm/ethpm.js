@@ -1,5 +1,5 @@
 /**
- * @module "test/stub/registry"
+ * @module "test/stub/registries"
  */
 
 import { URL } from "url";
@@ -8,13 +8,13 @@ import { ThrowReporter } from "io-ts/lib/ThrowReporter";
 
 import { Maybe } from "ethpm/types";
 import * as config from "ethpm/config";
-import * as registry from "ethpm/registry";
+import * as registries from "ethpm/registries";
 import * as pkg from "ethpm/package";
 
 /**
  * @dev Preloaded packages where "manifest" is the raw package name string
  */
-export class StubService implements registry.Service {
+export class StubService implements registries.Service {
   private releases: Record<pkg.PackageName, Record<pkg.Version, URL>>;
 
   constructor () {
@@ -56,7 +56,7 @@ export class StubService implements registry.Service {
 
 }
 
-export default class StubConnector extends config.Connector<registry.Service> {
+export default class StubConnector extends config.Connector<registries.Service> {
   optionsType = t.interface({
     releases: t.array(t.interface({
       package: t.object,
@@ -66,7 +66,7 @@ export default class StubConnector extends config.Connector<registry.Service> {
 
   async init(
     { releases }: { releases: Array<{package: pkg.Package, manifest: URL}> }
-  ): Promise<registry.Service> {
+  ): Promise<registries.Service> {
     const service = new StubService();
     for (let { package: { packageName, version } , manifest } of releases) {
       await service.publish(packageName, version, manifest);

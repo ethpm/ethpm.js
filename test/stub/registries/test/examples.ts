@@ -2,7 +2,7 @@ import { URL } from "url";
 import manifests from "test/examples/manifests";
 import getHash from "ethpm/storage/ipfs/hash";
 
-import ExamplesConnector from "test/stub/registry/examples";
+import ExamplesConnector from "test/stub/registries/examples";
 
 it("lists packages", async () => {
   const service = await (new ExamplesConnector()).connect({});

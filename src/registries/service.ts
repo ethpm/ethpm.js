@@ -1,5 +1,5 @@
 /**
- * @module "ethpm/registry"
+ * @module "ethpm/registries"
  */
 
 import { URL } from "url";

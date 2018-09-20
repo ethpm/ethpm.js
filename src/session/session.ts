@@ -3,12 +3,12 @@
  */
 
 import * as config from "ethpm/config";
-import { Config, HasManifests, HasStorage, HasRegistry } from "ethpm/config";
+import { Config, HasManifests, HasStorage, HasRegistries } from "ethpm/config";
 
 import * as pkg from "ethpm/package";
 import * as manifests from "ethpm/manifests";
 import * as storage from "ethpm/storage";
-import * as registry from "ethpm/registry";
+import * as registries from "ethpm/registries";
 
 import { Query } from "./query";
 
@@ -42,12 +42,12 @@ export class Session<T extends Config> {
     throw new Error("No storage");
   }
 
-  get registry(): config.Workspace<HasRegistry>["registry"] | never {
-    if ("registry" in this.workspace) {
-      return (<config.Workspace<HasRegistry>>this.workspace).registry;
+  get registries(): config.Workspace<HasRegistries>["registries"] | never {
+    if ("registries" in this.workspace) {
+      return (<config.Workspace<HasRegistries>>this.workspace).registries;
     }
 
-    throw new Error("No registry");
+    throw new Error("No registries");
   }
 }
 

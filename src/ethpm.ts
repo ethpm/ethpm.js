@@ -26,7 +26,7 @@ namespace EthPM {
    * const builder = EthPM.configure({
    *   manifests: "ethpm/manifests/v2",
    *   storage: "ethpm/storage/ipfs",
-   *   registry: "ethpm/registry/web3"
+   *   registries: "ethpm/registries/web3"
    * })
    * ```
    *

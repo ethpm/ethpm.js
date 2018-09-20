@@ -10,23 +10,23 @@ export type ConfigValue<S = any> =
 
 export type HasManifests = { manifests: any };
 export type HasStorage = { storage: any };
-export type HasRegistry = { registry: any };
-export type Complete = HasManifests & HasStorage & HasRegistry;
+export type HasRegistries = { registries: any };
+export type Complete = HasManifests & HasStorage & HasRegistries;
 
 import * as manifests from "ethpm/manifests/service";
 import * as storage from "ethpm/storage/service";
-import * as registry from "ethpm/registry/service";
+import * as registries from "ethpm/registries/service";
 
 /**
  * Polymorphic type alias for any object that exposes keys for any or all
- * available services, i.e. `manifests`, `registry`, `storage`
+ * available services, i.e. `manifests`, `registries`, `storage`
  */
 export type Config =
-    HasManifests | HasStorage | HasRegistry |
+    HasManifests | HasStorage | HasRegistries |
       HasManifests & HasStorage |
-      HasManifests & HasRegistry |
-      HasStorage & HasRegistry |
-      HasManifests & HasStorage & HasRegistry
+      HasManifests & HasRegistries |
+      HasStorage & HasRegistries |
+      HasManifests & HasStorage & HasRegistries
 
 export type RawConfig<T extends Config> = {
   [K in keyof T]: ConfigValue<Workspace<T>[K]>
@@ -51,7 +51,7 @@ export type Workspace<T extends Config> = {
   [K in keyof T]:
     K extends "manifests" ? manifests.Service :
     K extends "storage" ? storage.Service :
-    K extends "registry" ? registry.Service :
+    K extends "registries" ? registries.Service :
     never
 }
 
