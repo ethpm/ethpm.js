@@ -1,5 +1,5 @@
 /**
- * @module "ethpm/manifest"
+ * @module "ethpm/manifests"
  */
 
 import { Package } from "ethpm/package";

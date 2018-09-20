@@ -1,5 +1,5 @@
 /**
- * @module "ethpm/manifest/v2"
+ * @module "ethpm/manifests/v2"
  */
 
 const deepEqual = require("deep-equal");
@@ -13,7 +13,7 @@ import { lift, lift2 } from "ethpm/types";
 import * as schema from "ethpm-spec";
 import * as config from "ethpm/config";
 import * as pkg from "ethpm/package";
-import * as manifest from "ethpm/manifest/service";
+import * as manifests from "ethpm/manifests/service";
 
 const VERSION = "2";
 
@@ -505,10 +505,10 @@ const v2 = {
 
 export { v2 };
 
-export default class Connector extends config.Connector<manifest.Service> {
+export default class Connector extends config.Connector<manifests.Service> {
   optionsType = t.interface({});
 
-  async init (): Promise<manifest.Service> {
+  async init (): Promise<manifests.Service> {
     return v2;
   }
 }

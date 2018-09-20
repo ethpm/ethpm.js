@@ -1,4 +1,4 @@
-import ExamplesConnector from "test/stub/manifest/examples";
+import ExamplesConnector from "test/stub/manifests/examples";
 import packages from "test/examples/packages";
 
 it("retrives examples", async () => {

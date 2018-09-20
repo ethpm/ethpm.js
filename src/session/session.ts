@@ -3,10 +3,10 @@
  */
 
 import * as config from "ethpm/config";
-import { Config, HasManifest, HasStorage, HasRegistry } from "ethpm/config";
+import { Config, HasManifests, HasStorage, HasRegistry } from "ethpm/config";
 
 import * as pkg from "ethpm/package";
-import * as manifest from "ethpm/manifest";
+import * as manifests from "ethpm/manifests";
 import * as storage from "ethpm/storage";
 import * as registry from "ethpm/registry";
 
@@ -26,12 +26,12 @@ export class Session<T extends Config> {
     });
   }
 
-  get manifest(): config.Workspace<HasManifest>["manifest"] | never {
-    if ("manifest" in this.workspace) {
-      return (<config.Workspace<HasManifest>>this.workspace).manifest;
+  get manifests(): config.Workspace<HasManifests>["manifests"] | never {
+    if ("manifests" in this.workspace) {
+      return (<config.Workspace<HasManifests>>this.workspace).manifests;
     }
 
-    throw new Error("No manifest");
+    throw new Error("No manifests");
   }
 
   get storage(): config.Workspace<HasStorage>["storage"] | never {

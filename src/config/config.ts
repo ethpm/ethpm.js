@@ -8,25 +8,25 @@ import { ThrowReporter } from "io-ts/lib/ThrowReporter";
 export type ConfigValue<S = any> =
   string | (() => Connector<S>) | ({ default: () => Connector<S> });
 
-export type HasManifest = { manifest: any };
+export type HasManifests = { manifests: any };
 export type HasStorage = { storage: any };
 export type HasRegistry = { registry: any };
-export type Complete = HasManifest & HasStorage & HasRegistry;
+export type Complete = HasManifests & HasStorage & HasRegistry;
 
-import * as manifest from "ethpm/manifest/service";
+import * as manifests from "ethpm/manifests/service";
 import * as storage from "ethpm/storage/service";
 import * as registry from "ethpm/registry/service";
 
 /**
  * Polymorphic type alias for any object that exposes keys for any or all
- * available services, i.e. `manifest`, `registry`, `storage`
+ * available services, i.e. `manifests`, `registry`, `storage`
  */
 export type Config =
-    HasManifest | HasStorage | HasRegistry |
-      HasManifest & HasStorage |
-      HasManifest & HasRegistry |
+    HasManifests | HasStorage | HasRegistry |
+      HasManifests & HasStorage |
+      HasManifests & HasRegistry |
       HasStorage & HasRegistry |
-      HasManifest & HasStorage & HasRegistry
+      HasManifests & HasStorage & HasRegistry
 
 export type RawConfig<T extends Config> = {
   [K in keyof T]: ConfigValue<Workspace<T>[K]>
@@ -49,7 +49,7 @@ export abstract class Connector<S> {
 
 export type Workspace<T extends Config> = {
   [K in keyof T]:
-    K extends "manifest" ? manifest.Service :
+    K extends "manifests" ? manifests.Service :
     K extends "storage" ? storage.Service :
     K extends "registry" ? registry.Service :
     never

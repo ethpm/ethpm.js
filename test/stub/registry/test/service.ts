@@ -2,7 +2,7 @@ import hash from "ethpm/storage/ipfs/hash";
 
 import { URL } from "url";
 
-import { StubService } from "test/stub/manifest";
+import { StubService } from "test/stub/manifests";
 import packages from "test/examples/packages";
 
 describe("StubService", () => {

@@ -1,5 +1,5 @@
 /**
- * @module "test/stub/manifest"
+ * @module "test/stub/manifests"
  */
 
 export * from "./service";
