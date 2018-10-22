@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>InstanceReference | EthPM.js</title>
+	<title>Service | EthPM.js</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,16 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_ethpm_package_.html">&quot;ethpm/package&quot;</a>
+					<a href="../modules/_ethpm_manifests_.html">&quot;ethpm/manifests&quot;</a>
 				</li>
 				<li>
-					<a href="../modules/_ethpm_package_.link.html">Link</a>
-				</li>
-				<li>
-					<a href="_ethpm_package_.link.instancereference.html">InstanceReference</a>
+					<a href="_ethpm_manifests_.service.html">Service</a>
 				</li>
 			</ul>
-			<h1>Interface InstanceReference</h1>
+			<h1>Interface Service</h1>
 		</div>
 	</div>
 </header>
@@ -76,8 +73,14 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">InstanceReference</span>
+						<span class="target">Service</span>
 					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implemented by</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../classes/_test_stub_manifests_.stubservice.html" class="tsd-signature-type">StubService</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -85,36 +88,62 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
+							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ethpm_package_.link.instancereference.html#type" class="tsd-kind-icon">type</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ethpm_package_.link.instancereference.html#value" class="tsd-kind-icon">value</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_ethpm_manifests_.service.html#read" class="tsd-kind-icon">read</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_ethpm_manifests_.service.html#write" class="tsd-kind-icon">write</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"reference"</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/5a472ba/src/package/link.ts#L18">src/package/link.ts:18</a></li>
-						</ul>
-					</aside>
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="read" class="tsd-anchor"></a>
+					<h3>read</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">read<span class="tsd-signature-symbol">(</span>json<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_ethpm_package_.package.html" class="tsd-signature-type">Package</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/5a472ba/src/manifests/service.ts#L8">src/manifests/service.ts:8</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>json: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_ethpm_package_.package.html" class="tsd-signature-type">Package</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="value" class="tsd-anchor"></a>
-					<h3>value</h3>
-					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/5a472ba/src/package/link.ts#L19">src/package/link.ts:19</a></li>
-						</ul>
-					</aside>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="write" class="tsd-anchor"></a>
+					<h3>write</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">write<span class="tsd-signature-symbol">(</span>pkg<span class="tsd-signature-symbol">: </span><a href="_ethpm_package_.package.html" class="tsd-signature-type">Package</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/5a472ba/src/manifests/service.ts#L9">src/manifests/service.ts:9</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>pkg: <a href="_ethpm_package_.package.html" class="tsd-signature-type">Package</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -130,22 +159,14 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_ethpm_config_.html">"ethpm/config"</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/_ethpm_manifests_.html">"ethpm/manifests"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_ethpm_manifests_v2_.html">"ethpm/manifests/v2"</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_ethpm_package_.html">"ethpm/package"</a>
-						<ul>
-							<li class="current tsd-kind-module tsd-parent-kind-external-module">
-								<a href="../modules/_ethpm_package_.link.html">Link</a>
-							</li>
-							<li class=" tsd-kind-module tsd-parent-kind-external-module">
-								<a href="../modules/_ethpm_package_.meta.html">Meta</a>
-							</li>
-						</ul>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_ethpm_registries_.html">"ethpm/registries"</a>
@@ -180,37 +201,19 @@
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="_ethpm_package_.link.instancereference.html" class="tsd-kind-icon">Instance<wbr>Reference</a>
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_ethpm_manifests_.service.html" class="tsd-kind-icon">Service</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ethpm_package_.link.instancereference.html#type" class="tsd-kind-icon">type</a>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_ethpm_manifests_.service.html#read" class="tsd-kind-icon">read</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ethpm_package_.link.instancereference.html#value" class="tsd-kind-icon">value</a>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_ethpm_manifests_.service.html#write" class="tsd-kind-icon">write</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_ethpm_package_.link.literal.html" class="tsd-kind-icon">Literal</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_ethpm_package_.link.reference.html" class="tsd-kind-icon">Reference</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_ethpm_package_.link.value.html" class="tsd-kind-icon">Value</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="../modules/_ethpm_package_.link.html#length" class="tsd-kind-icon">Length</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="../modules/_ethpm_package_.link.html#name" class="tsd-kind-icon">Name</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="../modules/_ethpm_package_.link.html#offset" class="tsd-kind-icon">Offset</a>
-					</li>
 				</ul>
 			</nav>
 		</div>

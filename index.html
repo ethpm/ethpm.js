@@ -70,11 +70,11 @@
 				<p>Work in progress library for interacting with EthPM packages in
 				Javascript and TypeScript.</p>
 				<h2 id="usage-example">Usage Example</h2>
-				<pre><code class="language-typescript"><span class="hljs-keyword">const</span> ethpm: Session = <span class="hljs-keyword">await</span> EthPM.configure&lt;HasManifest&gt;({
-  manifest: <span class="hljs-string">"ethpm/manifest/v2"</span>,
+				<pre><code class="language-typescript"><span class="hljs-keyword">const</span> ethpm: Session = <span class="hljs-keyword">await</span> EthPM.configure&lt;HasManifests&gt;({
+  manifests: <span class="hljs-string">"ethpm/manifests/v2"</span>,
 }).connect();
 
-<span class="hljs-keyword">const</span> pkg = <span class="hljs-keyword">await</span> ethpm.manifest.read(examples[<span class="hljs-string">"wallet-with-send"</span>]);</code></pre>
+<span class="hljs-keyword">const</span> pkg = <span class="hljs-keyword">await</span> ethpm.manifests.read(examples[<span class="hljs-string">"wallet-with-send"</span>]);</code></pre>
 				<p>See <a href="classes/_ethpm_session_.session.html">Session</a> for API</p>
 			</div>
 		</div>
@@ -91,16 +91,16 @@
 						<a href="modules/_ethpm_config_.html">"ethpm/config"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_ethpm_manifest_.html">"ethpm/manifest"</a>
+						<a href="modules/_ethpm_manifests_.html">"ethpm/manifests"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_ethpm_manifest_v2_.html">"ethpm/manifest/v2"</a>
+						<a href="modules/_ethpm_manifests_v2_.html">"ethpm/manifests/v2"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_ethpm_package_.html">"ethpm/package"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_ethpm_registry_.html">"ethpm/registry"</a>
+						<a href="modules/_ethpm_registries_.html">"ethpm/registries"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_ethpm_session_.html">"ethpm/session"</a>
@@ -118,10 +118,10 @@
 						<a href="modules/_test_examples_.html">"test/examples"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_test_stub_manifest_.html">"test/stub/manifest"</a>
+						<a href="modules/_test_stub_manifests_.html">"test/stub/manifests"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_test_stub_registry_.html">"test/stub/registry"</a>
+						<a href="modules/_test_stub_registries_.html">"test/stub/registries"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_test_stub_storage_.html">"test/stub/storage"</a>

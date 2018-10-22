@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>InstanceReference | EthPM.js</title>
+	<title>StubConnector | EthPM.js</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,16 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_ethpm_package_.html">&quot;ethpm/package&quot;</a>
+					<a href="../modules/_test_stub_registries_.html">&quot;test/stub/registries&quot;</a>
 				</li>
 				<li>
-					<a href="../modules/_ethpm_package_.link.html">Link</a>
-				</li>
-				<li>
-					<a href="_ethpm_package_.link.instancereference.html">InstanceReference</a>
+					<a href="_test_stub_registries_.stubconnector.html">StubConnector</a>
 				</li>
 			</ul>
-			<h1>Interface InstanceReference</h1>
+			<h1>Class StubConnector</h1>
 		</div>
 	</div>
 </header>
@@ -76,7 +73,17 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">InstanceReference</span>
+						<a href="_ethpm_config_.connector.html" class="tsd-signature-type">Connector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">registries.Service</span><span class="tsd-signature-symbol">&gt;</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">StubConnector</span>
+								<ul class="tsd-hierarchy">
+									<li>
+										<a href="_test_stub_registries_.examplesconnector.html" class="tsd-signature-type">ExamplesConnector</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -87,8 +94,14 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ethpm_package_.link.instancereference.html#type" class="tsd-kind-icon">type</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ethpm_package_.link.instancereference.html#value" class="tsd-kind-icon">value</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite"><a href="_test_stub_registries_.stubconnector.html#optionstype" class="tsd-kind-icon">options<wbr>Type</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_test_stub_registries_.stubconnector.html#connect" class="tsd-kind-icon">connect</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_test_stub_registries_.stubconnector.html#init" class="tsd-kind-icon">init</a></li>
 							</ul>
 						</section>
 					</div>
@@ -96,25 +109,72 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"reference"</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite">
+					<a name="optionstype" class="tsd-anchor"></a>
+					<h3>options<wbr>Type</h3>
+					<div class="tsd-signature tsd-kind-icon">options<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">InterfaceType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;t.interface({releases: t.array(t.interface({package: t.object,manifest: t.interface({ href: t.string })}))})</span></div>
 					<aside class="tsd-sources">
+						<p>Overrides <a href="_ethpm_config_.connector.html">Connector</a>.<a href="_ethpm_config_.connector.html#optionstype">optionsType</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/5a472ba/src/package/link.ts#L18">src/package/link.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/5a472ba/test/stub/registries/service.ts#L60">test/stub/registries/service.ts:60</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="value" class="tsd-anchor"></a>
-					<h3>value</h3>
-					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/5a472ba/src/package/link.ts#L19">src/package/link.ts:19</a></li>
-						</ul>
-					</aside>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="connect" class="tsd-anchor"></a>
+					<h3>connect</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">connect<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">t.mixed</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">registries.Service</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_ethpm_config_.connector.html">Connector</a>.<a href="_ethpm_config_.connector.html#connect">connect</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/5a472ba/src/config/config.ts#L40">src/config/config.ts:40</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>options: <span class="tsd-signature-type">t.mixed</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">registries.Service</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="init" class="tsd-anchor"></a>
+					<h3>init</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">init<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">registries.Service</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="_ethpm_config_.connector.html">Connector</a>.<a href="_ethpm_config_.connector.html#init">init</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/5a472ba/test/stub/registries/service.ts#L67">test/stub/registries/service.ts:67</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>__namedParameters: <span class="tsd-signature-type">object</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5>releases<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">[]</span></h5>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">registries.Service</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -136,16 +196,8 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_ethpm_manifests_v2_.html">"ethpm/manifests/v2"</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_ethpm_package_.html">"ethpm/package"</a>
-						<ul>
-							<li class="current tsd-kind-module tsd-parent-kind-external-module">
-								<a href="../modules/_ethpm_package_.link.html">Link</a>
-							</li>
-							<li class=" tsd-kind-module tsd-parent-kind-external-module">
-								<a href="../modules/_ethpm_package_.meta.html">Meta</a>
-							</li>
-						</ul>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_ethpm_registries_.html">"ethpm/registries"</a>
@@ -168,7 +220,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_test_stub_manifests_.html">"test/stub/manifests"</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/_test_stub_registries_.html">"test/stub/registries"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -178,38 +230,29 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="_test_stub_registries_.examplesconnector.html" class="tsd-kind-icon">Examples<wbr>Connector</a>
+					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="_ethpm_package_.link.instancereference.html" class="tsd-kind-icon">Instance<wbr>Reference</a>
+					<li class="current tsd-kind-class tsd-parent-kind-external-module">
+						<a href="_test_stub_registries_.stubconnector.html" class="tsd-kind-icon">Stub<wbr>Connector</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ethpm_package_.link.instancereference.html#type" class="tsd-kind-icon">type</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_test_stub_registries_.stubconnector.html#optionstype" class="tsd-kind-icon">options<wbr>Type</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ethpm_package_.link.instancereference.html#value" class="tsd-kind-icon">value</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_test_stub_registries_.stubconnector.html#connect" class="tsd-kind-icon">connect</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_test_stub_registries_.stubconnector.html#init" class="tsd-kind-icon">init</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_ethpm_package_.link.literal.html" class="tsd-kind-icon">Literal</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_ethpm_package_.link.reference.html" class="tsd-kind-icon">Reference</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_ethpm_package_.link.value.html" class="tsd-kind-icon">Value</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="../modules/_ethpm_package_.link.html#length" class="tsd-kind-icon">Length</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="../modules/_ethpm_package_.link.html#name" class="tsd-kind-icon">Name</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="../modules/_ethpm_package_.link.html#offset" class="tsd-kind-icon">Offset</a>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="_test_stub_registries_.stubservice.html" class="tsd-kind-icon">Stub<wbr>Service</a>
 					</li>
 				</ul>
 			</nav>
