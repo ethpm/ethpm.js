@@ -3,7 +3,7 @@
  */
 
 import * as pkg from "ethpm/package";
-import { v2 } from "ethpm/manifest/v2";
+import { v2 } from "ethpm/manifests/v2";
 
 import manifests from "./manifests";
 

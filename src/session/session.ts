@@ -3,12 +3,12 @@
  */
 
 import * as config from "ethpm/config";
-import { Config, HasManifest, HasStorage, HasRegistry } from "ethpm/config";
+import { Config, HasManifests, HasStorage, HasRegistries } from "ethpm/config";
 
 import * as pkg from "ethpm/package";
-import * as manifest from "ethpm/manifest";
+import * as manifests from "ethpm/manifests";
 import * as storage from "ethpm/storage";
-import * as registry from "ethpm/registry";
+import * as registries from "ethpm/registries";
 
 import { Query } from "./query";
 
@@ -26,12 +26,12 @@ export class Session<T extends Config> {
     });
   }
 
-  get manifest(): config.Workspace<HasManifest>["manifest"] | never {
-    if ("manifest" in this.workspace) {
-      return (<config.Workspace<HasManifest>>this.workspace).manifest;
+  get manifests(): config.Workspace<HasManifests>["manifests"] | never {
+    if ("manifests" in this.workspace) {
+      return (<config.Workspace<HasManifests>>this.workspace).manifests;
     }
 
-    throw new Error("No manifest");
+    throw new Error("No manifests");
   }
 
   get storage(): config.Workspace<HasStorage>["storage"] | never {
@@ -42,12 +42,12 @@ export class Session<T extends Config> {
     throw new Error("No storage");
   }
 
-  get registry(): config.Workspace<HasRegistry>["registry"] | never {
-    if ("registry" in this.workspace) {
-      return (<config.Workspace<HasRegistry>>this.workspace).registry;
+  get registries(): config.Workspace<HasRegistries>["registries"] | never {
+    if ("registries" in this.workspace) {
+      return (<config.Workspace<HasRegistries>>this.workspace).registries;
     }
 
-    throw new Error("No registry");
+    throw new Error("No registries");
   }
 }
 

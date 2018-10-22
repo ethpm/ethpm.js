@@ -10,11 +10,11 @@ Javascript and TypeScript.
 ## Usage Example
 
 ```typescript
-const ethpm: Session = await EthPM.configure<HasManifest>({
-  manifest: "ethpm/manifest/v2",
+const ethpm: Session = await EthPM.configure<HasManifests>({
+  manifests: "ethpm/manifests/v2",
 }).connect();
 
-const pkg = await ethpm.manifest.read(examples["wallet-with-send"]);
+const pkg = await ethpm.manifests.read(examples["wallet-with-send"]);
 ```
 
 See [[Session]] for API

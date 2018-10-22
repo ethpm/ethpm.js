@@ -24,9 +24,9 @@ namespace EthPM {
    * ```javascript
    * import EthPM from "ethpm";
    * const builder = EthPM.configure({
-   *   manifest: "ethpm/manifest/v2",
+   *   manifests: "ethpm/manifests/v2",
    *   storage: "ethpm/storage/ipfs",
-   *   registry: "ethpm/registry/web3"
+   *   registries: "ethpm/registries/web3"
    * })
    * ```
    *

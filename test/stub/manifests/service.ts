@@ -1,5 +1,5 @@
 /**
- * @module "test/stub/manifest"
+ * @module "test/stub/manifests"
  */
 
 import { URL } from "url";
@@ -7,13 +7,13 @@ import * as t from "io-ts";
 import { ThrowReporter } from "io-ts/lib/ThrowReporter";
 
 import * as config from "ethpm/config";
-import * as manifest from "ethpm/manifest";
+import * as manifests from "ethpm/manifests";
 import { Package } from "ethpm/package";
 
 /**
  * @dev Preloaded packages where "manifest" is the raw package name string
  */
-export class StubService implements manifest.Service {
+export class StubService implements manifests.Service {
   packages: Record<string, Package>;
 
   constructor () {
@@ -33,14 +33,14 @@ export class StubService implements manifest.Service {
   }
 }
 
-export default class StubConnector extends config.Connector<manifest.Service> {
+export default class StubConnector extends config.Connector<manifests.Service> {
   optionsType = t.interface({
     packages: t.Array
   });
 
   async init (
     { packages }: { packages: Array<Package> }
-  ): Promise<manifest.Service> {
+  ): Promise<manifests.Service> {
     const service = new StubService();
     for (let package_ of packages) {
       await service.add(package_);

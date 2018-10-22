@@ -4,7 +4,7 @@
 
 import * as config from "ethpm/config";
 import * as pkg from "ethpm/package";
-import * as manifest from "ethpm/manifest";
+import * as manifests from "ethpm/manifests";
 import * as storage from "ethpm/storage";
 
 
@@ -79,18 +79,18 @@ export class Query<T extends config.Config> {
       throw new Error("Storage not configured!");
     }
 
-    if (!("manifest" in this.workspace)) {
-      throw new Error("Manifest not configured!");
+    if (!("manifests" in this.workspace)) {
+      throw new Error("Manifests not configured!");
     }
 
     const workspace = <
-      config.Workspace<config.HasManifest & config.HasStorage>
+      config.Workspace<config.HasManifests & config.HasStorage>
     >this.workspace;
 
     const uri = this.package.buildDependencies[name];
     const contents = await workspace.storage.read(uri);
     if (contents !== undefined) {
-      return await workspace.manifest.read(contents);
+      return await workspace.manifests.read(contents);
     }
 
     throw new Error(`Could not find build dependency "${name}"`);
