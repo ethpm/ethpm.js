@@ -1,7 +1,8 @@
 import { EthPM } from "ethpm";
 
-import examples from "test/examples/manifests";
+import manifests from "test/examples/manifests";
 import packages from "test/examples/packages";
+import sources from "test/examples/sources";
 
 describe("Configuration", () => {
   it("loads manifests plugin", async () => {
@@ -9,7 +10,7 @@ describe("Configuration", () => {
       manifests: "ethpm/manifests/v2",
     }).connect();
 
-    const pkg = await ethpm.manifests.read(examples["wallet-with-send"]);
+    const pkg = await ethpm.manifests.read(manifests["wallet-with-send"]);
 
     expect(pkg.packageName).toEqual("wallet-with-send");
 
@@ -21,9 +22,9 @@ describe("Configuration", () => {
     }).connect();
 
     const wallet = packages["wallet-with-send"].buildDependencies["wallet"];
-    const manifests = await ethpm.storage.read(wallet);
+    const manifest = await ethpm.storage.read(wallet);
 
-    expect(manifests).toEqual(examples["wallet"]);
+    expect(manifest).toEqual(manifests["wallet"]);
   });
 
   it("loads manifests and storage plugins", async () => {
@@ -32,19 +33,19 @@ describe("Configuration", () => {
       storage: "test/stub/storage/examples",
     }).connect();
 
-    const walletWithSend = await ethpm.manifests.read(examples["wallet-with-send"]);
-    const manifests = await ethpm.storage.read(
+    const walletWithSend = await ethpm.manifests.read(manifests["wallet-with-send"]);
+    const manifest = await ethpm.storage.read(
       walletWithSend.buildDependencies["wallet"]
     );
 
-    expect(manifests).toBeDefined();
+    expect(manifest).toBeDefined();
 
     // to get past typecheck
-    if (manifests === undefined) {
+    if (manifest === undefined) {
       return;
     }
 
-    const wallet = await ethpm.manifests.read(manifests);
+    const wallet = await ethpm.manifests.read(manifest);
 
     expect(wallet).toEqual(packages["wallet"]);
   });
@@ -99,7 +100,7 @@ describe("Configuration", () => {
       storage: require("test/stub/storage/examples"),
     }).connect();
 
-    const walletWithSend = await ethpm.manifests.read(examples["wallet-with-send"]);
+    const walletWithSend = await ethpm.manifests.read(manifests["wallet-with-send"]);
     const manifest = await ethpm.storage.read(
       walletWithSend.buildDependencies["wallet"]
     );
@@ -114,5 +115,48 @@ describe("Configuration", () => {
     const wallet = await ethpm.manifests.read(manifest);
 
     expect(wallet).toEqual(packages["wallet"]);
+  });
+});
+
+describe.skip("Packaging", () => {
+  describe("owned", () => {
+    it("allows defining the package from scratch", async () => {
+      const ethpm = await EthPM.configure({
+        manifests: require("ethpm/manifests/v2"),
+        storage: require("test/stub/storage/examples"),
+      }).connect();
+
+      const { packageName, version } = packages["owned"];
+      const {
+        authors, description, keywords, license, links
+      } = packages["owned"].meta;
+
+      const buffer = ethpm.packages.create(packageName, version);
+
+      // sources
+      for (let [sourcePath, source] of Object.entries(sources[packageName])) {
+        buffer.sources.include(sourcePath, source);
+      }
+
+      // meta
+      buffer.meta.description.matches(description);
+      buffer.meta.license.matches(license);
+
+      for (let author of (authors || [])) {
+        buffer.meta.authors.include(author);
+      }
+
+      for (let keyword of (keywords || [])) {
+        buffer.meta.keywords.include(keyword);
+      }
+
+      for (let { resource, uri } of (links || [])) {
+        buffer.meta.links.include(resource, uri);
+      }
+
+      // build complete package object and compare that it matches our original
+      expect(await buffer.package()).toEqual(packages["owned"]);
+
+    });
   });
 });

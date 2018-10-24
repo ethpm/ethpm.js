@@ -11,12 +11,15 @@ import * as storage from "ethpm/storage";
 import * as registries from "ethpm/registries";
 
 import { Query } from "./query";
+import { Packages } from "./packages";
 
 export class Session<T extends Config> {
   private workspace: config.Workspace<T>;
+  private _packages: Packages<T>;
 
   constructor (workspace: config.Workspace<T>) {
     this.workspace = workspace;
+    this._packages = new Packages<T>(workspace);
   }
 
   query (package_: pkg.Package): Query<T> {
@@ -48,6 +51,10 @@ export class Session<T extends Config> {
     }
 
     throw new Error("No registries");
+  }
+
+  get packages(): Packages<T> {
+    return this._packages;
   }
 }
 
