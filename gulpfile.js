@@ -78,7 +78,7 @@ gulp.task('copy-symlinks', () => (
     .pipe(vfs.symlink('dist'))
 ));
 
-gulp.task('docs', () => {
+gulp.task('docs', ['declarations'], () => {
   return gulp.src([
     "src/**/*.ts",
     "!src/index.ts",
@@ -91,7 +91,7 @@ gulp.task('docs', () => {
     }));
 });
 
-gulp.task('build', ['declarations', 'docs', 'copy-symlinks']);
+gulp.task('build', ['docs', 'copy-symlinks']);
 
 gulp.task('watch', ['build'], () => {
   return gulp.watch([
