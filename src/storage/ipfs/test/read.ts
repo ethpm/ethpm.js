@@ -5,11 +5,10 @@ import { URL } from "url";
 
 // TODO - write real tests that reflect actual usage
 it("exists", async () => {
-  // const expected: URL = new URL("");
+  const testUrl: URL = new URL("ipfs://my_test_url");
 
-  // TODO - figure out how to grab the value inside a Maybe context
-  // const actual: Maybe<string> = await read(new URL(""));
+  const expected: string = "my_content";
+  const actual: string = (await read(testUrl)) || "";
 
-  // expect(actual).toEqual(expected);
-  expect(1).toEqual(1);
+  expect(actual).toEqual(expected);
 });
