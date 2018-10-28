@@ -1,37 +1,24 @@
-import { EthPM } from "ethpm";
-import { IpfsService } from "../";
+// import { EthPM } from "ethpm";
+const IPFS = require("ipfs");
 
-describe("IPFS instantiation", () => {
-  it("fails to load plugin without any options passed in", async () => {
-    const missingOptions = EthPM.configure({
-      storage: "ethpm/storage/ipfs"
-    }).connect({
-      /* ... ??? ... */
+describe("IPFS integration", () => {
+  let node: any;
+
+  const startNode = () =>
+    new Promise(resolve => {
+      node = new IPFS();
+      node.on("ready", resolve);
+      node.on("error", (err: any) => console.error(err));
     });
 
-    await expect(missingOptions).rejects.toBeTruthy();
-  });
+  const stopNode = async () => {
+    await node.stop();
+  };
 
-  it("fails to load plugin with partial options passed in", async () => {
-    const missingOptions = EthPM.configure({
-      storage: "ethpm/storage/ipfs"
-    }).connect({
-      ipfs: { host: "ipfs.infura.io" }
-    });
+  beforeAll(() => startNode());
+  afterAll(() => stopNode());
 
-    await expect(missingOptions).rejects.toBeTruthy();
-  });
-
-  it("loads plugin with required options", async () => {
-    const ethpm = await EthPM.configure({
-      storage: "ethpm/storage/ipfs"
-    }).connect({
-      ipfs: { host: "ipfs.infura.io", port: 5001, protocol: "https" }
-    });
-
-    expect(ethpm.storage).toBeInstanceOf(IpfsService);
-    expect(ethpm.storage.host).toBe("ipfs.infura.io")
-    expect(ethpm.storage.port).toBe(5001)
-    expect(ethpm.storage.protocol).toBe("https")
+  it("should show the IPFS node to be online", () => {
+    expect(node.isOnline()).toBe(true);
   });
 });
