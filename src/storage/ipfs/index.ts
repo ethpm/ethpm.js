@@ -40,7 +40,7 @@ export class IpfsService implements storage.Service {
   write(content: string): Promise<URL> {
     return new Promise((resolve, reject) => {
       this.ipfs.add(content, (err: Error, result: any) => {
-        if (err) throw reject(err);
+        if (err) reject(err);
         resolve(new URL(`ipfs://${result}`));
       });
     });
@@ -51,7 +51,7 @@ export class IpfsService implements storage.Service {
 
     return new Promise((resolve, reject) => {
       this.ipfs.cat(hashUri, (err: Error, result: any) => {
-        if (err) throw reject(err);
+        if (err) reject(err);
         resolve(result);
       });
     });
