@@ -70,13 +70,20 @@ gulp.task('clean-symlinks', () => (
 ));
 
 
-gulp.task('copy-symlinks', () => (
+gulp.task('copy-readme', () => (
+  vfs.src([
+    'README.md'
+  ], { resolveSymlinks: false })
+    .pipe(vfs.dest('dist'))
+));
+
+gulp.task('copy-symlinks', ['copy-readme'], () => (
   vfs.src([
     'package.json',
-    'README.md'
   ], { resolveSymlinks: false })
     .pipe(vfs.symlink('dist'))
 ));
+
 
 gulp.task('docs', () => {
   return gulp.src([
