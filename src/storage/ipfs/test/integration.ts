@@ -1,24 +1,23 @@
 // import { EthPM } from "ethpm";
-const IPFS = require("ipfs");
+
+const IPFSFactory = require("ipfsd-ctl");
 
 describe("IPFS integration", () => {
-  let node: any;
+  let daemon: any;
 
-  const startNode = () =>
+  const startDaemon = () =>
     new Promise(resolve => {
-      node = new IPFS();
-      node.on("ready", resolve);
-      node.on("error", (err: any) => console.error(err));
+      const f = IPFSFactory.create({ type: "js" });
+      f.spawn((err: any, ipfsd: any) => {
+        daemon = ipfsd
+        resolve()
+      });
     });
 
-  const stopNode = async () => {
-    await node.stop();
-  };
+  beforeAll(() => startDaemon(), 20000);
+  afterAll(() => daemon.stop());
 
-  beforeAll(() => startNode());
-  afterAll(() => stopNode());
-
-  it("should show the IPFS node to be online", () => {
-    expect(node.isOnline()).toBe(true);
+  it("should show the IPFS daemon to be initialized", () => {
+    expect(daemon.initialized).toBe(true);
   });
 });
