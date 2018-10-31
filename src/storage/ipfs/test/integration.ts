@@ -1,4 +1,6 @@
 import { EthPM } from "ethpm";
+import { URL } from "url";
+
 import { IpfsService } from "../index";
 
 const IPFSFactory = require("ipfsd-ctl");
@@ -30,7 +32,7 @@ describe("IPFS integration", () => {
     const ethpm = await EthPM.configure({
       storage: "ethpm/storage/ipfs"
     }).connect({
-      ipfs: { host, port, protocol: "https" }
+      ipfs: { host, port, protocol: "http" }
     });
 
     const content = "hello world";
@@ -39,5 +41,21 @@ describe("IPFS integration", () => {
 
     const url = await ethpm.storage.write("hello world");
     expect(url.href).toBe(expectedHref);
+  });
+
+  it("should read from the IPFS daemon", async () => {
+    const ethpm = await EthPM.configure({
+      storage: "ethpm/storage/ipfs"
+    }).connect({
+      ipfs: { host, port, protocol: "http" }
+    });
+
+    const url = new URL(
+      "ipfs://Qmf412jQZiuVUtdgnB36FXFX7xg5V6KEbSJ4dpQuhkLyfD"
+    );
+    const expectedContent = "hello world";
+
+    const content = await ethpm.storage.read(url);
+    expect(content).toBe(expectedContent);
   });
 });
