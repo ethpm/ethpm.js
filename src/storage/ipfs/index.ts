@@ -12,8 +12,6 @@ import * as config from "ethpm/config";
 import * as storage from "ethpm/storage";
 
 import hash from "./hash";
-import read from "./read";
-import write from "./write";
 
 interface IpfsOptions {
   host: string;
