@@ -1,5 +1,5 @@
 import { EthPM } from "ethpm";
-import { IpfsService } from "../";
+import { IpfsService } from "../index";
 
 describe("IPFS instantiation", () => {
   it("fails to load plugin without any options passed in", async () => {

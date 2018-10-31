@@ -15,7 +15,7 @@ import write from "./write";
 
 interface IpfsOptions {
   host: string;
-  port: number;
+  port: number | string;
   protocol: string;
 }
 
@@ -26,7 +26,7 @@ export class IpfsService implements storage.Service {
 
   constructor(options: IpfsOptions) {
     this.host = options.host;
-    this.port = options.port;
+    this.port = Number(options.port);
     this.protocol = options.protocol;
   }
 
@@ -38,7 +38,7 @@ export class IpfsService implements storage.Service {
 
   async read(uri: URL): Promise<Maybe<string>> {
     // TODO - actually read from IPFS
-    return "dummy_content"
+    return "dummy_content";
     // return this.contents[uri.href];
   }
 
@@ -55,7 +55,11 @@ export class IpfsService implements storage.Service {
 
 export default class IpfsConnector extends config.Connector<storage.Service> {
   optionsType = t.interface({
-    ipfs: t.interface({ host: t.string, port: t.number, protocol: t.string })
+    ipfs: t.interface({
+      host: t.string,
+      port: t.union([t.number, t.string]),
+      protocol: t.string
+    })
   });
 
   /**
