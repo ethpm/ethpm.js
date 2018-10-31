@@ -2,7 +2,7 @@
  * @module "ethpm/storage/ipfs"
  */
 
-const IPFS = require("ipfs-mini");
+const IPFS = require("ipfs-api");
 
 import { URL } from "url";
 import * as t from "io-ts";
@@ -37,24 +37,19 @@ export class IpfsService implements storage.Service {
     });
   }
 
-  write(content: string): Promise<URL> {
-    return new Promise((resolve, reject) => {
-      this.ipfs.add(content, (err: Error, result: any) => {
-        if (err) reject(err);
-        resolve(new URL(`ipfs://${result}`));
-      });
-    });
+  async write(content: string): Promise<URL> {
+    const buffer = this.ipfs.types.Buffer.from(content);
+    const [{ hash }] = await this.ipfs.files.add(buffer);
+
+    return new URL(`ipfs://${hash}`);
   }
 
-  read(uri: URL): Promise<Maybe<string>> {
-    const hashUri = uri.href.substr(uri.origin.length);
+  async read(uri: URL): Promise<Maybe<string>> {
+    const hash = uri.host;
 
-    return new Promise((resolve, reject) => {
-      this.ipfs.cat(hashUri, (err: Error, result: any) => {
-        if (err) reject(err);
-        resolve(result);
-      });
-    });
+    const buffer = await this.ipfs.cat(hash);
+
+    return buffer.toString();
   }
 
   async hash(content: string): Promise<string> {
