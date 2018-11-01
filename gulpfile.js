@@ -47,7 +47,7 @@ gulp.task('compile-test', ['compile-source'], () => {
     .pipe(gulp.dest('dist/test'))
 });
 
-gulp.task('compile', ['compile-test']);
+gulp.task('compile', ['compile-source']); // temporariily skip building tests
 
 gulp.task('declarations', ['compile'], function() {
   dts.bundle({
@@ -98,7 +98,7 @@ gulp.task('docs', () => {
     }));
 });
 
-gulp.task('build', ['declarations', 'docs', 'copy-symlinks']);
+gulp.task('build', ['declarations', 'copy-symlinks']);
 
 gulp.task('watch', ['build'], () => {
   return gulp.watch([
