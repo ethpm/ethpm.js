@@ -168,6 +168,11 @@ describe("Manual Packaging", () => {
     const contractUri = await ethpm.storage.write(contractSource);
 
     /*
+     * test reading same file back out
+     */
+    expect(await ethpm.storage.read(contractUri)).toEqual(contractSource);
+
+    /*
      * build package - stub example package for convenience
      */
     const owned = {
@@ -186,7 +191,7 @@ describe("Manual Packaging", () => {
     const manifest = await ethpm.manifests.write(owned);
 
     /*
-     * sanity check: manifest is the same as example
+     * test that manifest is the same as example
      */
     expect(manifest).toEqual(examples["owned"]);
 
@@ -194,6 +199,11 @@ describe("Manual Packaging", () => {
      * write manifest to IPFS
      */
     const manifestUri = await ethpm.storage.write(manifest);
+
+    /*
+     * test reading same file back out
+     */
+    expect(await ethpm.storage.read(manifestUri)).toEqual(manifest);
 
     /*
      * test against "transferable"'s "owned" dependency
