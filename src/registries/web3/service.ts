@@ -123,7 +123,7 @@ export class Web3RegistryService implements registries.Service {
         return cursor;
       },
 
-      release: (): Promise<URL> => {
+      release: (version: pkg.Version): Promise<URL> => {
         return new Promise((resolve) => resolve(new URL("localhost")));
       }
     }
