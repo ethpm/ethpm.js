@@ -56,7 +56,7 @@ export class Web3RegistryService implements registries.Service {
         type: "string",
         name: "manifestURI"
       }]
-    }, [packageName, version, manifest]);
+    }, [packageName, version, manifest.href]);
 
     await this.web3.eth.sendTransaction({
       from: this.accounts[0],
@@ -167,7 +167,6 @@ export class Web3RegistryService implements registries.Service {
 }
 
 type Web3RegistryOptions = {
-  releases: Array<{package: pkg.Package, manifest: URL}>;
   provider: Web3Provider;
   registryAddress: string;
 };
