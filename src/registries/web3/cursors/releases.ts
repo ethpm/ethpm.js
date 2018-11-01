@@ -43,7 +43,9 @@ export default class ReleasesCursor extends Paged<BN> implements IterableIterato
           to: this.to,
           data
         }).then((result) => {
-          resolve(this.web3.eth.abi.decodeParameter("string", result));
+          return this.web3.eth.abi.decodeParameters(["string", "string", "string"], result);
+        }).then((parameters) => {
+          resolve(parameters[1]);
         });
       }
     });

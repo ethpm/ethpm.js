@@ -123,8 +123,43 @@ export class Web3RegistryService implements registries.Service {
         return cursor;
       },
 
-      release: (version: pkg.Version): Promise<URL> => {
-        return new Promise((resolve) => resolve(new URL("localhost")));
+      release: async (version: pkg.Version): Promise<URL> => {
+        let data = this.web3.eth.abi.encodeFunctionCall({
+          name: "getReleaseId",
+          type: "function",
+          inputs: [{
+            type: "string",
+            name: "packageName"
+          }, {
+            type: "string",
+            name: "version"
+          }]
+        }, [packageName, version]);
+
+        let result = await this.web3.eth.call({
+          from: this.accounts[0],
+          to: this.address,
+          data
+        });
+        let releaseId = this.web3.eth.abi.decodeParameter("bytes32", result);
+
+        data = this.web3.eth.abi.encodeFunctionCall({
+          name: "getReleaseData",
+          type: "function",
+          inputs: [{
+            type: "bytes32",
+            name: "releaseId"
+          }]
+        }, ["0x" + releaseId.toString("hex")]);
+
+        result = await this.web3.eth.call({
+          from: this.accounts[0],
+          to: this.address,
+          data
+        });
+        
+        let parameters = this.web3.eth.abi.decodeParameters(["string", "string", "string"], result);
+        return new URL(parameters[2]);
       }
     }
   }
