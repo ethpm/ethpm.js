@@ -139,14 +139,12 @@ type Web3RegistryOptions = {
 
 export default class Web3RegistryConnector extends config.Connector<registries.Service> {
   optionsType = t.interface({
-    releases: t.array(t.interface({
-      package: t.object,
-      manifest: t.interface({ href: t.string })
-    }))
+    provider: t.object,
+    registryAddress: t.string
   });
 
   async init(
-    { releases, provider, registryAddress }: Web3RegistryOptions
+    { provider, registryAddress }: Web3RegistryOptions
   ): Promise<registries.Service> {
     const service = new Web3RegistryService(provider, registryAddress);
 
