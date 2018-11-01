@@ -121,10 +121,6 @@ export default class Web3RegistryConnector extends config.Connector<registries.S
 
     await service.init();
 
-    for (let { package: { packageName, version } , manifest } of releases) {
-      await service.publish(packageName, version, manifest);
-    }
-
     return service;
   }
 }
