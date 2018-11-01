@@ -48,7 +48,7 @@ export class Web3RegistryService implements registries.Service {
       type: "function",
       inputs: [{
         type: "string",
-        name: "packageName",
+        name: "name",
       }, {
         type: "string",
         name: "version"
@@ -58,9 +58,12 @@ export class Web3RegistryService implements registries.Service {
       }]
     }, [packageName, version, manifest.href]);
 
+    //TODO: this is a stupid ugly hack but it fixes stuff at devcon
+    // so Nick can fix it later, kthxbye :-)
     await this.web3.eth.sendTransaction({
       from: this.accounts[0],
       to: this.address,
+      gas: 3141597,
       data
     });
   }
