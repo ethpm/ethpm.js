@@ -1,6 +1,6 @@
 {
   "name": "ethpm",
-  "version": "0.1.0-next.2",
+  "version": "0.1.0-next.6",
   "description": "Javascript library for EthPM (EIPs 1123 / 1319)",
   "main": "index.js",
   "types": "main.d.ts",
