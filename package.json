@@ -24,6 +24,7 @@
     "@types/jest": "^23.3.1",
     "@types/json-stable-stringify": "^1.0.32",
     "@types/node": "^10.7.1",
+    "@types/web3": "^1.0.11",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-preset-env": "^1.7.0",
     "del": "^3.0.0",
@@ -46,6 +47,7 @@
     "vinyl-paths": "^2.1.0"
   },
   "dependencies": {
+    "bn.js": "^4.11.8",
     "debug": "^3.1.0",
     "deep-equal": "^1.0.1",
     "ethpm-spec": "git+https://github.com/ethpm/ethpm-spec.git#ethpm.js",
@@ -58,12 +60,19 @@
     "json-stable-stringify": "^1.0.1",
     "module-alias": "^2.1.0",
     "original-require": "^1.0.1",
-    "source-map-support": "^0.5.9"
+    "source-map-support": "^0.5.9",
+    "web3": "^1.0.0-beta.36"
   },
   "jest": {
     "moduleFileExtensions": [
       "ts",
-      "js"
+      "js",
+      "node",
+      "json"
+    ],
+    "moduleDirectories": [
+      ".",
+      "node_modules"
     ],
     "transform": {
       "^.+\\.ts$": "ts-jest"
