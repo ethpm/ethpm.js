@@ -79,7 +79,7 @@ export class Web3RegistryService implements registries.Service {
       to: this.address,
       data: numPackagesTx
     });
-    numPackages = new BN(numPackages);
+    numPackages = new BN(this.web3.eth.abi.decodeParameter("uint", numPackages));
 
     // now paginate
     const cursor = new PackagesCursor(new BN(PAGE_SIZE), numPackages, this.web3, this.accounts[0], this.address);
@@ -89,9 +89,40 @@ export class Web3RegistryService implements registries.Service {
 
   package (packageName: pkg.PackageName): PackageCursor {
     return {
-      releases: (): ReleasesCursor => {
-        return new ReleasesCursor();
+      releases: async (): Promise<ReleasesCursor> => {
+        const numReleasesTx = this.web3.eth.abi.encodeFunctionCall({
+          name: "getPackageData",
+          type: "function",
+          inputs: [{
+            type: "string",
+            name: "name"
+          }]
+        }, [packageName]);
+
+        let result: string = await this.web3.eth.call({
+          from: this.accounts[0],
+          to: this.address,
+          data: numReleasesTx
+        });
+        const results = this.web3.eth.abi.decodeParameters([{
+          type: "address",
+          name: "packageOwner"
+        }, {
+          type: "uint",
+          name: "createdAt"
+        }, {
+          type: "uint",
+          name: "numReleases"
+        }, {
+          type: "uint",
+          name: "updatedAt"
+        }], result);
+        const numReleases = new BN(results[2]);
+        const cursor = new ReleasesCursor(new BN(PAGE_SIZE), numReleases, this.web3, this.accounts[0], this.address);
+
+        return cursor;
       },
+
       release: (): Promise<URL> => {
         return new Promise((resolve) => resolve(new URL("localhost")));
       }

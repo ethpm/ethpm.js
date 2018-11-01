@@ -12,7 +12,7 @@ export type PackageCursor = {
   /**
    * List all releases
    */
-  releases (): ReleasesCursor;
+  releases (): Promise<ReleasesCursor>;
 
 
   /**

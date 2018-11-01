@@ -60,7 +60,7 @@ export default class ReleasesCursor extends Paged<BN> implements IterableIterato
     if (this.pointer.lt(this.length)) {
       if (this.hasPage(this.pointer)) {
         // we have the page, return the number
-        return this.getName();
+        return this.getReleaseData();
       }
       else {
         // we don't have the page, get it
@@ -94,7 +94,7 @@ export default class ReleasesCursor extends Paged<BN> implements IterableIterato
             const results = this.web3.eth.abi.decodeParameters(["bytes32[]", "uint"], result);
             const packageIds = results[0].map((id: string) => new BN(id));
             this.setPage(this.pointer, packageIds);
-            return this.getName();
+            return this.getReleaseData();
           });
         });
 
