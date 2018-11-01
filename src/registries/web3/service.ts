@@ -35,7 +35,7 @@ export class Web3RegistryService implements registries.Service {
   }
 
   async init (): Promise<void> {
-    const accounts = await this.web3.eth.getAccounts();
+    this.accounts = await this.web3.eth.getAccounts();
   }
 
   async publish (
