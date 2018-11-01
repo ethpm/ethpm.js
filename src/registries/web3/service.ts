@@ -66,7 +66,25 @@ export class Web3RegistryService implements registries.Service {
   }
 
   async packages (): Promise<PackagesCursor> {
-    return new Promise<PackagesCursor>((resolve) => resolve());
+    // this returns an iterable/iterator of promises to package names
+
+    const numPackagesTx = this.web3.eth.abi.encodeFunctionCall({
+      name: "getNumPackages",
+      type: "function",
+      inputs: []
+    }, []);
+
+    let numPackages: string | BN = await this.web3.eth.call({
+      from: this.accounts[0],
+      to: this.address,
+      data: numPackagesTx
+    });
+    numPackages = new BN(numPackages);
+
+    // now paginate
+    const cursor = new PackagesCursor(new BN(PAGE_SIZE), numPackages, this.web3, this.accounts[0], this.address);
+
+    return cursor;
   }
 
   package (packageName: pkg.PackageName): PackageCursor {
