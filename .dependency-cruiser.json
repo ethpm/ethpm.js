@@ -1,0 +1,11 @@
+{
+    "options": {
+        "exclude": "^dist|test|util|url",
+        "doNotFollow": "node_modules",
+        "tsPreCompilationDeps": true,
+        "preserveSymlinks": true,
+        "tsConfig": {
+            "fileName": "./tsconfig.json"
+        }
+    }
+}
