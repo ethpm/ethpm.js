@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>StubService | EthPM.js</title>
+	<title>IpfsService | EthPM.js</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_test_stub_storage_.html">&quot;test/stub/storage&quot;</a>
+					<a href="../modules/_ethpm_storage_ipfs_.html">&quot;ethpm/storage/ipfs&quot;</a>
 				</li>
 				<li>
-					<a href="_test_stub_storage_.stubservice.html">StubService</a>
+					<a href="_ethpm_storage_ipfs_.ipfsservice.html">IpfsService</a>
 				</li>
 			</ul>
-			<h1>Class StubService</h1>
+			<h1>Class IpfsService</h1>
 		</div>
 	</div>
 </header>
@@ -73,7 +73,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">StubService</span>
+						<span class="target">IpfsService</span>
 					</li>
 				</ul>
 			</section>
@@ -90,22 +90,25 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_test_stub_storage_.stubservice.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_ethpm_storage_ipfs_.ipfsservice.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_test_stub_storage_.stubservice.html#contents" class="tsd-kind-icon">contents</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_ethpm_storage_ipfs_.ipfsservice.html#host" class="tsd-kind-icon">host</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_ethpm_storage_ipfs_.ipfsservice.html#ipfs" class="tsd-kind-icon">ipfs</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_ethpm_storage_ipfs_.ipfsservice.html#port" class="tsd-kind-icon">port</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_ethpm_storage_ipfs_.ipfsservice.html#protocol" class="tsd-kind-icon">protocol</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_test_stub_storage_.stubservice.html#hash" class="tsd-kind-icon">hash</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_test_stub_storage_.stubservice.html#predicturi" class="tsd-kind-icon">predict<wbr>Uri</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_test_stub_storage_.stubservice.html#read" class="tsd-kind-icon">read</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_test_stub_storage_.stubservice.html#write" class="tsd-kind-icon">write</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ethpm_storage_ipfs_.ipfsservice.html#hash" class="tsd-kind-icon">hash</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ethpm_storage_ipfs_.ipfsservice.html#predicturi" class="tsd-kind-icon">predict<wbr>Uri</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ethpm_storage_ipfs_.ipfsservice.html#read" class="tsd-kind-icon">read</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ethpm_storage_ipfs_.ipfsservice.html#write" class="tsd-kind-icon">write</a></li>
 							</ul>
 						</section>
 					</div>
@@ -117,16 +120,22 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Stub<wbr>Service<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_test_stub_storage_.stubservice.html" class="tsd-signature-type">StubService</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Ipfs<wbr>Service<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_ethpm_storage_ipfs_.ipfsoptions.html" class="tsd-signature-type">IpfsOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_ethpm_storage_ipfs_.ipfsservice.html" class="tsd-signature-type">IpfsService</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/test/stub/storage/service.ts#L15">test/stub/storage/service.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/src/storage/ipfs/index.ts#L26">src/storage/ipfs/index.ts:26</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="_test_stub_storage_.stubservice.html" class="tsd-signature-type">StubService</a></h4>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>options: <a href="../interfaces/_ethpm_storage_ipfs_.ipfsoptions.html" class="tsd-signature-type">IpfsOptions</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_ethpm_storage_ipfs_.ipfsservice.html" class="tsd-signature-type">IpfsService</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -134,12 +143,42 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="contents" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> contents</h3>
-					<div class="tsd-signature tsd-kind-icon">contents<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="host" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> host</h3>
+					<div class="tsd-signature tsd-kind-icon">host<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/test/stub/storage/service.ts#L15">test/stub/storage/service.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/src/storage/ipfs/index.ts#L23">src/storage/ipfs/index.ts:23</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="ipfs" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> ipfs</h3>
+					<div class="tsd-signature tsd-kind-icon">ipfs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/src/storage/ipfs/index.ts#L26">src/storage/ipfs/index.ts:26</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="port" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> port</h3>
+					<div class="tsd-signature tsd-kind-icon">port<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/src/storage/ipfs/index.ts#L24">src/storage/ipfs/index.ts:24</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="protocol" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> protocol</h3>
+					<div class="tsd-signature tsd-kind-icon">protocol<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/src/storage/ipfs/index.ts#L25">src/storage/ipfs/index.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -157,7 +196,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_ethpm_storage_.service.html">Service</a>.<a href="../interfaces/_ethpm_storage_.service.html#hash">hash</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/test/stub/storage/service.ts#L31">test/stub/storage/service.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/src/storage/ipfs/index.ts#L55">src/storage/ipfs/index.ts:55</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -181,7 +220,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_ethpm_storage_.service.html">Service</a>.<a href="../interfaces/_ethpm_storage_.service.html#predicturi">predictUri</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/test/stub/storage/service.ts#L36">test/stub/storage/service.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/src/storage/ipfs/index.ts#L59">src/storage/ipfs/index.ts:59</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -205,7 +244,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_ethpm_storage_.service.html">Service</a>.<a href="../interfaces/_ethpm_storage_.service.html#read">read</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/test/stub/storage/service.ts#L27">test/stub/storage/service.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/src/storage/ipfs/index.ts#L47">src/storage/ipfs/index.ts:47</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -229,7 +268,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_ethpm_storage_.service.html">Service</a>.<a href="../interfaces/_ethpm_storage_.service.html#write">write</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/test/stub/storage/service.ts#L21">test/stub/storage/service.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/src/storage/ipfs/index.ts#L40">src/storage/ipfs/index.ts:40</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -274,7 +313,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_ethpm_storage_.html">"ethpm/storage"</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/_ethpm_storage_ipfs_.html">"ethpm/storage/ipfs"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -289,7 +328,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_test_stub_registries_.html">"test/stub/registries"</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_test_stub_storage_.html">"test/stub/storage"</a>
 					</li>
 				</ul>
@@ -297,43 +336,61 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_test_stub_storage_.examplesconnector.html" class="tsd-kind-icon">Examples<wbr>Connector</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_test_stub_storage_.stubconnector.html" class="tsd-kind-icon">Stub<wbr>Connector</a>
+						<a href="_ethpm_storage_ipfs_.ipfsconnector.html" class="tsd-kind-icon">Ipfs<wbr>Connector</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_test_stub_storage_.stubservice.html" class="tsd-kind-icon">Stub<wbr>Service</a>
+						<a href="_ethpm_storage_ipfs_.ipfsservice.html" class="tsd-kind-icon">Ipfs<wbr>Service</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="_test_stub_storage_.stubservice.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="_ethpm_storage_ipfs_.ipfsservice.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_test_stub_storage_.stubservice.html#contents" class="tsd-kind-icon">contents</a>
+								<a href="_ethpm_storage_ipfs_.ipfsservice.html#host" class="tsd-kind-icon">host</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_ethpm_storage_ipfs_.ipfsservice.html#ipfs" class="tsd-kind-icon">ipfs</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_ethpm_storage_ipfs_.ipfsservice.html#port" class="tsd-kind-icon">port</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_ethpm_storage_ipfs_.ipfsservice.html#protocol" class="tsd-kind-icon">protocol</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_test_stub_storage_.stubservice.html#hash" class="tsd-kind-icon">hash</a>
+								<a href="_ethpm_storage_ipfs_.ipfsservice.html#hash" class="tsd-kind-icon">hash</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_test_stub_storage_.stubservice.html#predicturi" class="tsd-kind-icon">predict<wbr>Uri</a>
+								<a href="_ethpm_storage_ipfs_.ipfsservice.html#predicturi" class="tsd-kind-icon">predict<wbr>Uri</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_test_stub_storage_.stubservice.html#read" class="tsd-kind-icon">read</a>
+								<a href="_ethpm_storage_ipfs_.ipfsservice.html#read" class="tsd-kind-icon">read</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_test_stub_storage_.stubservice.html#write" class="tsd-kind-icon">write</a>
+								<a href="_ethpm_storage_ipfs_.ipfsservice.html#write" class="tsd-kind-icon">write</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="../modules/_test_stub_storage_.html#singletonpromise" class="tsd-kind-icon">singleton<wbr>Promise</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../interfaces/_ethpm_storage_ipfs_.ipfsoptions.html" class="tsd-kind-icon">Ipfs<wbr>Options</a>
 					</li>
-					<li class=" tsd-kind-object-literal tsd-parent-kind-external-module">
-						<a href="../modules/_test_stub_storage_.html#examplestorage" class="tsd-kind-icon">example<wbr>Storage</a>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_ethpm_storage_ipfs_.html#ipfshash" class="tsd-kind-icon">Ipfs<wbr>Hash</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/_ethpm_storage_ipfs_.html#dagnode" class="tsd-kind-icon">DAGNode</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/_ethpm_storage_ipfs_.html#ipfs" class="tsd-kind-icon">IPFS</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/_ethpm_storage_ipfs_.html#unixfs" class="tsd-kind-icon">Unixfs</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/_ethpm_storage_ipfs_.html#hash" class="tsd-kind-icon">hash</a>
 					</li>
 				</ul>
 			</nav>
