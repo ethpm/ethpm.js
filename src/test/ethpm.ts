@@ -1,7 +1,10 @@
 import { EthPM } from "ethpm";
 
+const IPFSFactory = require("ipfsd-ctl");
+
 import examples from "test/examples/manifests";
 import packages from "test/examples/packages";
+import sources from "test/examples/sources";
 
 describe("Configuration", () => {
   it("loads manifests plugin", async () => {
@@ -114,5 +117,98 @@ describe("Configuration", () => {
     const wallet = await ethpm.manifests.read(manifest);
 
     expect(wallet).toEqual(packages["wallet"]);
+  });
+});
+
+describe("Manual Packaging", () => {
+  let daemon: any;
+  let host: string;
+  let port: string;
+
+  const startDaemon = () =>
+    new Promise(resolve => {
+      const f = IPFSFactory.create({ type: "js" });
+      f.spawn((err: any, ipfsd: any) => {
+        daemon = ipfsd;
+        host = daemon.api.apiHost;
+        port = daemon.api.apiPort;
+        resolve();
+      });
+    });
+
+  beforeAll(() => startDaemon(), 20000);
+  afterAll(() => daemon.stop());
+
+  it("packages Owned.sol into owned and writes to IPFS", async () => {
+    /*
+     * initialize EthPM
+     */
+    const ethpm = await EthPM.configure({
+      manifests: "ethpm/manifests/v2",
+      storage: "ethpm/storage/ipfs"
+      // registry: "ethpm/registries/web3"
+    }).connect({
+      /*ipfs: {
+        host: "ipfs.infura.io",
+        port: 5001,
+        protocol: "https"
+      }*/
+      ipfs: { host, port, protocol: "http" }
+    });
+
+    /*
+     * read Owned.sol from disk
+     */
+    const contractPath = "./contracts/Owned.sol";
+    const contractSource = sources["owned"][contractPath];
+
+    /*
+     * write Owned.sol to IPFS
+     */
+    const contractUri = await ethpm.storage.write(contractSource);
+
+    /*
+     * test reading same file back out
+     */
+    expect(await ethpm.storage.read(contractUri)).toEqual(contractSource);
+
+    /*
+     * build package - stub example package for convenience
+     */
+    const owned = {
+      ...packages["owned"],
+
+      packageName: "owned",
+      version: "1.0.0",
+      sources: {
+        [contractPath]: contractUri
+      }
+    };
+
+    /*
+     * dump manifest
+     */
+    const manifest = await ethpm.manifests.write(owned);
+
+    /*
+     * test that manifest is the same as example
+     */
+    expect(manifest).toEqual(examples["owned"]);
+
+    /*
+     * write manifest to IPFS
+     */
+    const manifestUri = await ethpm.storage.write(manifest);
+
+    /*
+     * test reading same file back out
+     */
+    expect(await ethpm.storage.read(manifestUri)).toEqual(manifest);
+
+    /*
+     * test against "transferable"'s "owned" dependency
+     */
+    expect(manifestUri)
+      .toEqual(packages["transferable"].buildDependencies["owned"]);
   });
 });
