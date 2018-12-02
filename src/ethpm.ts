@@ -15,7 +15,7 @@ import * as session from "ethpm/session";
  *
  * ```
  */
-namespace EthPM {
+export namespace EthPM {
   /**
    * Configure EthPM with specified Node modules to load for various
    * services
@@ -39,5 +39,3 @@ namespace EthPM {
     return new session.Builder(config);
   }
 }
-
-export { EthPM };

@@ -1,0 +1,10 @@
+{
+    "options": {
+        "exclude": "^node_modules|^dist|test|util|url|types",
+        "tsPreCompilationDeps": true,
+        "preserveSymlinks": true,
+        "tsConfig": {
+            "fileName": "./tsconfig.json"
+        }
+    }
+}
