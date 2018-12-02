@@ -76,6 +76,7 @@
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_ethpm_manifests_v2_.fields.html#readbytecode" class="tsd-kind-icon">read<wbr>Bytecode</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_ethpm_manifests_v2_.fields.html#readcompiler" class="tsd-kind-icon">read<wbr>Compiler</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_ethpm_manifests_v2_.fields.html#readcontracttype" class="tsd-kind-icon">read<wbr>Contract<wbr>Type</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_ethpm_manifests_v2_.fields.html#readcontracttypes" class="tsd-kind-icon">read<wbr>Contract<wbr>Types</a></li>
@@ -83,8 +84,7 @@
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_ethpm_manifests_v2_.fields.html#readdeployments" class="tsd-kind-icon">read<wbr>Deployments</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_ethpm_manifests_v2_.fields.html#readinstance" class="tsd-kind-icon">read<wbr>Instance</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_ethpm_manifests_v2_.fields.html#readlinkdependencies" class="tsd-kind-icon">read<wbr>Link<wbr>Dependencies</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_ethpm_manifests_v2_.fields.html#readlinkedbytecode" class="tsd-kind-icon">read<wbr>Linked<wbr>Bytecode</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_ethpm_manifests_v2_.fields.html#readunlinkedbytecode" class="tsd-kind-icon">read<wbr>Unlinked<wbr>Bytecode</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_ethpm_manifests_v2_.fields.html#writebytecode" class="tsd-kind-icon">write<wbr>Bytecode</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_ethpm_manifests_v2_.fields.html#writecompiler" class="tsd-kind-icon">write<wbr>Compiler</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_ethpm_manifests_v2_.fields.html#writecontracttype" class="tsd-kind-icon">write<wbr>Contract<wbr>Type</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_ethpm_manifests_v2_.fields.html#writecontracttypes" class="tsd-kind-icon">write<wbr>Contract<wbr>Types</a></li>
@@ -92,8 +92,6 @@
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_ethpm_manifests_v2_.fields.html#writedeployments" class="tsd-kind-icon">write<wbr>Deployments</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_ethpm_manifests_v2_.fields.html#writeinstance" class="tsd-kind-icon">write<wbr>Instance</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_ethpm_manifests_v2_.fields.html#writelinkdependencies" class="tsd-kind-icon">write<wbr>Link<wbr>Dependencies</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_ethpm_manifests_v2_.fields.html#writelinkedbytecode" class="tsd-kind-icon">write<wbr>Linked<wbr>Bytecode</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_ethpm_manifests_v2_.fields.html#writeunlinkedbytecode" class="tsd-kind-icon">write<wbr>Unlinked<wbr>Bytecode</a></li>
 							</ul>
 						</section>
 					</div>
@@ -101,6 +99,35 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="readbytecode" class="tsd-anchor"></a>
+					<h3>read<wbr>Bytecode</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">read<wbr>Bytecode<span class="tsd-signature-symbol">(</span>bytecode<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">schema.BytecodeObject</span>, parent<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">pkg.Bytecode</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">pkg.Bytecode</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/53c7fe8/src/manifests/v2/index.ts#L62">src/manifests/v2/index.ts:62</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> bytecode: <span class="tsd-signature-type">schema.BytecodeObject</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> parent: <span class="tsd-signature-type">pkg.Bytecode</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">pkg.Bytecode</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">undefined</span>
+							</h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
 					<a name="readcompiler" class="tsd-anchor"></a>
 					<h3>read<wbr>Compiler</h3>
@@ -111,7 +138,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/src/manifests/v2/index.ts#L124">src/manifests/v2/index.ts:124</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/53c7fe8/src/manifests/v2/index.ts#L115">src/manifests/v2/index.ts:115</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -134,7 +161,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/src/manifests/v2/index.ts#L48">src/manifests/v2/index.ts:48</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/53c7fe8/src/manifests/v2/index.ts#L48">src/manifests/v2/index.ts:48</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -160,7 +187,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/src/manifests/v2/index.ts#L21">src/manifests/v2/index.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/53c7fe8/src/manifests/v2/index.ts#L21">src/manifests/v2/index.ts:21</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -183,7 +210,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/src/manifests/v2/index.ts#L132">src/manifests/v2/index.ts:132</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/53c7fe8/src/manifests/v2/index.ts#L123">src/manifests/v2/index.ts:123</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -209,7 +236,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/src/manifests/v2/index.ts#L33">src/manifests/v2/index.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/53c7fe8/src/manifests/v2/index.ts#L33">src/manifests/v2/index.ts:33</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -235,7 +262,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/src/manifests/v2/index.ts#L145">src/manifests/v2/index.ts:145</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/53c7fe8/src/manifests/v2/index.ts#L136">src/manifests/v2/index.ts:136</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -261,7 +288,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/src/manifests/v2/index.ts#L102">src/manifests/v2/index.ts:102</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/53c7fe8/src/manifests/v2/index.ts#L93">src/manifests/v2/index.ts:93</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -275,54 +302,28 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="readlinkedbytecode" class="tsd-anchor"></a>
-					<h3>read<wbr>Linked<wbr>Bytecode</h3>
+					<a name="writebytecode" class="tsd-anchor"></a>
+					<h3>write<wbr>Bytecode</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">read<wbr>Linked<wbr>Bytecode<span class="tsd-signature-symbol">(</span>bytecode<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">schema.LinkedBytecodeObject</span>, parent<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">pkg.UnlinkedBytecode</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">pkg.LinkedBytecode</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon">write<wbr>Bytecode<span class="tsd-signature-symbol">(</span>bytecode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">pkg.Bytecode</span>, parent<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">pkg.Bytecode</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">schema.BytecodeObject</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/src/manifests/v2/index.ts#L71">src/manifests/v2/index.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/53c7fe8/src/manifests/v2/index.ts#L201">src/manifests/v2/index.ts:201</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> bytecode: <span class="tsd-signature-type">schema.LinkedBytecodeObject</span></h5>
+									<h5>bytecode: <span class="tsd-signature-type">pkg.Bytecode</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> parent: <span class="tsd-signature-type">pkg.UnlinkedBytecode</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> parent: <span class="tsd-signature-type">pkg.Bytecode</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">pkg.LinkedBytecode</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-							</h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="readunlinkedbytecode" class="tsd-anchor"></a>
-					<h3>read<wbr>Unlinked<wbr>Bytecode</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">read<wbr>Unlinked<wbr>Bytecode<span class="tsd-signature-symbol">(</span>bytecode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">schema.UnlinkedBytecodeObject</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">pkg.UnlinkedBytecode</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/src/manifests/v2/index.ts#L62">src/manifests/v2/index.ts:62</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>bytecode: <span class="tsd-signature-type">schema.UnlinkedBytecodeObject</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">pkg.UnlinkedBytecode</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">schema.BytecodeObject</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -336,7 +337,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/src/manifests/v2/index.ts#L253">src/manifests/v2/index.ts:253</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/53c7fe8/src/manifests/v2/index.ts#L249">src/manifests/v2/index.ts:249</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -359,7 +360,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/src/manifests/v2/index.ts#L191">src/manifests/v2/index.ts:191</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/53c7fe8/src/manifests/v2/index.ts#L182">src/manifests/v2/index.ts:182</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -385,7 +386,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/src/manifests/v2/index.ts#L167">src/manifests/v2/index.ts:167</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/53c7fe8/src/manifests/v2/index.ts#L158">src/manifests/v2/index.ts:158</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -408,7 +409,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/src/manifests/v2/index.ts#L261">src/manifests/v2/index.ts:261</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/53c7fe8/src/manifests/v2/index.ts#L257">src/manifests/v2/index.ts:257</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -434,7 +435,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/src/manifests/v2/index.ts#L179">src/manifests/v2/index.ts:179</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/53c7fe8/src/manifests/v2/index.ts#L170">src/manifests/v2/index.ts:170</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -460,7 +461,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/src/manifests/v2/index.ts#L274">src/manifests/v2/index.ts:274</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/53c7fe8/src/manifests/v2/index.ts#L270">src/manifests/v2/index.ts:270</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -486,7 +487,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/src/manifests/v2/index.ts#L238">src/manifests/v2/index.ts:238</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/53c7fe8/src/manifests/v2/index.ts#L234">src/manifests/v2/index.ts:234</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -496,55 +497,6 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">schema.LinkDependencies</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="writelinkedbytecode" class="tsd-anchor"></a>
-					<h3>write<wbr>Linked<wbr>Bytecode</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">write<wbr>Linked<wbr>Bytecode<span class="tsd-signature-symbol">(</span>bytecode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">pkg.LinkedBytecode</span>, parent<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">pkg.UnlinkedBytecode</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">schema.LinkedBytecodeObject</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/src/manifests/v2/index.ts#L219">src/manifests/v2/index.ts:219</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>bytecode: <span class="tsd-signature-type">pkg.LinkedBytecode</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> parent: <span class="tsd-signature-type">pkg.UnlinkedBytecode</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">schema.LinkedBytecodeObject</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="writeunlinkedbytecode" class="tsd-anchor"></a>
-					<h3>write<wbr>Unlinked<wbr>Bytecode</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">write<wbr>Unlinked<wbr>Bytecode<span class="tsd-signature-symbol">(</span>bytecode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">pkg.UnlinkedBytecode</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">schema.UnlinkedBytecodeObject</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3245289/src/manifests/v2/index.ts#L210">src/manifests/v2/index.ts:210</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>bytecode: <span class="tsd-signature-type">pkg.UnlinkedBytecode</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">schema.UnlinkedBytecodeObject</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -608,6 +560,9 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="_ethpm_manifests_v2_.fields.html#readbytecode" class="tsd-kind-icon">read<wbr>Bytecode</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="_ethpm_manifests_v2_.fields.html#readcompiler" class="tsd-kind-icon">read<wbr>Compiler</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
@@ -629,10 +584,7 @@
 						<a href="_ethpm_manifests_v2_.fields.html#readlinkdependencies" class="tsd-kind-icon">read<wbr>Link<wbr>Dependencies</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="_ethpm_manifests_v2_.fields.html#readlinkedbytecode" class="tsd-kind-icon">read<wbr>Linked<wbr>Bytecode</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="_ethpm_manifests_v2_.fields.html#readunlinkedbytecode" class="tsd-kind-icon">read<wbr>Unlinked<wbr>Bytecode</a>
+						<a href="_ethpm_manifests_v2_.fields.html#writebytecode" class="tsd-kind-icon">write<wbr>Bytecode</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="_ethpm_manifests_v2_.fields.html#writecompiler" class="tsd-kind-icon">write<wbr>Compiler</a>
@@ -654,12 +606,6 @@
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="_ethpm_manifests_v2_.fields.html#writelinkdependencies" class="tsd-kind-icon">write<wbr>Link<wbr>Dependencies</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="_ethpm_manifests_v2_.fields.html#writelinkedbytecode" class="tsd-kind-icon">write<wbr>Linked<wbr>Bytecode</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="_ethpm_manifests_v2_.fields.html#writeunlinkedbytecode" class="tsd-kind-icon">write<wbr>Unlinked<wbr>Bytecode</a>
 					</li>
 				</ul>
 			</nav>
