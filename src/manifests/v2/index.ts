@@ -51,27 +51,18 @@ namespace Fields {
   ): pkg.ContractType {
     return {
       contractName: contractType.contract_name || alias,
-      deploymentBytecode: lift(readUnlinkedBytecode)(contractType.deployment_bytecode),
-      runtimeBytecode: lift(readUnlinkedBytecode)(contractType.runtime_bytecode),
+      deploymentBytecode: lift(readBytecode)(contractType.deployment_bytecode),
+      runtimeBytecode: lift(readBytecode)(contractType.runtime_bytecode),
       abi: contractType.abi,
       natspec: contractType.natspec,
       compiler: lift(readCompiler)(contractType.compiler)
     };
   }
 
-  export function readUnlinkedBytecode(
-    bytecode: schema.UnlinkedBytecodeObject
-  ): pkg.UnlinkedBytecode {
-    return {
-      bytecode: bytecode.bytecode,
-      linkReferences: [...(bytecode.link_references || [])]
-    };
-  }
-
-  export function readLinkedBytecode(
-    bytecode?: schema.LinkedBytecodeObject,
-    parent?: pkg.UnlinkedBytecode
-  ): pkg.LinkedBytecode | undefined {
+  export function readBytecode(
+    bytecode?: schema.BytecodeObject,
+    parent?: pkg.Bytecode
+  ): pkg.Bytecode | undefined {
     // bytecode of some kind is required
     if (!bytecode) {
       return undefined;
@@ -151,11 +142,11 @@ namespace Fields {
       address: instance.address,
       transaction: instance.transaction,
       block: instance.block,
-      deploymentBytecode: readLinkedBytecode(
+      deploymentBytecode: readBytecode(
         instance.deployment_bytecode,
         (types[instance.contract_type] || {}).deploymentBytecode
       ),
-      runtimeBytecode: readLinkedBytecode(
+      runtimeBytecode: readBytecode(
         instance.runtime_bytecode,
         (types[instance.contract_type] || {}).runtimeBytecode
       ),
@@ -194,8 +185,8 @@ namespace Fields {
   ): schema.ContractType {
     return Object.assign(
       {
-        deployment_bytecode: lift(writeUnlinkedBytecode)(contractType.deploymentBytecode),
-        runtime_bytecode: lift(writeUnlinkedBytecode)(contractType.runtimeBytecode),
+        deployment_bytecode: lift(writeBytecode)(contractType.deploymentBytecode),
+        runtime_bytecode: lift(writeBytecode)(contractType.runtimeBytecode),
         abi: contractType.abi,
         natspec: contractType.natspec,
         compiler: lift(writeCompiler)(contractType.compiler)
@@ -207,30 +198,35 @@ namespace Fields {
     );
   }
 
-  export function writeUnlinkedBytecode(
-    bytecode: pkg.UnlinkedBytecode
-  ): schema.UnlinkedBytecodeObject {
-    return {
-      bytecode: bytecode.bytecode,
-      link_references: [...bytecode.linkReferences]
-    };
-  }
-
-  export function writeLinkedBytecode(
-    bytecode: pkg.LinkedBytecode,
-    parent?: pkg.UnlinkedBytecode
-  ): schema.LinkedBytecodeObject {
+  export function writeBytecode(
+    bytecode: pkg.Bytecode,
+    parent?: pkg.Bytecode
+  ): schema.BytecodeObject {
     return Object.assign(
-      {
-        link_dependencies: writeLinkDependencies(bytecode.linkDependencies),
-      },
+      {},
 
-      (!parent || !deepEqual(bytecode.linkReferences, parent.linkReferences))
+      // possibly include bytecode
+      (!parent || bytecode.bytecode != parent.bytecode)
+        ? { bytecode: bytecode.bytecode }
+        : {},
+
+      // possibly include link_references
+      (
+        bytecode.linkReferences.length > 0 && (
+          !parent || !deepEqual(bytecode.linkReferences, parent.linkReferences)
+        )
+      )
         ? { link_references: [...bytecode.linkReferences] }
         : {},
 
-      (!parent || bytecode.bytecode != parent.bytecode)
-        ? { bytecode: bytecode.bytecode }
+      // possibly include link_dependencies
+      (
+        bytecode.linkDependencies.length > 0 && (
+          !parent ||
+            !deepEqual(bytecode.linkDependencies, parent.linkDependencies)
+        )
+      )
+        ? { link_dependencies: writeLinkDependencies(bytecode.linkDependencies) }
         : {}
     );
   }
@@ -284,7 +280,7 @@ namespace Fields {
 
       (instance.deploymentBytecode)
         ? {
-            deployment_bytecode: writeLinkedBytecode(
+            deployment_bytecode: writeBytecode(
               instance.deploymentBytecode,
               (types[instance.contractType] || {}).deploymentBytecode
             )
@@ -293,7 +289,7 @@ namespace Fields {
 
       (instance.runtimeBytecode)
         ? {
-            runtime_bytecode: writeLinkedBytecode(
+            runtime_bytecode: writeBytecode(
               instance.runtimeBytecode,
               (types[instance.contractType] || {}).runtimeBytecode
             )

@@ -36,12 +36,7 @@ export interface Compiler {
   settings: CompilerSettings,
 }
 
-export interface UnlinkedBytecode {
-  bytecode: bytecode,
-  linkReferences: Array<Link.Reference>,
-}
-
-export interface LinkedBytecode {
+export interface Bytecode {
   bytecode: bytecode,
   linkReferences: Array<Link.Reference>,
   linkDependencies: Array<Link.Value>,
@@ -49,8 +44,8 @@ export interface LinkedBytecode {
 
 export interface ContractType {
   contractName: ContractName,
-  deploymentBytecode: Maybe<UnlinkedBytecode>,
-  runtimeBytecode: Maybe<UnlinkedBytecode>,
+  deploymentBytecode: Maybe<Bytecode>,
+  runtimeBytecode: Maybe<Bytecode>,
   abi: Maybe<ABI>,
   natspec: Maybe<Natspec>,
   compiler: Maybe<Compiler>,
@@ -61,8 +56,8 @@ export interface ContractInstance {
   address: Address,
   transaction: Maybe<TransactionHash>,
   block: Maybe<BlockHash>,
-  deploymentBytecode: Maybe<LinkedBytecode>,
-  runtimeBytecode: Maybe<LinkedBytecode>,
+  deploymentBytecode: Maybe<Bytecode>,
+  runtimeBytecode: Maybe<Bytecode>,
   compiler: Maybe<Compiler>,
 }
 
