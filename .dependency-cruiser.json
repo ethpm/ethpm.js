@@ -1,7 +1,6 @@
 {
     "options": {
-        "exclude": "^dist|test|util|url",
-        "doNotFollow": "node_modules",
+        "exclude": "^node_modules|^dist|test|util|url|types",
         "tsPreCompilationDeps": true,
         "preserveSymlinks": true,
         "tsConfig": {
