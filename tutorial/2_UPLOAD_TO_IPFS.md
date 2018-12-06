@@ -131,3 +131,7 @@ const manifestUri = await ethpm.storage.write(manifest);
 // The `manifestUri` is a URL object with an `href` property
 console.log(manifestUri.href)
 ```
+
+## Next
+
+Next we will learn how to [publish](3_PUBLISH_TO_REGISTRY.md) an EthPM package to a registry!

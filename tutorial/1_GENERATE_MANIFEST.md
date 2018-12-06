@@ -98,3 +98,7 @@ const owned = {
 // Generate the manifest
 const manifest = await ethpm.manifests.write(owned);
 ```
+
+## Next
+
+Next we will learn how to [upload](2_UPLOAD_TO_IPFS.md) a contract and manifest to IPFS!
