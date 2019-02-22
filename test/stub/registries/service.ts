@@ -60,16 +60,16 @@ export default class StubConnector extends config.Connector<registries.Service> 
   optionsType = t.interface({
     releases: t.array(t.interface({
       package: t.object,
-      manifest: t.interface({ href: t.string })
+      manifestUri: t.string,
     }))
   });
 
   async init(
-    { releases }: { releases: Array<{package: pkg.Package, manifest: URL}> }
+    { releases }: { releases: Array<{package: pkg.Package, manifestUri: string}> }
   ): Promise<registries.Service> {
     const service = new StubService();
-    for (let { package: { packageName, version } , manifest } of releases) {
-      await service.publish(packageName, version, manifest);
+    for (let { package: { packageName, version } , manifestUri } of releases) {
+      await service.publish(packageName, version, new URL(manifestUri));
     }
 
     return service;
