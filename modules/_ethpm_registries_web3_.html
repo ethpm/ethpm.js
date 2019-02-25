@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>EthPM | EthPM.js</title>
+	<title>&quot;ethpm/registries/web3&quot; | EthPM.js</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,88 +56,102 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="_ethpm_.html">&quot;ethpm&quot;</a>
-				</li>
-				<li>
-					<a href="_ethpm_.ethpm.html">EthPM</a>
+					<a href="_ethpm_registries_web3_.html">&quot;ethpm/registries/web3&quot;</a>
 				</li>
 			</ul>
-			<h1>Module EthPM</h1>
+			<h1>External module &quot;ethpm/registries/web3&quot;</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>This module provides the external interface for configuring an EthPM
-						session object.</p>
-					</div>
-					<p>Usage:</p>
-					<pre><code class="language-javascript"><span class="hljs-keyword">import</span> EthPM <span class="hljs-keyword">from</span> <span class="hljs-string">"ethpm"</span>;
-</code></pre>
-				</div>
-			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Functions</h3>
+							<h3>Classes</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter"><a href="_ethpm_.ethpm.html#configure" class="tsd-kind-icon">configure</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_ethpm_registries_web3_.packagescursor.html" class="tsd-kind-icon">Packages<wbr>Cursor</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter"><a href="../classes/_ethpm_registries_web3_.paged.html" class="tsd-kind-icon">Paged</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_ethpm_registries_web3_.releasescursor.html" class="tsd-kind-icon">Releases<wbr>Cursor</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_ethpm_registries_web3_.web3registryconnector.html" class="tsd-kind-icon">Web3<wbr>Registry<wbr>Connector</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_ethpm_registries_web3_.web3registryservice.html" class="tsd-kind-icon">Web3<wbr>Registry<wbr>Service</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-not-exported">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported"><a href="_ethpm_registries_web3_.html#resulttype" class="tsd-kind-icon">Result<wbr>Type</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported"><a href="_ethpm_registries_web3_.html#resulttype-1" class="tsd-kind-icon">Result<wbr>Type</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported"><a href="_ethpm_registries_web3_.html#web3registryoptions" class="tsd-kind-icon">Web3<wbr>Registry<wbr>Options</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-not-exported">
+							<h3>Variables</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported"><a href="_ethpm_registries_web3_.html#page_size" class="tsd-kind-icon">PAGE_<wbr>SIZE</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Functions</h2>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
-					<a name="configure" class="tsd-anchor"></a>
-					<h3>configure</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">configure&lt;T&gt;<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">config.RawConfig</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">session.Builder</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/dd49270/src/ethpm.ts#L36">src/ethpm.ts:36</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Configure EthPM with specified Node modules to load for various
-									services</p>
-								</div>
-								<p>Example Usage:</p>
-								<pre><code class="language-javascript"><span class="hljs-keyword">import</span> EthPM <span class="hljs-keyword">from</span> <span class="hljs-string">"ethpm"</span>;
-<span class="hljs-keyword">const</span> builder = EthPM.configure({
-  <span class="hljs-attr">manifests</span>: <span class="hljs-string">"ethpm/manifests/v2"</span>,
-  <span class="hljs-attr">storage</span>: <span class="hljs-string">"ethpm/storage/ipfs"</span>,
-  <span class="hljs-attr">registries</span>: <span class="hljs-string">"ethpm/registries/web3"</span>
-})</code></pre>
-								<p>EthPM.js will <code>require()</code> the specified modules from your project&#39;s
-								<code>node_modules/</code> folder.</p>
-							</div>
-							<h4 class="tsd-type-parameters-title">Type parameters</h4>
-							<ul class="tsd-type-parameters">
-								<li>
-									<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">config.Config</span></h4>
-								</li>
-							</ul>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>config: <span class="tsd-signature-type">config.RawConfig</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">session.Builder</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
+			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+					<a name="resulttype" class="tsd-anchor"></a>
+					<h3>Result<wbr>Type</h3>
+					<div class="tsd-signature tsd-kind-icon">Result<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">pkg.PackageName</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/dd49270/src/registries/web3/cursors/packages.ts#L11">src/registries/web3/cursors/packages.ts:11</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+					<a name="resulttype-1" class="tsd-anchor"></a>
+					<h3>Result<wbr>Type</h3>
+					<div class="tsd-signature tsd-kind-icon">Result<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">pkg.Version</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/dd49270/src/registries/web3/cursors/releases.ts#L11">src/registries/web3/cursors/releases.ts:11</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+					<a name="web3registryoptions" class="tsd-anchor"></a>
+					<h3>Web3<wbr>Registry<wbr>Options</h3>
+					<div class="tsd-signature tsd-kind-icon">Web3<wbr>Registry<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/dd49270/src/registries/web3/service.ts#L172">src/registries/web3/service.ts:172</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>provider<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Web3Provider</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>registry<wbr>Address<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+					<a name="page_size" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> PAGE_<wbr>SIZE</h3>
+					<div class="tsd-signature tsd-kind-icon">PAGE_<wbr>SIZE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;10</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/dd49270/src/registries/web3/service.ts#L21">src/registries/web3/service.ts:21</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -147,13 +161,8 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="_ethpm_.html">"ethpm"</a>
-						<ul>
-							<li class="current tsd-kind-module tsd-parent-kind-external-module">
-								<a href="_ethpm_.ethpm.html">EthPM</a>
-							</li>
-						</ul>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="_ethpm_config_.html">"ethpm/config"</a>
@@ -170,7 +179,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="_ethpm_registries_.html">"ethpm/registries"</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="_ethpm_registries_web3_.html">"ethpm/registries/web3"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -201,8 +210,32 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="_ethpm_.ethpm.html#configure" class="tsd-kind-icon">configure</a>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/_ethpm_registries_web3_.packagescursor.html" class="tsd-kind-icon">Packages<wbr>Cursor</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="../classes/_ethpm_registries_web3_.paged.html" class="tsd-kind-icon">Paged</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/_ethpm_registries_web3_.releasescursor.html" class="tsd-kind-icon">Releases<wbr>Cursor</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/_ethpm_registries_web3_.web3registryconnector.html" class="tsd-kind-icon">Web3<wbr>Registry<wbr>Connector</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/_ethpm_registries_web3_.web3registryservice.html" class="tsd-kind-icon">Web3<wbr>Registry<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="_ethpm_registries_web3_.html#resulttype" class="tsd-kind-icon">Result<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="_ethpm_registries_web3_.html#resulttype-1" class="tsd-kind-icon">Result<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="_ethpm_registries_web3_.html#web3registryoptions" class="tsd-kind-icon">Web3<wbr>Registry<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="_ethpm_registries_web3_.html#page_size" class="tsd-kind-icon">PAGE_<wbr>SIZE</a>
 					</li>
 				</ul>
 			</nav>
