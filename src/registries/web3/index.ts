@@ -1,5 +1,5 @@
 /**
- * @module "test/stub/registries"
+ * @module "ethpm/registries/web3"
  */
 
 export * from "./service";
