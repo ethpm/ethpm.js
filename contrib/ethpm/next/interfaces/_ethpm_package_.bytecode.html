@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Reference | EthPM.js</title>
+	<title>Bytecode | EthPM.js</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -59,13 +59,10 @@
 					<a href="../modules/_ethpm_package_.html">&quot;ethpm/package&quot;</a>
 				</li>
 				<li>
-					<a href="../modules/_ethpm_package_.link.html">Link</a>
-				</li>
-				<li>
-					<a href="_ethpm_package_.link.reference.html">Reference</a>
+					<a href="_ethpm_package_.bytecode.html">Bytecode</a>
 				</li>
 			</ul>
-			<h1>Interface Reference</h1>
+			<h1>Interface Bytecode</h1>
 		</div>
 	</div>
 </header>
@@ -76,7 +73,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Reference</span>
+						<span class="target">Bytecode</span>
 					</li>
 				</ul>
 			</section>
@@ -87,9 +84,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ethpm_package_.link.reference.html#length" class="tsd-kind-icon">length</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ethpm_package_.link.reference.html#name" class="tsd-kind-icon">name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ethpm_package_.link.reference.html#offsets" class="tsd-kind-icon">offsets</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ethpm_package_.bytecode.html#bytecode" class="tsd-kind-icon">bytecode</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ethpm_package_.bytecode.html#linkdependencies" class="tsd-kind-icon">link<wbr>Dependencies</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ethpm_package_.bytecode.html#linkreferences" class="tsd-kind-icon">link<wbr>References</a></li>
 							</ul>
 						</section>
 					</div>
@@ -98,32 +95,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="length" class="tsd-anchor"></a>
-					<h3>length</h3>
-					<div class="tsd-signature tsd-kind-icon">length<span class="tsd-signature-symbol">:</span> <a href="../modules/_ethpm_package_.link.html#length" class="tsd-signature-type">Length</a></div>
+					<a name="bytecode" class="tsd-anchor"></a>
+					<h3>bytecode</h3>
+					<div class="tsd-signature tsd-kind-icon">bytecode<span class="tsd-signature-symbol">:</span> <a href="_ethpm_package_.bytecode.html#bytecode" class="tsd-signature-type">bytecode</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/ca13a7a/src/package/link.ts#L24">src/package/link.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/ca13a7a/src/package/package.ts#L40">src/package/package.ts:40</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="name" class="tsd-anchor"></a>
-					<h3>name</h3>
-					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <a href="../modules/_ethpm_package_.link.html#name" class="tsd-signature-type">Name</a></div>
+					<a name="linkdependencies" class="tsd-anchor"></a>
+					<h3>link<wbr>Dependencies</h3>
+					<div class="tsd-signature tsd-kind-icon">link<wbr>Dependencies<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_ethpm_package_.link.value.html" class="tsd-signature-type">Value</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/ca13a7a/src/package/link.ts#L25">src/package/link.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/ca13a7a/src/package/package.ts#L42">src/package/package.ts:42</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="offsets" class="tsd-anchor"></a>
-					<h3>offsets</h3>
-					<div class="tsd-signature tsd-kind-icon">offsets<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_ethpm_package_.link.html#offset" class="tsd-signature-type">Offset</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="linkreferences" class="tsd-anchor"></a>
+					<h3>link<wbr>References</h3>
+					<div class="tsd-signature tsd-kind-icon">link<wbr>References<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_ethpm_package_.link.reference.html" class="tsd-signature-type">Reference</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/ca13a7a/src/package/link.ts#L23">src/package/link.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/ca13a7a/src/package/package.ts#L41">src/package/package.ts:41</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -150,7 +147,7 @@
 					<li class="current tsd-kind-external-module">
 						<a href="../modules/_ethpm_package_.html">"ethpm/package"</a>
 						<ul>
-							<li class="current tsd-kind-module tsd-parent-kind-external-module">
+							<li class=" tsd-kind-module tsd-parent-kind-external-module">
 								<a href="../modules/_ethpm_package_.link.html">Link</a>
 							</li>
 							<li class=" tsd-kind-module tsd-parent-kind-external-module">
@@ -201,41 +198,110 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_ethpm_package_.link.instancereference.html" class="tsd-kind-icon">Instance<wbr>Reference</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_ethpm_package_.link.literal.html" class="tsd-kind-icon">Literal</a>
-					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="_ethpm_package_.link.reference.html" class="tsd-kind-icon">Reference</a>
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_ethpm_package_.bytecode.html" class="tsd-kind-icon">Bytecode</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ethpm_package_.link.reference.html#length" class="tsd-kind-icon">length</a>
+								<a href="_ethpm_package_.bytecode.html#bytecode" class="tsd-kind-icon">bytecode</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ethpm_package_.link.reference.html#name" class="tsd-kind-icon">name</a>
+								<a href="_ethpm_package_.bytecode.html#linkdependencies" class="tsd-kind-icon">link<wbr>Dependencies</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ethpm_package_.link.reference.html#offsets" class="tsd-kind-icon">offsets</a>
+								<a href="_ethpm_package_.bytecode.html#linkreferences" class="tsd-kind-icon">link<wbr>References</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_ethpm_package_.link.value.html" class="tsd-kind-icon">Value</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_ethpm_package_.compiler.html" class="tsd-kind-icon">Compiler</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="../modules/_ethpm_package_.link.html#length" class="tsd-kind-icon">Length</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_ethpm_package_.contractinstance.html" class="tsd-kind-icon">Contract<wbr>Instance</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="../modules/_ethpm_package_.link.html#name" class="tsd-kind-icon">Name</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_ethpm_package_.contracttype.html" class="tsd-kind-icon">Contract<wbr>Type</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="../modules/_ethpm_package_.link.html#offset" class="tsd-kind-icon">Offset</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_ethpm_package_.package.html" class="tsd-kind-icon">Package</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_ethpm_package_.html#abi" class="tsd-kind-icon">ABI</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_ethpm_package_.html#address" class="tsd-kind-icon">Address</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_ethpm_package_.html#blockhash" class="tsd-kind-icon">Block<wbr>Hash</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_ethpm_package_.html#builddependencies" class="tsd-kind-icon">Build<wbr>Dependencies</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_ethpm_package_.html#chainuri" class="tsd-kind-icon">ChainURI</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_ethpm_package_.html#compilername" class="tsd-kind-icon">Compiler<wbr>Name</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_ethpm_package_.html#compilersettings" class="tsd-kind-icon">Compiler<wbr>Settings</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_ethpm_package_.html#compilerversion" class="tsd-kind-icon">Compiler<wbr>Version</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_ethpm_package_.html#contenturi" class="tsd-kind-icon">ContentURI</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_ethpm_package_.html#contractalias" class="tsd-kind-icon">Contract<wbr>Alias</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_ethpm_package_.html#contractinstancename" class="tsd-kind-icon">Contract<wbr>Instance<wbr>Name</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_ethpm_package_.html#contractname" class="tsd-kind-icon">Contract<wbr>Name</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_ethpm_package_.html#contracttypereference" class="tsd-kind-icon">Contract<wbr>Type<wbr>Reference</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_ethpm_package_.html#contracttypes" class="tsd-kind-icon">Contract<wbr>Types</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_ethpm_package_.html#deployment" class="tsd-kind-icon">Deployment</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_ethpm_package_.html#deployments" class="tsd-kind-icon">Deployments</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_ethpm_package_.html#natspec" class="tsd-kind-icon">Natspec</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_ethpm_package_.html#packagename" class="tsd-kind-icon">Package<wbr>Name</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_ethpm_package_.html#relativepath" class="tsd-kind-icon">Relative<wbr>Path</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_ethpm_package_.html#source" class="tsd-kind-icon">Source</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_ethpm_package_.html#sourcestring" class="tsd-kind-icon">Source<wbr>String</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_ethpm_package_.html#sources" class="tsd-kind-icon">Sources</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_ethpm_package_.html#transactionhash" class="tsd-kind-icon">Transaction<wbr>Hash</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_ethpm_package_.html#version" class="tsd-kind-icon">Version</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_ethpm_package_.html#bytecode-1" class="tsd-kind-icon">bytecode</a>
 					</li>
 				</ul>
 			</nav>
