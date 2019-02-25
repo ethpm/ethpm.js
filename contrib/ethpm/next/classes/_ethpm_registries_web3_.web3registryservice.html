@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IpfsService | EthPM.js</title>
+	<title>Web3RegistryService | EthPM.js</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,31 +56,40 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_ethpm_storage_ipfs_.html">&quot;ethpm/storage/ipfs&quot;</a>
+					<a href="../modules/_ethpm_registries_web3_.html">&quot;ethpm/registries/web3&quot;</a>
 				</li>
 				<li>
-					<a href="_ethpm_storage_ipfs_.ipfsservice.html">IpfsService</a>
+					<a href="_ethpm_registries_web3_.web3registryservice.html">Web3RegistryService</a>
 				</li>
 			</ul>
-			<h1>Class IpfsService</h1>
+			<h1>Class Web3RegistryService</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<dl class="tsd-comment-tags">
+						<dt>dev</dt>
+						<dd><p>Preloaded packages where &quot;manifest&quot; is the raw package name string</p>
+						</dd>
+					</dl>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IpfsService</span>
+						<span class="target">Web3RegistryService</span>
 					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel">
 				<h3>Implements</h3>
 				<ul class="tsd-hierarchy">
-					<li><a href="../interfaces/_ethpm_storage_.service.html" class="tsd-signature-type">Service</a></li>
+					<li><a href="../interfaces/_ethpm_registries_.service.html" class="tsd-signature-type">Service</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -90,25 +99,24 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_ethpm_storage_ipfs_.ipfsservice.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_ethpm_registries_web3_.web3registryservice.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_ethpm_storage_ipfs_.ipfsservice.html#host" class="tsd-kind-icon">host</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_ethpm_storage_ipfs_.ipfsservice.html#ipfs" class="tsd-kind-icon">ipfs</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_ethpm_storage_ipfs_.ipfsservice.html#port" class="tsd-kind-icon">port</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_ethpm_storage_ipfs_.ipfsservice.html#protocol" class="tsd-kind-icon">protocol</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_ethpm_registries_web3_.web3registryservice.html#accounts" class="tsd-kind-icon">accounts</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_ethpm_registries_web3_.web3registryservice.html#address" class="tsd-kind-icon">address</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_ethpm_registries_web3_.web3registryservice.html#web3" class="tsd-kind-icon">web3</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ethpm_storage_ipfs_.ipfsservice.html#hash" class="tsd-kind-icon">hash</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ethpm_storage_ipfs_.ipfsservice.html#predicturi" class="tsd-kind-icon">predict<wbr>Uri</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ethpm_storage_ipfs_.ipfsservice.html#read" class="tsd-kind-icon">read</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ethpm_storage_ipfs_.ipfsservice.html#write" class="tsd-kind-icon">write</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ethpm_registries_web3_.web3registryservice.html#init" class="tsd-kind-icon">init</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ethpm_registries_web3_.web3registryservice.html#package" class="tsd-kind-icon">package</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ethpm_registries_web3_.web3registryservice.html#packages" class="tsd-kind-icon">packages</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ethpm_registries_web3_.web3registryservice.html#publish" class="tsd-kind-icon">publish</a></li>
 							</ul>
 						</section>
 					</div>
@@ -120,22 +128,25 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Ipfs<wbr>Service<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_ethpm_storage_ipfs_.ipfsoptions.html" class="tsd-signature-type">IpfsOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_ethpm_storage_ipfs_.ipfsservice.html" class="tsd-signature-type">IpfsService</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Web3<wbr>Registry<wbr>Service<span class="tsd-signature-symbol">(</span>provider<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Web3Provider</span>, address<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_ethpm_registries_web3_.web3registryservice.html" class="tsd-signature-type">Web3RegistryService</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3986374/src/storage/ipfs/index.ts#L26">src/storage/ipfs/index.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3986374/src/registries/web3/service.ts#L29">src/registries/web3/service.ts:29</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>options: <a href="../interfaces/_ethpm_storage_ipfs_.ipfsoptions.html" class="tsd-signature-type">IpfsOptions</a></h5>
+									<h5>provider: <span class="tsd-signature-type">Web3Provider</span></h5>
+								</li>
+								<li>
+									<h5>address: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_ethpm_storage_ipfs_.ipfsservice.html" class="tsd-signature-type">IpfsService</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_ethpm_registries_web3_.web3registryservice.html" class="tsd-signature-type">Web3RegistryService</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -143,42 +154,32 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="host" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> host</h3>
-					<div class="tsd-signature tsd-kind-icon">host<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="accounts" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> accounts</h3>
+					<div class="tsd-signature tsd-kind-icon">accounts<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3986374/src/storage/ipfs/index.ts#L23">src/storage/ipfs/index.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3986374/src/registries/web3/service.ts#L29">src/registries/web3/service.ts:29</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="ipfs" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> ipfs</h3>
-					<div class="tsd-signature tsd-kind-icon">ipfs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<a name="address" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> address</h3>
+					<div class="tsd-signature tsd-kind-icon">address<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3986374/src/storage/ipfs/index.ts#L26">src/storage/ipfs/index.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3986374/src/registries/web3/service.ts#L28">src/registries/web3/service.ts:28</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="port" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> port</h3>
-					<div class="tsd-signature tsd-kind-icon">port<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="web3" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> web3</h3>
+					<div class="tsd-signature tsd-kind-icon">web3<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Web3</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3986374/src/storage/ipfs/index.ts#L24">src/storage/ipfs/index.ts:24</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="protocol" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> protocol</h3>
-					<div class="tsd-signature tsd-kind-icon">protocol<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3986374/src/storage/ipfs/index.ts#L25">src/storage/ipfs/index.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3986374/src/registries/web3/service.ts#L27">src/registries/web3/service.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -186,98 +187,91 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="hash" class="tsd-anchor"></a>
-					<h3>hash</h3>
+					<a name="init" class="tsd-anchor"></a>
+					<h3>init</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">hash<span class="tsd-signature-symbol">(</span>content<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">init<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_ethpm_storage_.service.html">Service</a>.<a href="../interfaces/_ethpm_storage_.service.html#hash">hash</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3986374/src/storage/ipfs/index.ts#L55">src/storage/ipfs/index.ts:55</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3986374/src/registries/web3/service.ts#L37">src/registries/web3/service.ts:37</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>content: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="predicturi" class="tsd-anchor"></a>
-					<h3>predict<wbr>Uri</h3>
+					<a name="package" class="tsd-anchor"></a>
+					<h3>package</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">predict<wbr>Uri<span class="tsd-signature-symbol">(</span>content<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">URL</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">package<span class="tsd-signature-symbol">(</span>packageName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">pkg.PackageName</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/_ethpm_registries_.html#packagecursor" class="tsd-signature-type">PackageCursor</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_ethpm_storage_.service.html">Service</a>.<a href="../interfaces/_ethpm_storage_.service.html#predicturi">predictUri</a></p>
+								<p>Implementation of <a href="../interfaces/_ethpm_registries_.service.html">Service</a>.<a href="../interfaces/_ethpm_registries_.service.html#package">package</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3986374/src/storage/ipfs/index.ts#L59">src/storage/ipfs/index.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3986374/src/registries/web3/service.ts#L93">src/registries/web3/service.ts:93</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>content: <span class="tsd-signature-type">string</span></h5>
+									<h5>packageName: <span class="tsd-signature-type">pkg.PackageName</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">URL</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../modules/_ethpm_registries_.html#packagecursor" class="tsd-signature-type">PackageCursor</a></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="read" class="tsd-anchor"></a>
-					<h3>read</h3>
+					<a name="packages" class="tsd-anchor"></a>
+					<h3>packages</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">read<span class="tsd-signature-symbol">(</span>uri<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">URL</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_ethpm_types_.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">packages<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_ethpm_registries_web3_.packagescursor.html" class="tsd-signature-type">PackagesCursor</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_ethpm_storage_.service.html">Service</a>.<a href="../interfaces/_ethpm_storage_.service.html#read">read</a></p>
+								<p>Implementation of <a href="../interfaces/_ethpm_registries_.service.html">Service</a>.<a href="../interfaces/_ethpm_registries_.service.html#packages">packages</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3986374/src/storage/ipfs/index.ts#L47">src/storage/ipfs/index.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3986374/src/registries/web3/service.ts#L71">src/registries/web3/service.ts:71</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>uri: <span class="tsd-signature-type">URL</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_ethpm_types_.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_ethpm_registries_web3_.packagescursor.html" class="tsd-signature-type">PackagesCursor</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="write" class="tsd-anchor"></a>
-					<h3>write</h3>
+					<a name="publish" class="tsd-anchor"></a>
+					<h3>publish</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">write<span class="tsd-signature-symbol">(</span>content<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">URL</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">publish<span class="tsd-signature-symbol">(</span>packageName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">pkg.PackageName</span>, version<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">pkg.Version</span>, manifest<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">URL</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_ethpm_storage_.service.html">Service</a>.<a href="../interfaces/_ethpm_storage_.service.html#write">write</a></p>
+								<p>Implementation of <a href="../interfaces/_ethpm_registries_.service.html">Service</a>.<a href="../interfaces/_ethpm_registries_.service.html#publish">publish</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3986374/src/storage/ipfs/index.ts#L40">src/storage/ipfs/index.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/ethpm/ethpm.js/blob/3986374/src/registries/web3/service.ts#L41">src/registries/web3/service.ts:41</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>content: <span class="tsd-signature-type">string</span></h5>
+									<h5>packageName: <span class="tsd-signature-type">pkg.PackageName</span></h5>
+								</li>
+								<li>
+									<h5>version: <span class="tsd-signature-type">pkg.Version</span></h5>
+								</li>
+								<li>
+									<h5>manifest: <span class="tsd-signature-type">URL</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">URL</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -307,7 +301,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_ethpm_registries_.html">"ethpm/registries"</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/_ethpm_registries_web3_.html">"ethpm/registries/web3"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -316,7 +310,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_ethpm_storage_.html">"ethpm/storage"</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_ethpm_storage_ipfs_.html">"ethpm/storage/ipfs"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -339,61 +333,61 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_ethpm_storage_ipfs_.ipfsconnector.html" class="tsd-kind-icon">Ipfs<wbr>Connector</a>
+						<a href="_ethpm_registries_web3_.packagescursor.html" class="tsd-kind-icon">Packages<wbr>Cursor</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_ethpm_registries_web3_.paged.html" class="tsd-kind-icon">Paged</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="_ethpm_registries_web3_.releasescursor.html" class="tsd-kind-icon">Releases<wbr>Cursor</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="_ethpm_registries_web3_.web3registryconnector.html" class="tsd-kind-icon">Web3<wbr>Registry<wbr>Connector</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_ethpm_storage_ipfs_.ipfsservice.html" class="tsd-kind-icon">Ipfs<wbr>Service</a>
+						<a href="_ethpm_registries_web3_.web3registryservice.html" class="tsd-kind-icon">Web3<wbr>Registry<wbr>Service</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="_ethpm_storage_ipfs_.ipfsservice.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="_ethpm_registries_web3_.web3registryservice.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_ethpm_storage_ipfs_.ipfsservice.html#host" class="tsd-kind-icon">host</a>
+								<a href="_ethpm_registries_web3_.web3registryservice.html#accounts" class="tsd-kind-icon">accounts</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_ethpm_storage_ipfs_.ipfsservice.html#ipfs" class="tsd-kind-icon">ipfs</a>
+								<a href="_ethpm_registries_web3_.web3registryservice.html#address" class="tsd-kind-icon">address</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_ethpm_storage_ipfs_.ipfsservice.html#port" class="tsd-kind-icon">port</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_ethpm_storage_ipfs_.ipfsservice.html#protocol" class="tsd-kind-icon">protocol</a>
+								<a href="_ethpm_registries_web3_.web3registryservice.html#web3" class="tsd-kind-icon">web3</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_ethpm_storage_ipfs_.ipfsservice.html#hash" class="tsd-kind-icon">hash</a>
+								<a href="_ethpm_registries_web3_.web3registryservice.html#init" class="tsd-kind-icon">init</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_ethpm_storage_ipfs_.ipfsservice.html#predicturi" class="tsd-kind-icon">predict<wbr>Uri</a>
+								<a href="_ethpm_registries_web3_.web3registryservice.html#package" class="tsd-kind-icon">package</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_ethpm_storage_ipfs_.ipfsservice.html#read" class="tsd-kind-icon">read</a>
+								<a href="_ethpm_registries_web3_.web3registryservice.html#packages" class="tsd-kind-icon">packages</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_ethpm_storage_ipfs_.ipfsservice.html#write" class="tsd-kind-icon">write</a>
+								<a href="_ethpm_registries_web3_.web3registryservice.html#publish" class="tsd-kind-icon">publish</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="../interfaces/_ethpm_storage_ipfs_.ipfsoptions.html" class="tsd-kind-icon">Ipfs<wbr>Options</a>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/_ethpm_registries_web3_.html#resulttype" class="tsd-kind-icon">Result<wbr>Type</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/_ethpm_storage_ipfs_.html#ipfshash" class="tsd-kind-icon">Ipfs<wbr>Hash</a>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/_ethpm_registries_web3_.html#resulttype-1" class="tsd-kind-icon">Result<wbr>Type</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="../modules/_ethpm_storage_ipfs_.html#dagnode" class="tsd-kind-icon">DAGNode</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="../modules/_ethpm_storage_ipfs_.html#ipfs" class="tsd-kind-icon">IPFS</a>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/_ethpm_registries_web3_.html#web3registryoptions" class="tsd-kind-icon">Web3<wbr>Registry<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="../modules/_ethpm_storage_ipfs_.html#unixfs" class="tsd-kind-icon">Unixfs</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/_ethpm_storage_ipfs_.html#hash" class="tsd-kind-icon">hash</a>
+						<a href="../modules/_ethpm_registries_web3_.html#page_size" class="tsd-kind-icon">PAGE_<wbr>SIZE</a>
 					</li>
 				</ul>
 			</nav>
