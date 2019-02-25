@@ -2,7 +2,7 @@
  * @module "ethpm/storage/ipfs"
  */
 
-const IPFS = require("ipfs-api");
+const IPFS = require("ipfs-http-client");
 
 import { URL } from "url";
 import * as t from "io-ts";
@@ -21,13 +21,13 @@ interface IpfsOptions {
 
 export class IpfsService implements storage.Service {
   private host: string;
-  private port: number;
+  private port: string;
   private protocol: string;
   private ipfs: any;
 
   constructor(options: IpfsOptions) {
     this.host = options.host;
-    this.port = Number(options.port);
+    this.port = options.port.toString();
     this.protocol = options.protocol;
 
     this.ipfs = new IPFS({
@@ -39,7 +39,7 @@ export class IpfsService implements storage.Service {
 
   async write(content: string): Promise<URL> {
     const buffer = this.ipfs.types.Buffer.from(content);
-    const [{ hash }] = await this.ipfs.files.add(buffer);
+    const [{ hash }] = await this.ipfs.add(buffer);
 
     return new URL(`ipfs://${hash}`);
   }
