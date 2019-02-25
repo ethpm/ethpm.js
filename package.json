@@ -81,8 +81,10 @@
     },
     "globals": {
       "ts-jest": {
-        "tsConfigFile": "<rootDir>/tsconfig.json",
-        "enableTsDiagnostics": true
+        "tsConfig": "<rootDir>/tsconfig.json",
+        "diagnostics": {
+          "warnOnly": true
+        }
       }
     },
     "moduleNameMapper": {
@@ -94,7 +96,8 @@
       "<rootDir>/src/**/test/*.+(ts|js)",
       "<rootDir>/test/**/test/*.+(ts|js)",
       "<rootDir>/dist/**/test/*.+(js)"
-    ]
+    ],
+    "preset": "ts-jest"
   },
   "_moduleAliases": {
     "ethpm": "dist",
