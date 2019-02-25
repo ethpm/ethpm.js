@@ -32,18 +32,18 @@ export class StubService implements registries.Service {
     this.releases[packageName][version] = manifest;
   }
 
-  packages (): IterableIterator<Promise<pkg.PackageName>> {
+  async packages (): Promise<IterableIterator<Promise<pkg.PackageName>>> {
     return Object.keys(this.releases).map(
       (packageName) => Promise.resolve(packageName)
     )[Symbol.iterator]();
   }
 
   package (packageName: pkg.PackageName): {
-    releases (): IterableIterator<Promise<pkg.Version>>;
+    releases (): Promise<IterableIterator<Promise<pkg.Version>>>;
     release (version: pkg.Version): Promise<URL>;
   } {
     return {
-      releases: () => Object.keys(this.releases[packageName]).map(
+      releases: async () => Object.keys(this.releases[packageName]).map(
         (version) => Promise.resolve(version)
       )[Symbol.iterator](),
 

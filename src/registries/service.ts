@@ -5,14 +5,12 @@
 import { URL } from "url";
 
 import * as pkg from "ethpm/package";
-import PackagesCursor from "./web3/cursors/packages";
-import ReleasesCursor from "./web3/cursors/releases";
 
 export type PackageCursor = {
   /**
    * List all releases
    */
-  releases (): Promise<ReleasesCursor>;
+  releases (): Promise<IterableIterator<Promise<pkg.Version>>>;
 
 
   /**
@@ -25,7 +23,7 @@ export interface Service {
   /**
    * List all packages
    */
-  packages (): Promise<PackagesCursor>;
+  packages (): Promise<IterableIterator<Promise<pkg.PackageName>>>;
 
   /**
    * Query a particular package
