@@ -20,7 +20,7 @@ export default class ExamplesConnector extends StubConnector {
         Object.entries(manifests).map(
           async ([packageName, manifest]) => ({
             package: packages[packageName],
-            manifest: await storage.predictUri(manifest)
+            manifestUri: (await storage.predictUri(manifest)).href
           })
         )
       )
