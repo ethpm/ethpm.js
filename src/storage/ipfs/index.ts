@@ -2,7 +2,7 @@
  * @module "ethpm/storage/ipfs"
  */
 
-const IPFS = require("ipfs-api");
+const IPFS = require("ipfs-http-client");
 
 import { URL } from "url";
 import * as t from "io-ts";
