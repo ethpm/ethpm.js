@@ -8,7 +8,7 @@ it("lists packages", async () => {
   const service = await (new ExamplesConnector()).connect({});
 
   const packageNames: Array<string> = await Promise.all(
-    Array.from(service.packages())
+    [...service.packages()]
   );
 
   expect(packageNames).toEqual(Object.keys(manifests));
@@ -18,7 +18,7 @@ it("lists releases", async () => {
   const service = await (new ExamplesConnector()).connect({});
 
   const releases: Array<string> = await Promise.all(
-    Array.from(service.package("wallet").releases())
+    [...service.package("wallet").releases()]
   );
 
   expect(releases).toEqual(["1.0.0"]);
