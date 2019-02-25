@@ -1,3 +1,7 @@
+/**
+ * @module "ethpm/registries/web3"
+ */
+
 import BN from "bn.js";
 
 export default class Paged<T> {
