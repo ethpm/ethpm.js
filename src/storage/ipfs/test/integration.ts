@@ -22,7 +22,7 @@ describe("IPFS integration", () => {
     });
 
   beforeAll(() => startDaemon(), 20000);
-  afterAll(() => daemon.stop());
+  afterAll((done) => daemon.stop(done));
 
   it("should initialize the IPFS daemon properly", () => {
     expect(daemon.initialized).toBe(true);

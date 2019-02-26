@@ -1,3 +1,7 @@
+/**
+ * @module "ethpm/registries/web3"
+ */
+
 import Paged from "./paged";
 
 import * as pkg from "ethpm/package";

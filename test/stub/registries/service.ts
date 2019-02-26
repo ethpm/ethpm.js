@@ -32,18 +32,18 @@ export class StubService implements registries.Service {
     this.releases[packageName][version] = manifest;
   }
 
-  packages (): IterableIterator<Promise<pkg.PackageName>> {
+  async packages (): Promise<IterableIterator<Promise<pkg.PackageName>>> {
     return Object.keys(this.releases).map(
       (packageName) => Promise.resolve(packageName)
     )[Symbol.iterator]();
   }
 
   package (packageName: pkg.PackageName): {
-    releases (): IterableIterator<Promise<pkg.Version>>;
+    releases (): Promise<IterableIterator<Promise<pkg.Version>>>;
     release (version: pkg.Version): Promise<URL>;
   } {
     return {
-      releases: () => Object.keys(this.releases[packageName]).map(
+      releases: async () => Object.keys(this.releases[packageName]).map(
         (version) => Promise.resolve(version)
       )[Symbol.iterator](),
 
@@ -60,16 +60,16 @@ export default class StubConnector extends config.Connector<registries.Service> 
   optionsType = t.interface({
     releases: t.array(t.interface({
       package: t.object,
-      manifest: t.interface({ href: t.string })
+      manifestUri: t.string,
     }))
   });
 
   async init(
-    { releases }: { releases: Array<{package: pkg.Package, manifest: URL}> }
+    { releases }: { releases: Array<{package: pkg.Package, manifestUri: string}> }
   ): Promise<registries.Service> {
     const service = new StubService();
-    for (let { package: { packageName, version } , manifest } of releases) {
-      await service.publish(packageName, version, manifest);
+    for (let { package: { packageName, version } , manifestUri } of releases) {
+      await service.publish(packageName, version, new URL(manifestUri));
     }
 
     return service;
