@@ -137,7 +137,7 @@ describe("Manual Packaging", () => {
     });
 
   beforeAll(() => startDaemon(), 20000);
-  afterAll(() => daemon.stop());
+  afterAll((done) => daemon.stop(done));
 
   it("packages Owned.sol into owned and writes to IPFS", async () => {
     /*
