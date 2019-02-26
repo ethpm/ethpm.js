@@ -7,6 +7,8 @@ ethpm.js
 Work in progress library for interacting with EthPM packages in
 Javascript and TypeScript.
 
+Check out a short guided tutorial [here](tutorial/README.md).
+
 ## Usage Example
 
 ```typescript

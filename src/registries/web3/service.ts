@@ -1,5 +1,5 @@
 /**
- * @module "src/registries/web3"
+ * @module "ethpm/registries/web3"
  */
 
 import { URL } from "url";
@@ -168,7 +168,7 @@ export class Web3RegistryService implements registries.Service {
           to: this.address,
           data
         });
-        
+
         let parameters = this.web3.eth.abi.decodeParameters(["string", "string", "string"], result);
         return new URL(parameters[2]);
       }
