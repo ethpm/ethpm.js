@@ -58,14 +58,22 @@ export class Web3RegistryService implements registries.Service {
       }]
     }, [packageName, version, manifest.href]);
 
-    //TODO: this is a stupid ugly hack but it fixes stuff at devcon
-    // so Nick can fix it later, kthxbye :-)
-    await this.web3.eth.sendTransaction({
+    let txParams : any = {
       from: this.accounts[0],
       to: this.address,
-      gas: 3141597,
       data
-    });
+    }
+
+    // estimate gas requirement, and pad it a bit because some clients don't
+    // handle gas refunds and such well
+    let gas = await this.web3.eth.estimateGas(txParams)
+    console.log(gas)
+    gas *= 1.2
+
+    await this.web3.eth.sendTransaction({
+      gas,
+      ...txParams
+    })
   }
 
   async packages (): Promise<PackagesCursor> {
