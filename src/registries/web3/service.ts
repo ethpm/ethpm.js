@@ -48,7 +48,7 @@ export class Web3RegistryService implements registries.Service {
       type: "function",
       inputs: [{
         type: "string",
-        name: "name",
+        name: "packageName",
       }, {
         type: "string",
         name: "version"
