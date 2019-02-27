@@ -19,9 +19,6 @@ import ReleasesCursor from "./cursors/releases";
 
 const PAGE_SIZE: number = 10;
 
-/**
- * @dev Preloaded packages where "manifest" is the raw package name string
- */
 export class Web3RegistryService implements registries.Service {
   private web3: Web3;
   private address: string;
@@ -89,10 +86,18 @@ export class Web3RegistryService implements registries.Service {
       to: this.address,
       data: numPackagesTx
     });
-    numPackages = new BN(this.web3.eth.abi.decodeParameter("uint", numPackages));
+    numPackages = new BN(
+      this.web3.eth.abi.decodeParameter("uint", numPackages)
+    );
 
     // now paginate
-    const cursor = new PackagesCursor(new BN(PAGE_SIZE), numPackages, this.web3, this.accounts[0], this.address);
+    const cursor = new PackagesCursor(
+      new BN(PAGE_SIZE),
+      numPackages,
+      this.web3,
+      this.accounts[0],
+      this.address
+    );
 
     return cursor;
   }
@@ -128,7 +133,13 @@ export class Web3RegistryService implements registries.Service {
           name: "updatedAt"
         }], result);
         const numReleases = new BN(results[2]);
-        const cursor = new ReleasesCursor(new BN(PAGE_SIZE), numReleases, this.web3, this.accounts[0], this.address);
+        const cursor = new ReleasesCursor(
+          new BN(PAGE_SIZE),
+          numReleases,
+          this.web3,
+          this.accounts[0],
+          this.address
+        );
 
         return cursor;
       },
@@ -168,7 +179,9 @@ export class Web3RegistryService implements registries.Service {
           data
         });
 
-        let parameters = this.web3.eth.abi.decodeParameters(["string", "string", "string"], result);
+        let parameters = this.web3.eth.abi.decodeParameters(
+          ["string", "string", "string"], result
+        );
         return new URL(parameters[2]);
       }
     }
@@ -181,7 +194,9 @@ type Web3RegistryOptions = {
   registryAddress: string;
 };
 
-export default class Web3RegistryConnector extends config.Connector<registries.Service> {
+export default class Web3RegistryConnector
+  extends config.Connector<registries.Service>
+{
   optionsType = t.interface({
     provider: t.object,
     registryAddress: t.string
