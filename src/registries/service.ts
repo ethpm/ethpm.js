@@ -6,19 +6,6 @@ import { URL } from "url";
 
 import * as pkg from "ethpm/package";
 
-export type PackageCursor = {
-  /**
-   * List all releases
-   */
-  releases (): Promise<IterableIterator<Promise<pkg.Version>>>;
-
-
-  /**
-   * Retrieve manifest URI for specific version
-   */
-  release (version: pkg.Version): Promise<URL>;
-};
-
 export interface Service {
   /**
    * List all packages
@@ -28,7 +15,18 @@ export interface Service {
   /**
    * Query a particular package
    */
-  package (packageName: pkg.PackageName): PackageCursor;
+  package (packageName: pkg.PackageName): {
+    /**
+     * List all releases
+     */
+    releases (): Promise<IterableIterator<Promise<pkg.Version>>>;
+
+
+    /**
+     * Retrieve manifest URI for specific version
+     */
+    release (version: pkg.Version): Promise<URL>;
+  };
 
   /**
    * Publish a release
