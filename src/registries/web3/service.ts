@@ -12,7 +12,6 @@ import { Maybe } from "ethpm/types";
 import * as config from "ethpm/config";
 import * as registries from "ethpm/registries";
 import * as pkg from "ethpm/package";
-import { PackageCursor } from "../service";
 import { Server } from "http";
 import BN from "bn.js";
 import PackagesCursor from "./cursors/packages";
@@ -98,7 +97,7 @@ export class Web3RegistryService implements registries.Service {
     return cursor;
   }
 
-  package (packageName: pkg.PackageName): PackageCursor {
+  package (packageName: pkg.PackageName) {
     return {
       releases: async (): Promise<ReleasesCursor> => {
         const numReleasesTx = this.web3.eth.abi.encodeFunctionCall({
