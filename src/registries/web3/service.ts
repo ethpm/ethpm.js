@@ -188,7 +188,7 @@ export class Web3RegistryService implements registries.Service {
 }
 
 type Web3RegistryOptions = {
-  provider: Web3Provider;
+  provider: Web3EthereumProvider;
   registryAddress: string;
 };
 
