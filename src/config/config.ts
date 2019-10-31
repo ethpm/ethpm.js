@@ -2,8 +2,12 @@
  * @module "ethpm/config"
  */
 
-import * as t from "io-ts";
-import { ThrowReporter } from "io-ts/lib/ThrowReporter";
+import * as t from 'io-ts';
+import { ThrowReporter } from 'io-ts/lib/ThrowReporter';
+
+import * as manifests from 'ethpm/manifests/service';
+import * as storage from 'ethpm/storage/service';
+import * as registries from 'ethpm/registries/service';
 
 export type ConfigValue<S = any> =
   string | (() => Connector<S>) | ({ default: () => Connector<S> });
@@ -12,10 +16,6 @@ export type HasManifests = { manifests: any };
 export type HasStorage = { storage: any };
 export type HasRegistries = { registries: any };
 export type Complete = HasManifests & HasStorage & HasRegistries;
-
-import * as manifests from "ethpm/manifests/service";
-import * as storage from "ethpm/storage/service";
-import * as registries from "ethpm/registries/service";
 
 /**
  * Polymorphic type alias for any object that exposes keys for any or all
@@ -37,7 +37,7 @@ export abstract class Connector<S> {
 
   abstract async init (...args: any[]): Promise<S>;
 
-  async connect (options: t.mixed): Promise<S> {
+  async connect(options: t.mixed): Promise<S> {
     const validation = this.optionsType.decode(options);
     if (!validation.isRight()) {
       ThrowReporter.report(validation);
@@ -49,9 +49,9 @@ export abstract class Connector<S> {
 
 export type Workspace<T extends Config> = {
   [K in keyof T]:
-    K extends "manifests" ? manifests.Service :
-    K extends "storage" ? storage.Service :
-    K extends "registries" ? registries.Service :
+    K extends 'manifests' ? manifests.Service :
+    K extends 'storage' ? storage.Service :
+    K extends 'registries' ? registries.Service :
     never
 }
 

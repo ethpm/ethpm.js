@@ -2,4 +2,4 @@
  * @module "ethpm/registries"
  */
 
-export * from "./service";
+export * from './service';

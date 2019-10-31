@@ -2,9 +2,9 @@
  * @module "ethpm/registries"
  */
 
-import { URL } from "url";
+import { URL } from 'url';
 
-import * as pkg from "ethpm/package";
+import * as pkg from 'ethpm/package';
 
 export interface Service {
   /**

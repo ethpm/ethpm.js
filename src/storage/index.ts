@@ -2,4 +2,4 @@
  * @module "ethpm/storage"
  */
 
-export * from "./service";
+export * from './service';

@@ -10,12 +10,12 @@ export namespace Link {
   export type Name = string;
 
   export interface Literal {
-    type: "literal",
+    type: 'literal',
     value: string
   }
 
   export interface InstanceReference {
-    type: "reference",
+    type: 'reference',
     value: string
   }
 

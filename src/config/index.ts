@@ -2,5 +2,5 @@
  * @module "ethpm/config"
  */
 
-export * from "./config";
-export * from "./loader";
+export * from './config';
+export * from './loader';

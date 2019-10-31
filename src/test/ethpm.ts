@@ -1,43 +1,42 @@
-import { EthPM } from "ethpm";
+import { EthPM } from 'ethpm';
 
-const IPFSFactory = require("ipfsd-ctl");
+import examples from 'test/examples/manifests';
+import packages from 'test/examples/packages';
+import sources from 'test/examples/sources';
 
-import examples from "test/examples/manifests";
-import packages from "test/examples/packages";
-import sources from "test/examples/sources";
+const IPFSFactory = require('ipfsd-ctl');
 
-describe("Configuration", () => {
-  it("loads manifests plugin", async () => {
+describe('Configuration', () => {
+  it('loads manifests plugin', async () => {
     const ethpm = await EthPM.configure({
-      manifests: "ethpm/manifests/v2",
+      manifests: 'ethpm/manifests/v2',
     }).connect();
 
-    const pkg = await ethpm.manifests.read(examples["wallet-with-send"]);
+    const pkg = await ethpm.manifests.read(examples['wallet-with-send']);
 
-    expect(pkg.packageName).toEqual("wallet-with-send");
-
+    expect(pkg.packageName).toEqual('wallet-with-send');
   });
 
-  it("loads storage plugin", async () => {
+  it('loads storage plugin', async () => {
     const ethpm = await EthPM.configure({
-      storage: "test/stub/storage/examples",
+      storage: 'test/stub/storage/examples',
     }).connect();
 
-    const wallet = packages["wallet-with-send"].buildDependencies["wallet"];
+    const { wallet } = packages['wallet-with-send'].buildDependencies;
     const manifests = await ethpm.storage.read(wallet);
 
-    expect(manifests).toEqual(examples["wallet"]);
+    expect(manifests).toEqual(examples.wallet);
   });
 
-  it("loads manifests and storage plugins", async () => {
+  it('loads manifests and storage plugins', async () => {
     const ethpm = await EthPM.configure({
-      manifests: "ethpm/manifests/v2",
-      storage: "test/stub/storage/examples",
+      manifests: 'ethpm/manifests/v2',
+      storage: 'test/stub/storage/examples',
     }).connect();
 
-    const walletWithSend = await ethpm.manifests.read(examples["wallet-with-send"]);
+    const walletWithSend = await ethpm.manifests.read(examples['wallet-with-send']);
     const manifests = await ethpm.storage.read(
-      walletWithSend.buildDependencies["wallet"]
+      walletWithSend.buildDependencies.wallet,
     );
 
     expect(manifests).toBeDefined();
@@ -49,12 +48,12 @@ describe("Configuration", () => {
 
     const wallet = await ethpm.manifests.read(manifests);
 
-    expect(wallet).toEqual(packages["wallet"]);
+    expect(wallet).toEqual(packages.wallet);
   });
 
-  it("fails to load plugin without required options", async () => {
+  it('fails to load plugin without required options', async () => {
     const missingOptions = EthPM.configure({
-      storage: "test/stub/storage"
+      storage: 'test/stub/storage',
     }).connect({
       /* ... ??? ... */
     });
@@ -62,12 +61,12 @@ describe("Configuration", () => {
     await expect(missingOptions).rejects.toBeTruthy();
   });
 
-  it("loads plugins with required options", async () => {
+  it('loads plugins with required options', async () => {
     const storedContent = '{"package_name": "registry"}';
     const ethpm = await EthPM.configure({
-      storage: "test/stub/storage"
+      storage: 'test/stub/storage',
     }).connect({
-      contents: [storedContent]
+      contents: [storedContent],
     });
 
     const uri = await ethpm.storage.predictUri(storedContent);
@@ -76,19 +75,19 @@ describe("Configuration", () => {
     expect(retrievedContent).toEqual(storedContent);
   });
 
-  it("loads multiple plugins with required options", async () => {
-    const storedContent = "some file\n\n\n";
+  it('loads multiple plugins with required options', async () => {
+    const storedContent = 'some file\n\n\n';
 
     const ethpm = await EthPM.configure({
-      manifests: "test/stub/manifests",
-      storage: "test/stub/storage"
+      manifests: 'test/stub/manifests',
+      storage: 'test/stub/storage',
     }).connect({
       packages: Object.values(packages),
-      contents: [storedContent]
+      contents: [storedContent],
     });
 
     // test package lookup via fake manifest
-    expect(packages["wallet"]).toEqual(await ethpm.manifests.read("wallet"));
+    expect(packages.wallet).toEqual(await ethpm.manifests.read('wallet'));
 
     // test stored content retrieval
     const uri = await ethpm.storage.predictUri(storedContent);
@@ -96,15 +95,15 @@ describe("Configuration", () => {
     expect(retrievedContent).toEqual(storedContent);
   });
 
-  it("loads pre-required plugins", async () => {
+  it('loads pre-required plugins', async () => {
     const ethpm = await EthPM.configure({
-      manifests: require("ethpm/manifests/v2"),
-      storage: require("test/stub/storage/examples"),
+      manifests: require('ethpm/manifests/v2'),
+      storage: require('test/stub/storage/examples'),
     }).connect();
 
-    const walletWithSend = await ethpm.manifests.read(examples["wallet-with-send"]);
+    const walletWithSend = await ethpm.manifests.read(examples['wallet-with-send']);
     const manifest = await ethpm.storage.read(
-      walletWithSend.buildDependencies["wallet"]
+      walletWithSend.buildDependencies.wallet,
     );
 
     expect(manifest).toBeDefined();
@@ -116,51 +115,50 @@ describe("Configuration", () => {
 
     const wallet = await ethpm.manifests.read(manifest);
 
-    expect(wallet).toEqual(packages["wallet"]);
+    expect(wallet).toEqual(packages.wallet);
   });
 });
 
-describe("Manual Packaging", () => {
+describe('Manual Packaging', () => {
   let daemon: any;
   let host: string;
   let port: string;
 
-  const startDaemon = () =>
-    new Promise(resolve => {
-      const f = IPFSFactory.create({ type: "js" });
-      f.spawn((err: any, ipfsd: any) => {
-        daemon = ipfsd;
-        host = daemon.api.apiHost;
-        port = daemon.api.apiPort;
-        resolve();
-      });
+  const startDaemon = () => new Promise((resolve) => {
+    const f = IPFSFactory.create({ type: 'js' });
+    f.spawn((err: any, ipfsd: any) => {
+      daemon = ipfsd;
+      host = daemon.api.apiHost;
+      port = daemon.api.apiPort;
+      resolve();
     });
+  });
 
   beforeAll(() => startDaemon(), 20000);
   afterAll((done) => daemon.stop(done));
 
-  it("packages Owned.sol into owned and writes to IPFS", async () => {
+  it('packages Owned.sol into owned and writes to IPFS', async () => {
     /*
      * initialize EthPM
      */
     const ethpm = await EthPM.configure({
-      manifests: "ethpm/manifests/v2",
-      storage: "ethpm/storage/ipfs"
+      manifests: 'ethpm/manifests/v2',
+      storage: 'ethpm/storage/ipfs',
       // registry: "ethpm/registries/web3"
     }).connect({
-      /*ipfs: {
+      /* ipfs: {
         host: "ipfs.infura.io",
         port: 5001,
         protocol: "https"
-      }*/
-      ipfs: { host, port, protocol: "http" }
+      } */
+      ipfs: { host, port, protocol: 'http' },
     });
 
     /*
      * read Owned.sol from disk
      */
-    const contractPath = "./contracts/Owned.sol";
-    const contractSource = sources["owned"][contractPath];
+    const contractPath = './contracts/Owned.sol';
+    const contractSource = sources.owned[contractPath];
 
     /*
      * write Owned.sol to IPFS
@@ -176,13 +174,13 @@ describe("Manual Packaging", () => {
      * build package - stub example package for convenience
      */
     const owned = {
-      ...packages["owned"],
+      ...packages.owned,
 
-      packageName: "owned",
-      version: "1.0.0",
+      packageName: 'owned',
+      version: '1.0.0',
       sources: {
-        [contractPath]: contractUri
-      }
+        [contractPath]: contractUri,
+      },
     };
 
     /*
@@ -193,7 +191,7 @@ describe("Manual Packaging", () => {
     /*
      * test that manifest is the same as example
      */
-    expect(manifest).toEqual(examples["owned"]);
+    expect(manifest).toEqual(examples.owned);
 
     /*
      * write manifest to IPFS
@@ -209,6 +207,6 @@ describe("Manual Packaging", () => {
      * test against "transferable"'s "owned" dependency
      */
     expect(manifestUri)
-      .toEqual(packages["transferable"].buildDependencies["owned"]);
+      .toEqual(packages.transferable.buildDependencies.owned);
   });
 });

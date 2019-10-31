@@ -2,11 +2,11 @@
  * @module "ethpm/package"
  */
 
-import { URL } from "url";
+import { URL } from 'url';
 
-import { Maybe } from "ethpm/types";
-import { Meta } from "./meta";
-import { Link } from "./link";
+import { Maybe } from 'ethpm/types';
+import { Meta } from './meta';
+import { Link } from './link';
 
 export type Address = string;
 export type TransactionHash = string;

@@ -2,16 +2,16 @@
  * @module "ethpm/storage/ipfs"
  */
 
-const IPFS = require("ipfs-http-client");
+import { URL } from 'url';
+import * as t from 'io-ts';
 
-import { URL } from "url";
-import * as t from "io-ts";
+import { Maybe } from 'ethpm/types';
+import * as config from 'ethpm/config';
+import * as storage from 'ethpm/storage';
 
-import { Maybe } from "ethpm/types";
-import * as config from "ethpm/config";
-import * as storage from "ethpm/storage";
+import hash from './hash';
 
-import hash from "./hash";
+const IPFS = require('ipfs-http-client');
 
 interface IpfsOptions {
   host: string;
@@ -21,8 +21,11 @@ interface IpfsOptions {
 
 export class IpfsService implements storage.Service {
   private host: string;
+
   private port: string;
+
   private protocol: string;
+
   private ipfs: any;
 
   constructor(options: IpfsOptions) {
@@ -33,7 +36,7 @@ export class IpfsService implements storage.Service {
     this.ipfs = new IPFS({
       host: this.host,
       port: this.port,
-      protocol: this.protocol
+      protocol: this.protocol,
     });
   }
 
@@ -68,8 +71,8 @@ export default class IpfsConnector extends config.Connector<storage.Service> {
     ipfs: t.interface({
       host: t.string,
       port: t.union([t.number, t.string]),
-      protocol: t.string
-    })
+      protocol: t.string,
+    }),
   });
 
   /**

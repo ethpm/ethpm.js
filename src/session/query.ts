@@ -2,10 +2,8 @@
  * @module "ethpm/session"
  */
 
-import * as config from "ethpm/config";
-import * as pkg from "ethpm/package";
-import * as manifests from "ethpm/manifests";
-import * as storage from "ethpm/storage";
+import * as config from 'ethpm/config';
+import * as pkg from 'ethpm/package';
 
 
 export class Query<T extends config.Config> {
@@ -13,7 +11,7 @@ export class Query<T extends config.Config> {
 
   private workspace: config.Workspace<T>;
 
-  constructor (options: {
+  constructor(options: {
     package: pkg.Package,
     workspace: config.Workspace<T>
   }) {
@@ -21,7 +19,7 @@ export class Query<T extends config.Config> {
     this.workspace = options.workspace;
   }
 
-  async scope (dependencyName: pkg.PackageName): Promise<Query<T>> {
+  async scope(dependencyName: pkg.PackageName): Promise<Query<T>> {
     const dependency = await this.buildDependency(dependencyName);
 
     const resolver = new Query({
@@ -33,18 +31,17 @@ export class Query<T extends config.Config> {
   }
 
   async contractType(ref: pkg.ContractTypeReference)
-    : Promise<pkg.ContractType>
-  {
-    const terms = ref.split(":");
+    : Promise<pkg.ContractType> {
+    const terms = ref.split(':');
 
     const packages = terms.slice(0, -1);
     const type = terms.slice(-1);
 
-    const [ dependencyName, ...rest ] = packages;
+    const [dependencyName, ...rest] = packages;
 
     if (dependencyName) {
       const subquery = await this.scope(dependencyName);
-      const innerRef = [...rest, type].join(":");
+      const innerRef = [...rest, type].join(':');
 
       return await subquery.contractType(innerRef);
     }
@@ -55,11 +52,10 @@ export class Query<T extends config.Config> {
 
   async contractInstance(
     chain: pkg.ChainURI,
-    name: pkg.ContractInstanceName
+    name: pkg.ContractInstanceName,
   )
-    : Promise<pkg.ContractInstance>
-  {
-    const deployment = this.package.deployments.get(chain)
+    : Promise<pkg.ContractInstance> {
+    const deployment = this.package.deployments.get(chain);
     if (deployment === undefined) {
       throw new Error(`Could not find deployment at chain ${chain.href}`);
     }
@@ -73,19 +69,18 @@ export class Query<T extends config.Config> {
   }
 
   async buildDependency(name: pkg.PackageName)
-    : Promise<pkg.Package> | never
-  {
-    if (!("storage" in this.workspace)) {
-      throw new Error("Storage not configured!");
+    : Promise<pkg.Package> | never {
+    if (!('storage' in this.workspace)) {
+      throw new Error('Storage not configured!');
     }
 
-    if (!("manifests" in this.workspace)) {
-      throw new Error("Manifests not configured!");
+    if (!('manifests' in this.workspace)) {
+      throw new Error('Manifests not configured!');
     }
 
     const workspace = <
       config.Workspace<config.HasManifests & config.HasStorage>
-    >this.workspace;
+    > this.workspace;
 
     const uri = this.package.buildDependencies[name];
     const contents = await workspace.storage.read(uri);
@@ -95,5 +90,4 @@ export class Query<T extends config.Config> {
 
     throw new Error(`Could not find build dependency "${name}"`);
   }
-
 }
