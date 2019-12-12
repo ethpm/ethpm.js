@@ -17,15 +17,18 @@ export default class ReleasesCursor extends Paged<BN> implements IterableIterato
 
   private web3: Web3;
 
+  private packageName: pkg.PackageName;
+
   private from: string;
 
   private to: string;
 
-  constructor(pageSize: BN, length: BN, web3: Web3, from: string, to: string) {
+  constructor(pageSize: BN, length: BN, web3: Web3, packageName: string, from: string, to: string) {
     super(pageSize);
     this.pointer = new BN(0);
     this.length = length.clone();
     this.web3 = web3;
+    this.packageName = packageName;
     this.from = from;
     this.to = to;
   }
@@ -69,7 +72,6 @@ export default class ReleasesCursor extends Paged<BN> implements IterableIterato
         // we have the page, return the number
         return this.getReleaseData();
       }
-
       // we don't have the page, get it
       const offset = this.pointer.sub(this.pointer.mod(this.pageSize));
       const limit = offset.add(this.pageSize).subn(1);
