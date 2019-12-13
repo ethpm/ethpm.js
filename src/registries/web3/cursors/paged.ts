@@ -5,10 +5,10 @@
 import BN from 'bn.js';
 
 export default class Paged<T> {
+  // this.pages = Dict[page#, List[packageIds]]
   protected pageSize: BN;
-
-  private pages: {
-    [k: string]: T[]; // I'm assuming the page keys are hex strings
+  public pages: {
+    [k: string]: T[]
   }
 
   constructor(pageSize: BN) {
@@ -22,6 +22,10 @@ export default class Paged<T> {
 
   setPage(page: BN, value: T[]) {
     this.pages[page.toString('hex')] = value;
+  }
+
+  setPages(pageIds: any) {
+	this.pages = pageIds
   }
 
   hasPage(pointer: BN): boolean {

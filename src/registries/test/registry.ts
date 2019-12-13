@@ -10,9 +10,7 @@ describe("registry functions", () => {
   let ethpm: any
 
   beforeAll(async () => {
-	provider = new Web3.providers.HttpProvider("https://mainnet.infura.io/truffle", {
-	  keepAlive: false
-	});
+	provider = new Web3.providers.HttpProvider("https://mainnet.infura.io/truffle")
 	ethpm = await EthPM.configure({
 	  registries: "ethpm/registries/web3"
 	}).connect({
@@ -33,11 +31,7 @@ describe("registry functions", () => {
   });
 
   it("can get a packages' releases", async() => {
-	const packageName = 'ethregistrar'
-	const releases = await Promise.all(
-	  Array.from(await ethpm.registries.package("wallet").releases())
-	);
-	expect(releases).toEqual(['1.0.0'])
+	const releases = await Promise.all(Array.from(await ethpm.registries.packages()))
+	expect(releases).toEqual(['resolvers', 'ethregistrar', 'ens'])
   })
-
 });

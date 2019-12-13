@@ -92,28 +92,33 @@ export class Web3RegistryService implements registries.Service {
     return ipfsHash;
   };
 
-  // returns all packages (version, uri) 
-  async allPackages(): Promise<PackagesCursor> {
+  async packages (): Promise<PackagesCursor> {
     const numPackages = await this.numPackageIds();
+	let packageIdsBook = await this.getPackageIdsBook(numPackages)
     const cursor = new PackagesCursor(
       new BN(PAGE_SIZE),
       numPackages,
       this.web3,
-      this.registryContract
+      this.registryContract,
+	  packageIdsBook,
     );
     return cursor;
   }
 
-  async packages (): Promise<PackagesCursor> {
-    const numPackages = await this.numPackageIds();
-    // now paginate
-    const cursor = new PackagesCursor(
-      new BN(PAGE_SIZE),
-      numPackages,
-      this.web3,
-      this.registryContract
-    );
-    return cursor;
+  async getPackageIdsBook(numPackages: BN) {
+	let counter = 0
+	let data = {}
+	const numPages = numPackages.toNumber() / PAGE_SIZE
+	while (counter < numPages) {
+	  const inter = await this.registryContract.methods.getAllPackageIds(counter, PAGE_SIZE).call()
+	  data[counter] = inter
+	  counter += PAGE_SIZE
+	}
+	const actual = Object.keys(data).reduce(function(result, key) {
+	  result[key] = data[key]['packageIds'];
+	  return result
+	}, {})
+	return actual
   }
 
   package(packageName: pkg.PackageName) {
