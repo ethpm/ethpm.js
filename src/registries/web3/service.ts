@@ -25,7 +25,7 @@ export class Web3RegistryService implements registries.Service {
   private address: string;
 
   private accounts: string[];
-  private registryContract: Contract;
+  private registry: Contract;
 
   constructor(provider: Web3Provider, address: string) {
     this.web3 = new Web3(provider);
@@ -33,7 +33,7 @@ export class Web3RegistryService implements registries.Service {
     // use local Package type here
     // better manifest validation
     const registryABI = manifest.contract_types.PackageRegistry.abi;
-    this.registryContract = new this.web3.eth.Contract(registryABI, this.address);
+    this.registry = new this.web3.eth.Contract(registryABI, this.address);
     this.accounts = [];
   }
 
@@ -80,14 +80,14 @@ export class Web3RegistryService implements registries.Service {
   }
 
   async numPackageIds(): Promise<BN> {
-    let numPackages: string | BN = await this.registryContract.methods.numPackageIds().call();
+    let numPackages: string | BN = await this.registry.methods.numPackageIds().call();
     numPackages = new BN(numPackages);
     return numPackages;
   }
 
   async getReleaseData(packageName: string, version: string): Promise<string> {
-    let releaseId = await this.registryContract.methods.getReleaseId(packageName, version).call();
-    let releaseData = await this.registryContract.methods.getReleaseData(releaseId).call();
+    let releaseId = await this.registry.methods.getReleaseId(packageName, version).call();
+    let releaseData = await this.registry.methods.getReleaseData(releaseId).call();
     const ipfsHash = releaseData[2];
     return ipfsHash;
   };
@@ -99,10 +99,10 @@ export class Web3RegistryService implements registries.Service {
       new BN(PAGE_SIZE),
       numPackages,
       this.web3,
-      this.registryContract,
+      this.registry,
 	  packageIdsBook,
     );
-    return cursor;
+    return await Promise.all(Array.from(cursor));
   }
 
   async getPackageIdsBook(numPackages: BN) {
@@ -110,7 +110,7 @@ export class Web3RegistryService implements registries.Service {
 	let data = {}
 	const numPages = numPackages.toNumber() / PAGE_SIZE
 	while (counter < numPages) {
-	  const inter = await this.registryContract.methods.getAllPackageIds(counter, PAGE_SIZE).call()
+	  const inter = await this.registry.methods.getAllPackageIds(counter, PAGE_SIZE).call()
 	  data[counter] = inter
 	  counter += PAGE_SIZE
 	}
@@ -121,75 +121,50 @@ export class Web3RegistryService implements registries.Service {
 	return actual
   }
 
-  package(packageName: pkg.PackageName) {
+  async getReleaseIdsBook(packageName: string, numReleases: BN) {
+	let counter = 0
+	let data = {}
+	const numpages = numReleases.toNumber() / PAGE_SIZE
+	while (counter < numpages) {
+	  const inter = await this.registry.methods.getAllReleaseIds(packageName, counter, PAGE_SIZE).call({})
+	  data[counter] = inter
+	  counter += PAGE_SIZE
+	}
+	const actual = Object.keys(data).reduce(function(result, key) {
+	  result[key] = data[key]['releaseIds'];
+	  return result
+	}, {})
+	return actual
+  }
+
+  package (packageName: pkg.PackageName) {
     return {
       releases: async (): Promise<ReleasesCursor> => {
-        const numReleasesTx = this.web3.eth.abi.encodeFunctionCall({
-          name: "numReleaseIds",
-          type: "function",
-          inputs: [{
-            type: "string",
-            name: "packageName"
-          }]
-        }, [packageName]);
-        let result: string = await this.web3.eth.call({
-          to: this.address,
-          data: numReleasesTx,
-        });
-        let count = this.web3.eth.abi.decodeParameter("uint", result);
+		const count = await this.registry.methods.numReleaseIds(packageName).call()
         const numReleases = new BN(count);
+		const releaseIdsBook = await this.getReleaseIdsBook(packageName, numReleases)
         const cursor = new ReleasesCursor(
           new BN(PAGE_SIZE),
           numReleases,
           this.web3,
+		  this.registry,
           packageName,
-          this.accounts[0], // remove
-          this.address  // remove
+		  releaseIdsBook,
         );
-        return cursor;
+		const dict = await Promise.all(Array.from(cursor));
+		const thing = dict.reduce(function(map, obj) {
+		  map[obj.version] = obj.manifestURI;
+		  return map;
+		}, {});
+		return thing
       },
 
       release: async (version: pkg.Version): Promise<URL> => {
-        let data = this.web3.eth.abi.encodeFunctionCall({
-          name: 'getReleaseId',
-          type: 'function',
-          inputs: [{
-            type: 'string',
-            name: 'packageName',
-          }, {
-            type: 'string',
-            name: 'version',
-          }],
-        }, [packageName, version]);
-
-        let result = await this.web3.eth.call({
-          from: this.accounts[0],
-          to: this.address,
-          data,
-        });
-        const releaseId = this.web3.eth.abi.decodeParameter('bytes32', result);
-
-        data = this.web3.eth.abi.encodeFunctionCall({
-          name: 'getReleaseData',
-          type: 'function',
-          inputs: [{
-            type: 'bytes32',
-            name: 'releaseId',
-          }],
-        }, [`0x${releaseId.toString('hex')}`]);
-
-        result = await this.web3.eth.call({
-          from: this.accounts[0],
-          to: this.address,
-          data,
-        });
-
-        const parameters = this.web3.eth.abi.decodeParameters(
-          ['string', 'string', 'string'], result,
-        );
-        return new URL(parameters[2]);
-      },
-    };
+        let releaseId = await this.registry.methods.getReleaseId(packageName, version).call()
+		const releaseData = await this.registry.methods.getReleaseData(releaseId).call()
+		return new URL(releaseData[2]);
+      }
+    }
   }
 }
 
