@@ -9,15 +9,15 @@ export namespace Meta {
   export type Keyword = string;
 
   export interface PackageMetaLink {
-    resource: string,
-    uri: string
+    resource: string;
+    uri: string;
   }
 
   export interface PackageMeta {
-    authors?: Array<Author>,
-    license?: License,
-    description?: Description,
-    keywords?: Array<Keyword>,
-    links?: Array<PackageMetaLink>
+    authors?: Array<Author>;
+    license?: License;
+    description?: Description;
+    keywords?: Array<Keyword>;
+    links?: Array<PackageMetaLink>;
   }
 }

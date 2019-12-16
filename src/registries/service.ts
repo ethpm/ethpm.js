@@ -2,9 +2,9 @@
  * @module "ethpm/registries"
  */
 
-import { URL } from "url";
+import { URL } from 'url';
 
-import * as pkg from "ethpm/package";
+import * as pkg from 'ethpm/package';
 
 export interface Service {
   /**
@@ -35,5 +35,5 @@ export interface Service {
     packageName: pkg.PackageName,
     version: pkg.Version,
     manifest: URL
-  ): Promise<any>
+  ): Promise<any>;
 }

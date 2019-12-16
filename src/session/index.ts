@@ -2,5 +2,5 @@
  * @module "ethpm/session"
  */
 
-export * from "./session";
-export * from "./query";
+export * from './session';
+export * from './query';
