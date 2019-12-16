@@ -12,8 +12,8 @@ export class Query<T extends config.Config> {
   private workspace: config.Workspace<T>;
 
   constructor(options: {
-    package: pkg.Package,
-    workspace: config.Workspace<T>
+    package: pkg.Package;
+    workspace: config.Workspace<T>;
   }) {
     this.package = options.package;
     this.workspace = options.workspace;
@@ -30,8 +30,7 @@ export class Query<T extends config.Config> {
     return resolver;
   }
 
-  async contractType(ref: pkg.ContractTypeReference)
-    : Promise<pkg.ContractType> {
+  async contractType(ref: pkg.ContractTypeReference): Promise<pkg.ContractType> {
     const terms = ref.split(':');
 
     const packages = terms.slice(0, -1);
@@ -53,8 +52,7 @@ export class Query<T extends config.Config> {
   async contractInstance(
     chain: pkg.ChainURI,
     name: pkg.ContractInstanceName,
-  )
-    : Promise<pkg.ContractInstance> {
+  ): Promise<pkg.ContractInstance> {
     const deployment = this.package.deployments.get(chain);
     if (deployment === undefined) {
       throw new Error(`Could not find deployment at chain ${chain.href}`);
@@ -68,8 +66,7 @@ export class Query<T extends config.Config> {
     return instance;
   }
 
-  async buildDependency(name: pkg.PackageName)
-    : Promise<pkg.Package> | never {
+  async buildDependency(name: pkg.PackageName): Promise<pkg.Package> | never {
     if (!('storage' in this.workspace)) {
       throw new Error('Storage not configured!');
     }

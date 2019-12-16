@@ -1,11 +1,13 @@
 {
     "env": {
         "es6": true,
-		"jest": true,
+        "jest": true,
         "node": true
     },
     "extends": [
-        "eslint:recommended"
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -20,8 +22,14 @@
         "@typescript-eslint"
     ],
     "rules": {
-		"no-unused-vars": "warn",
-		"no-inner-declarations": "warn"
+        "no-unused-vars": "warn",
+        "no-inner-declarations": "warn",
+        "@typescript-eslint/no-namespace": "warn",
+        "@typescript-eslint/no-inner-declarations": "off",
+        "@typescript-eslint/no-use-before-define": "warn",
+        "@typescript-eslint/no-var-requires": "warn",
+        "@typescript-eslint/camelcase": "warn",
+        "@typescript-eslint/consistent-type-assertions": "warn"
     },
 	"settings": {
     "import/resolver": {

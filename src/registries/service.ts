@@ -35,5 +35,5 @@ export interface Service {
     packageName: pkg.PackageName,
     version: pkg.Version,
     manifest: URL
-  ): Promise<any>
+  ): Promise<any>;
 }

@@ -8,7 +8,7 @@ export default class Paged<T> {
   protected pageSize: BN;
 
   private pages: {
-    [k: string]: T[] // I'm assuming the page keys are hex strings
+    [k: string]: T[]; // I'm assuming the page keys are hex strings
   }
 
   constructor(pageSize: BN) {

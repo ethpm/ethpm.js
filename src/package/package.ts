@@ -31,34 +31,34 @@ export type Natspec = object;
 
 
 export interface Compiler {
-  name: CompilerName,
-  version: CompilerVersion,
-  settings: CompilerSettings,
+  name: CompilerName;
+  version: CompilerVersion;
+  settings: CompilerSettings;
 }
 
 export interface Bytecode {
-  bytecode: bytecode,
-  linkReferences: Array<Link.Reference>,
-  linkDependencies: Array<Link.Value>,
+  bytecode: bytecode;
+  linkReferences: Array<Link.Reference>;
+  linkDependencies: Array<Link.Value>;
 }
 
 export interface ContractType {
-  contractName: ContractName,
-  deploymentBytecode: Maybe<Bytecode>,
-  runtimeBytecode: Maybe<Bytecode>,
-  abi: Maybe<ABI>,
-  natspec: Maybe<Natspec>,
-  compiler: Maybe<Compiler>,
+  contractName: ContractName;
+  deploymentBytecode: Maybe<Bytecode>;
+  runtimeBytecode: Maybe<Bytecode>;
+  abi: Maybe<ABI>;
+  natspec: Maybe<Natspec>;
+  compiler: Maybe<Compiler>;
 }
 
 export interface ContractInstance {
-  contractType: ContractTypeReference,
-  address: Address,
-  transaction: Maybe<TransactionHash>,
-  block: Maybe<BlockHash>,
-  deploymentBytecode: Maybe<Bytecode>,
-  runtimeBytecode: Maybe<Bytecode>,
-  compiler: Maybe<Compiler>,
+  contractType: ContractTypeReference;
+  address: Address;
+  transaction: Maybe<TransactionHash>;
+  block: Maybe<BlockHash>;
+  deploymentBytecode: Maybe<Bytecode>;
+  runtimeBytecode: Maybe<Bytecode>;
+  compiler: Maybe<Compiler>;
 }
 
 export type Source = ContentURI | SourceString;
@@ -70,11 +70,11 @@ export type Deployments = Map<ChainURI, Deployment>;
 export type BuildDependencies = Record<PackageName, ContentURI>;
 
 export interface Package {
-  packageName: PackageName,
-  version: Version,
-  meta: Meta.PackageMeta,
-  sources: Sources,
-  contractTypes: ContractTypes,
-  deployments: Deployments,
-  buildDependencies: BuildDependencies,
+  packageName: PackageName;
+  version: Version;
+  meta: Meta.PackageMeta;
+  sources: Sources;
+  contractTypes: ContractTypes;
+  deployments: Deployments;
+  buildDependencies: BuildDependencies;
 }

@@ -14,7 +14,7 @@ import BN from 'bn.js';
 import PackagesCursor from './cursors/packages';
 import ReleasesCursor from './cursors/releases';
 
-const PAGE_SIZE: number = 10;
+const PAGE_SIZE = 10;
 
 export class Web3RegistryService implements registries.Service {
   private web3: Web3;
@@ -53,7 +53,7 @@ export class Web3RegistryService implements registries.Service {
       }],
     }, [packageName, version, manifest.href]);
 
-    const txParams : any = {
+    const txParams: any = {
       from: this.accounts[0],
       to: this.address,
       data,
