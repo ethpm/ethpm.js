@@ -17,47 +17,45 @@ export default class PackagesCursor extends Paged<BN> implements IterableIterato
 
   private web3: Web3;
 
-  private registry: any;
+  private registry: Contract;
+
   private packageIds: any;
 
-  constructor(pageSize: BN, length: BN, web3: Web3, registry: any, packageIds: any) {
+  constructor(pageSize: BN, length: BN, web3: Web3, registry: Contract, packageIds: any) {
     super(pageSize);
     this.pointer = new BN(0);
     this.length = length.clone();
     this.web3 = web3;
     this.registry = registry;
-	this.packageIds = packageIds;
-	this.setPages(packageIds)
+    this.packageIds = packageIds;
+    this.setPages(packageIds);
   }
 
   private getName(): IteratorResult<ResultType> {
     const promise: ResultType = new Promise((resolve) => {
       const packageId = this.getDatum(this.pointer);
       if (packageId === null) {
-        resolve("");
-      }
-      else {
-		this.registry.methods.getPackageName(packageId).call().then((result) => {
-		  return resolve(result);
-        });
+        resolve('');
+      } else {
+        this.registry.methods.getPackageName(packageId).call().then((result) => resolve(result));
       }
     });
-	this.pointer = this.pointer.addn(1);
+    this.pointer = this.pointer.addn(1);
     return {
       done: false,
-      value: promise
+      value: promise,
     };
   }
 
   public next(): IteratorResult<ResultType> {
     if (this.pointer.lt(this.length)) {
-	  return this.getName()
-    } else {
-      return {
-        done: true,
-        value: undefined
-      }
+      return this.getName();
     }
+    return {
+      done: true,
+      value: undefined,
+    };
+
     const promise: ResultType = new Promise((resolve) => {
       resolve(''); // TODO: empty string or something else?
     });

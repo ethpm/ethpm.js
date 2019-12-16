@@ -4,12 +4,14 @@
 
 import BN from 'bn.js';
 
+interface PagedIds {
+    [k: number]: Array<string>;
+}
+
 export default class Paged<T> {
-  // this.pages = Dict[page#, List[packageIds]]
   protected pageSize: BN;
-  public pages: {
-    [k: string]: T[]
-  }
+
+  public pages: PagedIds
 
   constructor(pageSize: BN) {
     this.pageSize = pageSize.clone();
@@ -24,8 +26,8 @@ export default class Paged<T> {
     this.pages[page.toString('hex')] = value;
   }
 
-  setPages(pageIds: any) {
-	this.pages = pageIds
+  setPages(pageIds: PagedIds) {
+    this.pages = pageIds;
   }
 
   hasPage(pointer: BN): boolean {
