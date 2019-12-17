@@ -24,6 +24,7 @@
     "rules": {
         "no-unused-vars": "warn",
         "no-inner-declarations": "warn",
+        "@typescript-eslint/ban-ts-ignore": "warn",
         "@typescript-eslint/no-namespace": "warn",
         "@typescript-eslint/no-inner-declarations": "off",
         "@typescript-eslint/no-use-before-define": "warn",
