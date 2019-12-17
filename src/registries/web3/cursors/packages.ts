@@ -17,94 +17,45 @@ export default class PackagesCursor extends Paged<BN> implements IterableIterato
 
   private web3: Web3;
 
-  private from: string;
+  private registry: Contract;
 
-  private to: string;
+  private packageIds: any;
 
-  constructor(pageSize: BN, length: BN, web3: Web3, from: string, to: string) {
+  constructor(pageSize: BN, length: BN, web3: Web3, registry: Contract, packageIds: any) {
     super(pageSize);
     this.pointer = new BN(0);
     this.length = length.clone();
     this.web3 = web3;
-    this.from = from;
-    this.to = to;
+    this.registry = registry;
+    this.packageIds = packageIds;
+    this.setPages(packageIds);
   }
 
   private getName(): IteratorResult<ResultType> {
     const promise: ResultType = new Promise((resolve) => {
       const packageId = this.getDatum(this.pointer);
       if (packageId === null) {
-        resolve(''); // TODO: empty string or something else?
+        resolve('');
       } else {
-        const data = this.web3.eth.abi.encodeFunctionCall({
-          name: 'getPackageName',
-          type: 'function',
-          inputs: [{
-            type: 'uint',
-            name: 'packageId',
-          }],
-        }, [`0x${packageId.toString('hex')}`]);
-
-        this.web3.eth.call({
-          from: this.from,
-          to: this.to,
-          data,
-        }).then((result) => {
-          resolve(this.web3.eth.abi.decodeParameter('string', result));
-        });
+        this.registry.methods.getPackageName(packageId).call().then((result) => resolve(result));
       }
     });
-
     this.pointer = this.pointer.addn(1);
-
     return {
-      done: true,
+      done: false,
       value: promise,
     };
   }
 
   public next(): IteratorResult<ResultType> {
     if (this.pointer.lt(this.length)) {
-      if (this.hasPage(this.pointer)) {
-        // we have the page, return the number
-        return this.getName();
-      }
-
-      // we don't have the page, get it
-      const offset = this.pointer.sub(this.pointer.mod(this.pageSize));
-      const limit = offset.add(this.pageSize).subn(1);
-
-      const data = this.web3.eth.abi.encodeFunctionCall({
-        name: 'getAllPackageIds',
-        type: 'function',
-        inputs: [{
-          type: 'uint',
-          name: 'offset',
-        }, {
-          type: 'uint',
-          limit: 'limit',
-        }],
-      }, [`0x${offset.toString('hex')}`, `0x${limit.toString('hex')}`]);
-
-      const promise: ResultType = new Promise(() => this.web3.eth.call({
-        from: this.from,
-        to: this.to,
-        data,
-      }).then((result) => {
-        // split packageIds into an array of BNs
-        // set the page
-        // get/resolve the datum
-        const results = this.web3.eth.abi.decodeParameters(['bytes32[]', 'uint'], result);
-        const packageIds = results[0].map((id: string) => new BN(id));
-        this.setPage(this.pointer, packageIds);
-        return this.getName();
-      }));
-
-      return {
-        done: true,
-        value: promise,
-      };
+      return this.getName();
     }
+    return {
+      done: true,
+      value: undefined,
+    };
+
     const promise: ResultType = new Promise((resolve) => {
       resolve(''); // TODO: empty string or something else?
     });
