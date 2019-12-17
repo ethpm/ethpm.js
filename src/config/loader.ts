@@ -4,12 +4,11 @@
 
 import * as config from './config';
 
-// @ts-ignore
-const requireFunc = typeof __webpack_require__ === "function" ? __non_webpack_require__ : require;
+const originalRequire: any = require("original-require");
 
 export function load<S>(plugin: config.ConfigValue<S>): config.Connector<S> {
   const required = (typeof plugin === 'string')
-    ? requireFunc(plugin)
+    ? originalRequire(plugin)
     : (typeof plugin === 'function')
       ? plugin
       : (typeof plugin === 'object' && plugin.default)
