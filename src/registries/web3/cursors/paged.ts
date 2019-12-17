@@ -22,8 +22,8 @@ export default class Paged<T> {
     return pointer.div(this.pageSize);
   }
 
-  setPage(page: BN, value: T[]) {
-    this.pages[page.toString('hex')] = value;
+  setPage(page: BN, value: string[]) {
+    this.pages[page.toNumber()] = value;
   }
 
   setPages(pageIds: PagedIds) {
@@ -31,12 +31,12 @@ export default class Paged<T> {
   }
 
   hasPage(pointer: BN): boolean {
-    return typeof this.pages[this.pointerToPage(pointer).toString('hex')] !== 'undefined';
+    return typeof this.pages[this.pointerToPage(pointer).toNumber()] !== 'undefined';
   }
 
-  getDatum(pointer: BN): T | null {
+  getDatum(pointer: BN): string | null {
     if (this.hasPage(pointer)) {
-      const page = this.pages[this.pointerToPage(pointer).toString('hex')];
+      const page = this.pages[this.pointerToPage(pointer).toNumber()];
       const index = pointer.mod(this.pageSize).toNumber();
       return page[index];
     }

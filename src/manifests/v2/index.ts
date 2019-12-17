@@ -267,6 +267,8 @@ namespace Fields {
     instance: pkg.ContractInstance,
     types: pkg.ContractTypes,
   ): schema.ContractInstance {
+    // type ignore b/c undefined case is handled on 295
+    // @ts-ignore
     return {
       contract_type: instance.contractType,
       address: instance.address as schema.Address,

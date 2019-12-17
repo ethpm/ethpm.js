@@ -24,8 +24,6 @@ export class Web3RegistryService implements registries.Service {
 
   private address: string;
 
-  private accounts: string[];
-
   private registry: Contract;
 
   constructor(provider: Web3Provider, address: string) {
@@ -41,7 +39,7 @@ export class Web3RegistryService implements registries.Service {
     version: pkg.Version,
     manifest: URL,
   ): Promise<any> {
-    await this.registry.methods.release(packageName, version, manifest).transact({});
+    await this.registry.methods.release(packageName, version, manifest).send({});
     // estimate gas requirement, and pad it a bit because some clients don't
     // handle gas refunds and such well
     // let gas = await this.web3.eth.estimateGas(txParams)
@@ -64,7 +62,7 @@ export class Web3RegistryService implements registries.Service {
     return ipfsHash;
   }
 
-  async packages(): Promise<PackagesCursor> {
+  async packages(): Promise<pkg.PackageName[]> {
     const numPackages = await this.numPackageIds();
     const allPackageIds = await this.getAllPackageIds(numPackages);
     const cursor = new PackagesCursor(
@@ -79,7 +77,7 @@ export class Web3RegistryService implements registries.Service {
   }
 
   async getAllPackageIds(numPackages: BN) {
-    const pageToIds = {};
+    const pageToIds: any = {};
     let packageCount = 0;
     const numPages = (numPackages.toNumber() - 1) / PAGE_SIZE;
     for (let i = 0; i < numPages; i++) {
@@ -87,7 +85,7 @@ export class Web3RegistryService implements registries.Service {
       pageToIds[i] = slice;
       packageCount += PAGE_SIZE;
     }
-    const formattedPageToIds = Object.keys(pageToIds).reduce((result, key) => {
+    const formattedPageToIds = Object.keys(pageToIds).reduce((result: any, key: string) => {
       result[key] = pageToIds[key].packageIds;
       return result;
     }, {});
@@ -95,7 +93,7 @@ export class Web3RegistryService implements registries.Service {
   }
 
   async getAllReleaseIds(packageName: pkg.PackageName, numReleases: BN) {
-    const pageToIds = {};
+    const pageToIds: any = {};
     let releaseCount = 0;
     const numPages = (numReleases.toNumber() - 1) / PAGE_SIZE;
     for (let i = 0; i < numPages; i++) {
@@ -103,7 +101,7 @@ export class Web3RegistryService implements registries.Service {
       pageToIds[i] = slice;
       releaseCount += PAGE_SIZE;
     }
-    const formattedPageToIds = Object.keys(pageToIds).reduce((result, key) => {
+    const formattedPageToIds = Object.keys(pageToIds).reduce((result: any, key: string) => {
       result[key] = pageToIds[key].releaseIds;
       return result;
     }, {});
@@ -112,7 +110,7 @@ export class Web3RegistryService implements registries.Service {
 
   package(packageName: pkg.PackageName) {
     return {
-      releases: async (): Promise<ReleasesCursor> => {
+      releases: async (): Promise<object> => {
         const count = await this.registry.methods.numReleaseIds(packageName).call();
         const numReleases = new BN(count);
         const allReleaseIds = await this.getAllReleaseIds(packageName, numReleases);
@@ -125,7 +123,7 @@ export class Web3RegistryService implements registries.Service {
           allReleaseIds,
         );
         const allReleaseData = await Promise.all(Array.from(cursor));
-        const formattedReleases = allReleaseData.reduce((map, obj) => {
+        const formattedReleases = allReleaseData.reduce((map: any, obj) => {
           map[obj.version] = obj.manifestURI;
           return map;
         }, {});
