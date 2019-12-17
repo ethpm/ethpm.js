@@ -6,7 +6,7 @@
 import * as pkg from 'ethpm/package';
 import BN from 'bn.js';
 import Web3 from 'web3';
-import Contract from 'web3/eth/contract';
+import { Contract } from 'web3-eth-contract/types';
 import Paged from './paged';
 
 interface ReleaseData {
@@ -47,7 +47,7 @@ export default class ReleasesCursor extends Paged<BN> implements IterableIterato
       if (releaseId === null) {
         resolve(undefined);
       } else {
-        this.registry.methods.getReleaseData(releaseId).call().then((result) => resolve(result));
+        this.registry.methods.getReleaseData(releaseId).call().then((result: any) => resolve(result));
       }
     });
     this.pointer = this.pointer.addn(1);

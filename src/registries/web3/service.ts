@@ -4,9 +4,9 @@
 
 import { URL } from 'url';
 import * as t from 'io-ts';
-import { HttpProvider as Web3Provider } from 'web3/providers';
+import { HttpProvider as Web3Provider } from 'web3-providers-http';
 import Web3 from 'web3';
-import Contract from 'web3/eth/contract';
+import { Contract } from 'web3-eth-contract/types';
 
 import * as config from 'ethpm/config';
 import * as registries from 'ethpm/registries';

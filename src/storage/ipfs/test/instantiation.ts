@@ -1,5 +1,5 @@
 import { EthPM } from 'ethpm';
-import { IpfsService } from '../index.ts';
+import { IpfsService } from '../index';
 
 const IPFSFactory = require('ipfsd-ctl');
 

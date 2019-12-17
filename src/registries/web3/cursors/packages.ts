@@ -6,8 +6,8 @@
 import * as pkg from 'ethpm/package';
 import BN from 'bn.js';
 import Web3 from 'web3';
-import Contract from 'web3/eth/contract';
 import Paged from './paged';
+import { Contract } from 'web3-eth-contract/types';
 
 type ResultType = Promise<pkg.PackageName>;
 
@@ -38,7 +38,7 @@ export default class PackagesCursor extends Paged<BN> implements IterableIterato
       if (packageId === null) {
         resolve('');
       } else {
-        this.registry.methods.getPackageName(packageId).call().then((result) => resolve(result));
+        this.registry.methods.getPackageName(packageId).call().then((result: any) => resolve(result));
       }
     });
     this.pointer = this.pointer.addn(1);
