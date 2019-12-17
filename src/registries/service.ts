@@ -10,7 +10,7 @@ export interface Service {
   /**
    * List all packages
    */
-  packages (): Promise<IterableIterator<Promise<pkg.PackageName>>>;
+  packages (): Promise<pkg.PackageName[]>;
 
   /**
    * Query a particular package
@@ -19,7 +19,7 @@ export interface Service {
     /**
      * List all releases
      */
-    releases (): Promise<IterableIterator<Promise<pkg.Version>>>;
+    releases (): Promise<object>;
 
 
     /**

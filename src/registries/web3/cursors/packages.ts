@@ -6,6 +6,7 @@
 import * as pkg from 'ethpm/package';
 import BN from 'bn.js';
 import Web3 from 'web3';
+import Contract from 'web3/eth/contract';
 import Paged from './paged';
 
 type ResultType = Promise<pkg.PackageName>;
