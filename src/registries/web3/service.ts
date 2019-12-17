@@ -4,7 +4,7 @@
 
 import { URL } from 'url';
 import * as t from 'io-ts';
-import { Provider as Web3Provider } from 'web3/providers';
+import { HttpProvider as Web3Provider } from 'web3/providers';
 import Web3 from 'web3';
 import Contract from 'web3/eth/contract';
 
