@@ -13,7 +13,7 @@ it('reads examples', async () => {
 
   expect(pkg.packageName).toEqual('wallet-with-send');
   expect(Object.keys(pkg.sources)).toContain('./contracts/WalletWithSend.sol');
-  // expect(Object.keys(pkg.contractTypes)).toContain("WalletWithSend");
+  expect(Object.keys(pkg.contractTypes)).toContain("WalletWithSend");
 });
 
 it('converts package_name', async () => {
