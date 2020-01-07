@@ -18,12 +18,12 @@ export class Resolver {
   async resolve(contentURI: URL) {
     const rawManifest = await this.ipfsBackend.read(contentURI)
     const originalPackage = await v2.read(rawManifest)
-    const sources = {}
-    const buildDependencies = {}
+    let sources = {}
+    let buildDependencies = {}
     
     // resolve any content-addressed sources
     if (originalPackage.sources) {
-      for (const key in originalPackage.sources) {
+      for (let key in originalPackage.sources) {
         if (Resolver.isValidUrl(originalPackage.sources[key])) {
           sources[key] = await this.ipfsBackend.read(originalPackage.sources[key])
         } else {
