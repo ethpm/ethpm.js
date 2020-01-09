@@ -99,8 +99,12 @@ describe('registry functions', () => {
   });
 
   it("can get all of a package's releases if non-existent release", async () => {
-    const releases = await ensRegistry.registries.package('ens').release('xxx');
-    expect(releases).toEqual({});
+    try {
+      await ensRegistry.registries.package('ens').release('xxx');
+    } catch (error) {
+      expect(error).toBeInstanceOf(Error)
+      expect(error.message).toBe("Package: ens@xxx not found.")
+    }
   });
 
   it("can get a specific release from package with a single release", async () => {
