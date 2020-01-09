@@ -14,6 +14,10 @@ import * as config from "ethpm/config"
 import * as t from 'io-ts'
 
 
+interface ObjectLiteral {
+  [key: string]: string;
+}
+
 interface IpfsOptions {
   host: string;
   port: number | string;
@@ -85,7 +89,7 @@ export class TruffleService implements installer.Service {
     } else {
       const existingLockfileData = JSON.parse(fs.readFileSync(tmpLockfilePath))
       const updatedLockfileData = Object.assign(existingLockfileData, lockfileData)
-      const ordered = {}
+      const ordered: ObjectLiteral = {}
       Object.keys(updatedLockfileData).sort().forEach((key) => {
         ordered[key] = updatedLockfileData[key]
       })

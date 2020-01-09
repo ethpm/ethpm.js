@@ -139,7 +139,7 @@ export class Web3RegistryService implements registries.Service {
         const releaseId = await this.registry.methods.getReleaseId(packageName, version).call();
         const releaseData = await this.registry.methods.getReleaseData(releaseId).call();
         if (releaseData.manifestURI === '') {
-          return {}
+          throw new Error('Package: ' + packageName + "@" + version + " not found.")
         } else {
           return new URL(releaseData[2]);
         }

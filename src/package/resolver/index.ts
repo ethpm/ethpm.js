@@ -4,9 +4,12 @@
 
 import { IpfsService } from 'ethpm/storage/ipfs';
 import { v2 } from 'ethpm/manifests/v2';
-import { Package } from 'ethpm/package';
+import { Package, Sources } from 'ethpm/package';
 import { URL } from 'url';
 
+interface ResolvedBuildDependencies {
+  [key: string]: ResolvedPackage;
+}
 
 export class Resolver {
   public ipfsBackend: IpfsService
@@ -17,15 +20,23 @@ export class Resolver {
 
   async resolve(contentURI: URL) {
     const rawManifest = await this.ipfsBackend.read(contentURI)
+    if (!rawManifest) {
+      throw new Error("Manifest at " + contentURI + " not found.")
+    }
     const originalPackage = await v2.read(rawManifest)
-    let sources = {}
-    let buildDependencies = {}
+    let sources: Sources = {}
+    let buildDependencies: ResolvedBuildDependencies = {}
     
     // resolve any content-addressed sources
     if (originalPackage.sources) {
       for (const key in originalPackage.sources) {
-        if (Resolver.isValidUrl(originalPackage.sources[key])) {
-          sources[key] = await this.ipfsBackend.read(originalPackage.sources[key])
+        if (originalPackage.sources[key] instanceof URL) {
+          const source = await this.ipfsBackend.read(originalPackage.sources[key] as URL)
+          if (source) {
+            sources[key] = source
+          } else {
+            throw new Error("No source found at " + originalPackage.sources[key])
+          }
         } else {
           sources[key] = originalPackage.sources[key]
         }
@@ -42,30 +53,21 @@ export class Resolver {
     }
     return new ResolvedPackage(rawManifest, contentURI, originalPackage, buildDependencies, sources)
   }
-
-  static isValidUrl(value: string) {
-    try {
-      new URL(value);
-      return true;
-    } catch (_) {
-      return false;  
-    }
-  }
 }
 
 export class ResolvedPackage {
   public contentURI: URL
   public originalPackage: Package
-  public buildDependencies: object
-  public rawManifest: object
-  public sources: object
+  public buildDependencies: ResolvedBuildDependencies
+  public rawManifest: string
+  public sources: Sources
 
   constructor(
-    rawManifest: object,
+    rawManifest: string,
     contentURI: URL,
     originalPackage: Package,
-    buildDependencies: object,
-    sources: object
+    buildDependencies: ResolvedBuildDependencies,
+    sources: Sources
   ) {
     this.rawManifest = rawManifest
     this.buildDependencies = buildDependencies
