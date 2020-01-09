@@ -78,12 +78,12 @@ export class Web3RegistryService implements registries.Service {
 
   async getAllPackageIds(numPackages: BN) {
     const pageToIds: any = {};
-    let packageCount = 0;
-    const numPages = (numPackages.toNumber() - 1) / PAGE_SIZE;
-    for (let i = 0; i < numPages; i++) {
-      const slice = await this.registry.methods.getAllPackageIds(packageCount, PAGE_SIZE).call();
+    let packageCounter = 0;
+    const numPages = numPackages.toNumber() / PAGE_SIZE;
+    for (let i = 0; i <= numPages; i++) {
+      const slice = await this.registry.methods.getAllPackageIds(packageCounter, PAGE_SIZE).call();
       pageToIds[i] = slice;
-      packageCount += PAGE_SIZE;
+      packageCounter += PAGE_SIZE;
     }
     const formattedPageToIds = Object.keys(pageToIds).reduce((result: any, key: string) => {
       result[key] = pageToIds[key].packageIds;
@@ -94,12 +94,12 @@ export class Web3RegistryService implements registries.Service {
 
   async getAllReleaseIds(packageName: pkg.PackageName, numReleases: BN) {
     const pageToIds: any = {};
-    let releaseCount = 0;
-    const numPages = (numReleases.toNumber() - 1) / PAGE_SIZE;
-    for (let i = 0; i < numPages; i++) {
-      const slice = await this.registry.methods.getAllReleaseIds(packageName, releaseCount, PAGE_SIZE).call({});
+    let releaseCounter = 0;
+    const numPages = numReleases.toNumber() / PAGE_SIZE;
+    for (let i = 0; i <= numPages; i++) {
+      const slice = await this.registry.methods.getAllReleaseIds(packageName, releaseCounter, PAGE_SIZE).call({});
       pageToIds[i] = slice;
-      releaseCount += PAGE_SIZE;
+      releaseCounter += PAGE_SIZE;
     }
     const formattedPageToIds = Object.keys(pageToIds).reduce((result: any, key: string) => {
       result[key] = pageToIds[key].releaseIds;
@@ -113,6 +113,11 @@ export class Web3RegistryService implements registries.Service {
       releases: async (): Promise<object> => {
         const count = await this.registry.methods.numReleaseIds(packageName).call();
         const numReleases = new BN(count);
+        try {
+          numReleases.toNumber()
+        } catch (_) {
+          return {}
+        }
         const allReleaseIds = await this.getAllReleaseIds(packageName, numReleases);
         const cursor = new ReleasesCursor(
           new BN(PAGE_SIZE),
@@ -133,7 +138,11 @@ export class Web3RegistryService implements registries.Service {
       release: async (version: pkg.Version): Promise<URL> => {
         const releaseId = await this.registry.methods.getReleaseId(packageName, version).call();
         const releaseData = await this.registry.methods.getReleaseData(releaseId).call();
-        return new URL(releaseData[2]);
+        if (releaseData.manifestURI === '') {
+          return {}
+        } else {
+          return new URL(releaseData[2]);
+        }
       },
     };
   }
