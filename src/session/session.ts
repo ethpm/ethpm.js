@@ -4,7 +4,7 @@
 
 import * as config from 'ethpm/config';
 import {
-  Config, HasManifests, HasStorage, HasRegistries,
+  Config, HasInstaller, HasManifests, HasStorage, HasRegistries,
 } from 'ethpm/config';
 
 import * as pkg from 'ethpm/package';
@@ -62,6 +62,14 @@ export class Session<T extends Config> {
     }
 
     throw new Error('No storage');
+  }
+
+  get installer(): config.Workspace<HasInstaller>['installer'] | never {
+    if ('installer' in this.workspace) {
+      return (<config.Workspace<HasInstaller>> this.workspace).installer;
+    }
+
+    throw new Error('No installer');
   }
 
   get registries(): config.Workspace<HasRegistries>['registries'] | never {

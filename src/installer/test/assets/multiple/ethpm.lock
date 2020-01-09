@@ -1,0 +1,29 @@
+{
+    "ens": {
+        "alias": "ens",
+        "install_uri": "ipfs://QmeooZzPrT2hDWSkhGoyLeSecsSbU26E6RiYfkXfPoug9U",
+        "registry_address": "0x808B53bF4D70A24bA5cb720D37A4835621A9df00",
+        "resolved_content_hash": "QmeooZzPrT2hDWSkhGoyLeSecsSbU26E6RiYfkXfPoug9U",
+        "resolved_package_name": "ens",
+        "resolved_uri": "ipfs://QmeooZzPrT2hDWSkhGoyLeSecsSbU26E6RiYfkXfPoug9U",
+        "resolved_version": "1.0.0"
+    },
+    "ethregistrar": {
+        "alias": "ethregistrar",
+        "install_uri": "ipfs://QmQ5pmTCjYjBJitzgcxjV3AMLtKVEgkJCqkCKzAcBB64AG",
+        "registry_address": "0x808B53bF4D70A24bA5cb720D37A4835621A9df00",
+        "resolved_content_hash": "QmQ5pmTCjYjBJitzgcxjV3AMLtKVEgkJCqkCKzAcBB64AG",
+        "resolved_package_name": "ethregistrar",
+        "resolved_uri": "ipfs://QmQ5pmTCjYjBJitzgcxjV3AMLtKVEgkJCqkCKzAcBB64AG",
+        "resolved_version": "1.0.0"
+    },
+    "resolvers": {
+        "alias": "resolvers",
+        "install_uri": "ipfs://QmYq3Qnjxo5SQ9eofdiYUSa2st1cCXkNVhEwMVi1XwWMdG",
+        "registry_address": "0x808B53bF4D70A24bA5cb720D37A4835621A9df00",
+        "resolved_content_hash": "QmYq3Qnjxo5SQ9eofdiYUSa2st1cCXkNVhEwMVi1XwWMdG",
+        "resolved_package_name": "resolvers",
+        "resolved_uri": "ipfs://QmYq3Qnjxo5SQ9eofdiYUSa2st1cCXkNVhEwMVi1XwWMdG",
+        "resolved_version": "1.0.0"
+    }
+}

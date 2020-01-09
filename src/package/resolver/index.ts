@@ -23,7 +23,7 @@ export class Resolver {
     
     // resolve any content-addressed sources
     if (originalPackage.sources) {
-      for (let key in originalPackage.sources) {
+      for (const key in originalPackage.sources) {
         if (Resolver.isValidUrl(originalPackage.sources[key])) {
           sources[key] = await this.ipfsBackend.read(originalPackage.sources[key])
         } else {
@@ -40,7 +40,7 @@ export class Resolver {
         buildDependencies[key] = pkg
       }
     }
-    return new ResolvedPackage(contentURI, originalPackage, buildDependencies, sources)
+    return new ResolvedPackage(rawManifest, contentURI, originalPackage, buildDependencies, sources)
   }
 
   static isValidUrl(value: string) {
@@ -57,14 +57,17 @@ export class ResolvedPackage {
   public contentURI: URL
   public originalPackage: Package
   public buildDependencies: object
+  public rawManifest: object
   public sources: object
 
   constructor(
+    rawManifest: object,
     contentURI: URL,
     originalPackage: Package,
     buildDependencies: object,
     sources: object
   ) {
+    this.rawManifest = rawManifest
     this.buildDependencies = buildDependencies
     this.contentURI = contentURI
     this.originalPackage = originalPackage

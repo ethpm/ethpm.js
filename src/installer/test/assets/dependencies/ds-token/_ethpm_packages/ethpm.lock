@@ -1,0 +1,29 @@
+{
+    "ds-math": {
+        "alias": "ds-math",
+        "install_uri": "ipfs://QmTUgXhS4S1hJ9kH8LaQk8BzofCGCC1i7oFNtdD4SdAoBs",
+        "registry_address": "0x808B53bF4D70A24bA5cb720D37A4835621A9df00",
+        "resolved_content_hash": "QmTUgXhS4S1hJ9kH8LaQk8BzofCGCC1i7oFNtdD4SdAoBs",
+        "resolved_package_name": "ds-math",
+        "resolved_uri": "ipfs://QmTUgXhS4S1hJ9kH8LaQk8BzofCGCC1i7oFNtdD4SdAoBs",
+        "resolved_version": "dsmatha1"
+    },
+    "ds-stop": {
+        "alias": "ds-stop",
+        "install_uri": "ipfs://QmXj4ACaSJPTCGvBZfvLboiN5P1v7N9miU2Qj6tU66ARcw",
+        "registry_address": "0x808B53bF4D70A24bA5cb720D37A4835621A9df00",
+        "resolved_content_hash": "QmXj4ACaSJPTCGvBZfvLboiN5P1v7N9miU2Qj6tU66ARcw",
+        "resolved_package_name": "ds-stop",
+        "resolved_uri": "ipfs://QmXj4ACaSJPTCGvBZfvLboiN5P1v7N9miU2Qj6tU66ARcw",
+        "resolved_version": "dstopa1"
+    },
+    "erc20": {
+        "alias": "erc20",
+        "install_uri": "ipfs://Qmd7EfeJPBsGnvMFZ91GReWqVqHMSkHLK6Ez3LvY3KgHpD",
+        "registry_address": "0x808B53bF4D70A24bA5cb720D37A4835621A9df00",
+        "resolved_content_hash": "Qmd7EfeJPBsGnvMFZ91GReWqVqHMSkHLK6Ez3LvY3KgHpD",
+        "resolved_package_name": "erc20",
+        "resolved_uri": "ipfs://Qmd7EfeJPBsGnvMFZ91GReWqVqHMSkHLK6Ez3LvY3KgHpD",
+        "resolved_version": "erc20a1"
+    }
+}
