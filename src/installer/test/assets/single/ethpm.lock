@@ -1,0 +1,11 @@
+{
+    "ens": {
+        "alias": "ens",
+        "install_uri": "ipfs://QmeooZzPrT2hDWSkhGoyLeSecsSbU26E6RiYfkXfPoug9U",
+        "registry_address": "0x808B53bF4D70A24bA5cb720D37A4835621A9df00",
+        "resolved_content_hash": "QmeooZzPrT2hDWSkhGoyLeSecsSbU26E6RiYfkXfPoug9U",
+        "resolved_package_name": "ens",
+        "resolved_uri": "ipfs://QmeooZzPrT2hDWSkhGoyLeSecsSbU26E6RiYfkXfPoug9U",
+        "resolved_version": "1.0.0"
+    }
+}

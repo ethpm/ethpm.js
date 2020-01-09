@@ -1,0 +1,11 @@
+{
+    "ds-token": {
+        "alias": "ds-token",
+        "install_uri": "ipfs://Qmd4xvKG8cKFDMCYdzgbGN5rf98VfP4bYwqArPQ7mdyEwf",
+        "registry_address": "0x808B53bF4D70A24bA5cb720D37A4835621A9df00",
+        "resolved_content_hash": "Qmd4xvKG8cKFDMCYdzgbGN5rf98VfP4bYwqArPQ7mdyEwf",
+        "resolved_package_name": "ds-token",
+        "resolved_uri": "ipfs://Qmd4xvKG8cKFDMCYdzgbGN5rf98VfP4bYwqArPQ7mdyEwf",
+        "resolved_version": "1.0.0a1"
+    }
+}

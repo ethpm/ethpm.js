@@ -18,8 +18,8 @@ export class Resolver {
   async resolve(contentURI: URL) {
     const rawManifest = await this.ipfsBackend.read(contentURI)
     const originalPackage = await v2.read(rawManifest)
-    const sources = {}
-    const buildDependencies = {}
+    let sources = {}
+    let buildDependencies = {}
     
     // resolve any content-addressed sources
     if (originalPackage.sources) {
@@ -40,7 +40,7 @@ export class Resolver {
         buildDependencies[key] = pkg
       }
     }
-    return new ResolvedPackage(contentURI, originalPackage, buildDependencies, sources)
+    return new ResolvedPackage(rawManifest, contentURI, originalPackage, buildDependencies, sources)
   }
 
   static isValidUrl(value: string) {
@@ -57,14 +57,17 @@ export class ResolvedPackage {
   public contentURI: URL
   public originalPackage: Package
   public buildDependencies: object
+  public rawManifest: object
   public sources: object
 
   constructor(
+    rawManifest: object,
     contentURI: URL,
     originalPackage: Package,
     buildDependencies: object,
     sources: object
   ) {
+    this.rawManifest = rawManifest
     this.buildDependencies = buildDependencies
     this.contentURI = contentURI
     this.originalPackage = originalPackage
