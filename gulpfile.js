@@ -86,6 +86,15 @@ gulp.task('copy-readme', function runCopyReadme () {
     .pipe(vfs.dest('dist'))
 });
 
+
+gulp.task('copy-manifest', function runCopyManifest () {
+  return vfs.src([
+    'src/registries/web3/simple/registry.json'
+  ], { resolveSymlinks: false })
+    .pipe(vfs.dest('dist/registries/web3/simple'))
+});
+
+
 gulp.task(
   'copy-symlinks',
   gulp.series(['copy-readme'], function runCopySymlinks () {
@@ -128,7 +137,7 @@ gulp.task('docs', function runDocs () {
     }));
 });
 
-gulp.task('build', gulp.series(['declarations', 'copy-symlinks']));
+gulp.task('build', gulp.series(['declarations', 'copy-symlinks', 'copy-manifest']));
 
 gulp.task('watch', gulp.series(['build'], function runWatch () {
   return gulp.watch([
