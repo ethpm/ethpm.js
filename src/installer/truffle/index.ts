@@ -52,7 +52,7 @@ export class TruffleService implements installer.Service {
 
   async install(contentURI: URL, registryAddress: string): Promise<void> {
     // create temporary _ethpm_packages/
-    const tmpEthpmDir = tmp.dirSync();
+    const tmpEthpmDir = tmp.dirSync({unsafeCleanup: true});
     fs.copySync(this.ethpmDir, tmpEthpmDir.name)
     const tmpLockfilePath = path.join(tmpEthpmDir.name, "ethpm.lock")
     const pkg = await this.resolver.resolve(contentURI)
