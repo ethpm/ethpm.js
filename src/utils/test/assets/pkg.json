@@ -74,7 +74,35 @@
 			}
 		}
 	},
-	"sources": {
-		"./Metacoin.sol": "ipfs://metacoin"
+	"deployments": {
+		"blockchain://d982ee05344fd7ad71a97ce20e64ee33c8033c6dedfce14dd5c2fef09200d17b/block/8fcfdc7b53a22911bcf5b81c3fb40ccb51204f60c94c94c15b6ab0ad375ff28e": {
+			"ConvertLib": {
+				"contractType": "ConvertLib",
+				"address": "0xAdCe8aa6242D3ce5F7cB256504EDB62EFAAa61ca",
+				"transaction": "0xeed2fe6d36b4f84d02e9d2be4c12579c573e44435628f35ecfaaad7c563ad692"
+			},
+			"MetaCoin": {
+				"contractType": "MetaCoin",
+				"address": "0x942F94De4D11A10ECB96fA5Bf3DF71FAdb333b75",
+				"transaction": "0x92bee72854f039cb36009fc041f00ab06237be3a40cf22dceb10dd9f805fc705"
+			},
+			"Migrations": {
+				"contractType": "Migrations",
+				"address": "0xBF9Ad955317610431579d9676Cc617Ce2e999744",
+				"transaction": "0x2053c9e2272697fe87dcb5582f79ecb82775782aaeee6f24e4df8ec0454ef329"
+			}
+		},
+		"blockchain://4092053bae6a81988862a61247ed84cb23e102937d8ff3a2b630af839a0e19c7/block/b2b4dd2b3c184b0645644350fda85e6c54c9459b9c8c2495a3583bac90c9534f": {
+			"ConvertLib": {
+				"contractType": "ConvertLib",
+				"address": "0xd2D961c84035aF1B0DFADDa447Ca9B586062D452",
+				"transaction": "0x3a9c9d58c514475a1f9b7d0101ddf66dd521eaac3b3620845865bf2358d7946c"
+			},
+			"MetaCoin": {
+				"contractType": "MetaCoin",
+				"address": "0x43A1E1f0E0C5568D006E42434A38851D9bc455EB",
+				"transaction": "0x62f435c351ca380ae8868aab43c5d0829891eaa12261d5b213426565495c039f"
+			}
+		}
 	}
 }

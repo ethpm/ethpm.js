@@ -1,5 +1,5 @@
 import { v2 } from 'ethpm/manifests/v2';
-import { parseTruffleArtifactToContractType } from 'ethpm/utils/truffle';
+import { parseTruffleArtifacts } from 'ethpm/utils/truffle';
 const fs = require("fs");
 
 import { Package } from 'ethpm/package';
@@ -73,24 +73,19 @@ it('handles raw data', async () => {
   expect(actualContractType.natspec).toEqual(expectedContractType.natspec)
 })
 
-//truffleConfig = {
-  //sources: sourcesConfig,
-  //contractTypes: artifacts,
-  //deployments: new Map(),
-  //buildDependencies: {}
-//};
 // MetaCoin deployed bytecode in artifact is not accurate, but adjusted for testing multiple linkrefs
 describe('generates contract type data', () => {
-  for (const contract of ['MetaCoin', 'ConvertLib', 'Migrations']) {
-    it(`for ${contract}`, async() => {
-      const artifacts = JSON.parse(fs.readFileSync(`./src/utils/test/assets/${contract}.json`, 'utf8'))
-      const actual = await parseTruffleArtifactToContractType(artifacts)
-      const expected = JSON.parse(fs.readFileSync("./src/utils/test/assets/pkg.json", 'utf8'))
-      expect(actual).toEqual(expected.contract_types[contract])
-
-      const config = {"package_name": "pkg", "version": "1.0.0"}
-
+  it(`for an iterator of artifact files`, async() => {
+    const iterator = ['ConvertLib', 'MetaCoin', 'Migrations']
+    const artifacts = []
+    for (let file of iterator) {
+      const artifact = JSON.parse(fs.readFileSync(`./src/utils/test/assets/${file}.json`, 'utf8'))
+      artifacts.push(artifact)
     }
+
+    const actual = await parseTruffleArtifacts(artifacts)
+    const expected = JSON.parse(fs.readFileSync("./src/utils/test/assets/pkg.json", 'utf8'))
+    expect(actual).toEqual(expected)
   })
 });
 
