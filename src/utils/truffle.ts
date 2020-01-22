@@ -1,11 +1,40 @@
-function parseBytecode(bytecode) {
+import { Address, ChainURI, TransactionHash, ABI, Compiler } from 'ethpm/package';
+
+
+interface DeploymentData {
+  contract_type: string,
+  address: Address,
+  transaction: TransactionHash,
+}
+
+interface Network {
+  address: Address,
+  transactionHash: TransactionHash,
+}
+
+interface Artifact {
+  abi: ABI,
+  bytecode: any,
+  deployedBytecode: any,
+  contractName: string,
+  compiler: Compiler,
+  devdoc: any,
+  userdoc: any,
+  metadata: string,
+  networks: Record<string, Network>,
+}
+
+
+function parseBytecode(bytecode: string) {
+  // detect link references in bytecode
   if (!bytecode.includes("_")) {
     return {
       bytecode: bytecode,
     }
   }
 
-  // hard coded length? // name > 20?
+  // todo: hard coded length...
+  // todo: support link dependencies
   let link_refs = []
   while (bytecode.indexOf("_") > 0) {
     const index = bytecode.indexOf("_")
@@ -35,28 +64,26 @@ function parseBytecode(bytecode) {
   }
 }
 
-function parseTruffleArtifactToContractType(json) {
-  const metadata = JSON.parse(json.metadata)
+function parseTruffleArtifactToContractType(artifact: Artifact) {
+  const metadata = JSON.parse(artifact.metadata)
   const config = {
-    abi: json.abi,
+    abi: artifact.abi,
     compiler: {
-      name: json.compiler.name,
-      version: json.compiler.version,
+      name: artifact.compiler.name,
+      version: artifact.compiler.version,
       settings: {
         optimize: metadata.settings.optimizer.enabled
       }
     },
-    // no contract_name since we don't support aliasing
-    //contract_name: json.contractName,
-    runtime_bytecode: parseBytecode(json.bytecode),
-    deployment_bytecode: parseBytecode(json.deployedBytecode),
-    natspec: Object.assign(json.devdoc, json.userdoc),
+    // todo: no contract_name since truffle doesn't support aliasing
+    runtime_bytecode: parseBytecode(artifact.bytecode),
+    deployment_bytecode: parseBytecode(artifact.deployedBytecode),
+    natspec: Object.assign(artifact.devdoc, artifact.userdoc),
   }
   return config
 }
-
-function parseTruffleArtifactsToDeployments(artifacts) {
-  const allDeployments = {}
+function parseTruffleArtifactsToDeployments(artifacts: Array<Artifact>) {
+  const allDeployments: Record<string, Record<string, DeploymentData>> = {}
   for (let artifact of artifacts) {
     for (let [blockchainUri, deploymentData] of Object.entries(artifact.networks)) {
       let currentUri = blockchainUri
@@ -66,13 +93,12 @@ function parseTruffleArtifactsToDeployments(artifacts) {
         transaction: deploymentData.transactionHash
       }
       for (let storedUri of Object.keys(allDeployments)) {
-        // validate latest block hash is used - needs w3
+        // todo: validate latest block hash is used - needs w3
         if (storedUri.startsWith(currentUri.split("/block/")[0])) {
           currentUri = storedUri
         }
       }
       if (allDeployments[currentUri] !== undefined) {
-        // allow aliasing? - probably not - kiss
         allDeployments[currentUri][artifact.contractName] = ethpmDeploymentData
       } else {
         allDeployments[currentUri] = {[artifact.contractName]: ethpmDeploymentData}
@@ -82,18 +108,19 @@ function parseTruffleArtifactsToDeployments(artifacts) {
   return allDeployments
 }
 
-function parseTruffleArtifacts(artifacts) {
-  const contractTypes = {}
+function parseTruffleArtifacts(artifacts: Array<Artifact>) {
+  const contractTypes: Record<string, any> = {}
+  const composedArtifacts: any = {}
   for (let artifact of artifacts) {
     const contractType = parseTruffleArtifactToContractType(artifact)
     contractTypes[artifact.contractName] = contractType
   }
-  // if no deployments - pass
+  composedArtifacts.contract_types = contractTypes
   const deployments = parseTruffleArtifactsToDeployments(artifacts)
-  return {
-    contract_types: contractTypes,
-    deployments: deployments,
+  if (Object.entries(deployments).length !== 0) {
+    composedArtifacts.deployments = deployments
   }
+  return composedArtifacts
 }
 
 export { parseTruffleArtifacts };
