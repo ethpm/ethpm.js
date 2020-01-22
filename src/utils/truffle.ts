@@ -1,7 +1,7 @@
 function parseBytecode(bytecode) {
   if (!bytecode.includes("_")) {
     return {
-      bytecode: bytecode
+      bytecode: bytecode,
     }
   }
 
@@ -31,7 +31,7 @@ function parseBytecode(bytecode) {
   }
   return {
     bytecode: bytecode,
-    linkReferences: link_refs
+    link_references: link_refs,
   }
 }
 
@@ -46,9 +46,10 @@ function parseTruffleArtifactToContractType(json) {
         optimize: metadata.settings.optimizer.enabled
       }
     },
-    contract_name: json.contractName,
-    runtimeBytecode: parseBytecode(json.bytecode),
-    deploymentBytecode: parseBytecode(json.deployedBytecode),
+    // no contract_name since we don't support aliasing
+    //contract_name: json.contractName,
+    runtime_bytecode: parseBytecode(json.bytecode),
+    deployment_bytecode: parseBytecode(json.deployedBytecode),
     natspec: Object.assign(json.devdoc, json.userdoc),
   }
   return config
@@ -60,23 +61,21 @@ function parseTruffleArtifactsToDeployments(artifacts) {
     for (let [blockchainUri, deploymentData] of Object.entries(artifact.networks)) {
       let currentUri = blockchainUri
       const ethpmDeploymentData = {
-        contractType: artifact.contractName,
+        contract_type: artifact.contractName,
         address: deploymentData.address,
         transaction: deploymentData.transactionHash
       }
       for (let storedUri of Object.keys(allDeployments)) {
-        if (storedUri.startsWith(blockchainUri.split("/block/")[0])) {
-          // validate latest block hash is used - needs w3
+        // validate latest block hash is used - needs w3
+        if (storedUri.startsWith(currentUri.split("/block/")[0])) {
           currentUri = storedUri
         }
       }
-      if (allDeployments[currentUri] === undefined) {
+      if (allDeployments[currentUri] !== undefined) {
         // allow aliasing? - probably not - kiss
-        allDeployments[currentUri] = {
-          [artifact.contractName]: ethpmDeploymentData
-        }
-      } else {
         allDeployments[currentUri][artifact.contractName] = ethpmDeploymentData
+      } else {
+        allDeployments[currentUri] = {[artifact.contractName]: ethpmDeploymentData}
       }
     }
   }

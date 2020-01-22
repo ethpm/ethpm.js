@@ -1,4 +1,5 @@
 import { v2 } from 'ethpm/manifests/v2';
+import { URL } from 'url';
 import { parseTruffleArtifacts } from 'ethpm/utils/truffle';
 const fs = require("fs");
 
@@ -39,11 +40,8 @@ it('handles raw data', async () => {
             "safeAdd(uint256,uint256)": {
               "details": "Adds a and b, throwing an error if the operation would cause an overflow.",
               "params": {
-                "a": "The first number to add",
-                "b": "The second number to add"
-              }
-            }
-          }
+                "a": "The first number to add", "b": "The second number to add" } }
+          },
           "title": "Safe Math Library"
         }
       }
@@ -74,8 +72,10 @@ it('handles raw data', async () => {
 })
 
 // MetaCoin deployed bytecode in artifact is not accurate, but adjusted for testing multiple linkrefs
-describe('generates contract type data', () => {
+describe('handles truffle artifacts: ctypes & deployments', () => {
   it(`for an iterator of artifact files`, async() => {
+    const pkgConfig = {'package_name': 'pkg', 'version': '1', 'manifest_version': '2'}
+
     const iterator = ['ConvertLib', 'MetaCoin', 'Migrations']
     const artifacts = []
     for (let file of iterator) {
@@ -83,12 +83,13 @@ describe('generates contract type data', () => {
       artifacts.push(artifact)
     }
 
-    const actual = await parseTruffleArtifacts(artifacts)
-    const expected = JSON.parse(fs.readFileSync("./src/utils/test/assets/pkg.json", 'utf8'))
-    expect(actual).toEqual(expected)
-  })
-});
+    const artifactConfig = await parseTruffleArtifacts(artifacts)
+    const actualJson = Object.assign(pkgConfig, artifactConfig)
 
-describe.skip('handles truffle artifacts with deployments', () => {
-  expect(true).toEqual(false)
+    const pkg: Package = await v2.read(JSON.stringify(actualJson))
+    const actualManifest = await v2.write(pkg)
+    expect(JSON.parse(actualManifest)).toEqual(actualJson)
+    const secondPkg = await v2.read(actualManifest)
+    expect(pkg).toEqual(secondPkg)
+  })
 });
