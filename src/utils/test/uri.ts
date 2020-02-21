@@ -6,7 +6,6 @@ describe('validates URIs', () => {
     'erc1319://snakecharmers.eth',
     'erc1319://snakecharmers.eth:1',
     'erc1319://snakecharmers.eth:1/',
-    new URL('erc1319://snakecharmers.eth:1/'),
   ];
 
   test.each(validRegistryUris)(
@@ -34,9 +33,9 @@ describe('validates URIs', () => {
 
 describe('parses package names and versions', () => {
   const validPackageIdUris = [
+    'ethpm://snakecharmers.eth/dai@1.0.0',
     'ethpm://snakecharmers.eth:1/dai@1.0.0',
     'ethpm://snakecharmers.eth:1/dai@1.0.0/',
-    new URL('ethpm://snakecharmers.eth:1/dai@1.0.0/'),
   ];
 
   test.each(validPackageIdUris)(
@@ -62,9 +61,9 @@ describe('parses package names and versions', () => {
 
 describe('supports namespaced assets', () => {
   const validPackageIdUris = [
+    'ethpm://snakecharmers.eth/dai@1.0.0/deployments/DSToken',
     'ethpm://snakecharmers.eth:1/dai@1.0.0/deployments/DSToken',
     'ethpm://snakecharmers.eth:1/dai@1.0.0/deployments/DSToken/',
-    new URL('ethpm://snakecharmers.eth:1/dai@1.0.0/deployments/DSToken/'),
   ];
 
   test.each(validPackageIdUris)(

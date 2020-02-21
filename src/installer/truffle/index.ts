@@ -5,7 +5,6 @@
 const fs = require('fs-extra')
 const tmp = require('tmp')
 const path = require('path')
-import { Erc1319URI } from "ethpm/utils/uri"
 import { IpfsService } from "ethpm/storage/ipfs";
 import { Resolver } from "ethpm/package/resolver"
 import { URL } from "url";

@@ -16,8 +16,8 @@ export class EthpmURI {
   version: string;
   namespacedAsset: string;
 
-  constructor(uri: string | URL) {
-    const parsedURI = typeof uri === 'string' ? new URL(uri) : uri;
+  constructor(uri: string) {
+    const parsedURI = new URL(uri);
     this.raw = uri;
     this.scheme = EthpmURI.parseScheme(parsedURI);
     this.chainId = EthpmURI.parseChainId(parsedURI);
