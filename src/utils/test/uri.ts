@@ -1,22 +1,26 @@
 import { EthpmURI } from 'ethpm/utils/uri';
+import { URL } from 'url';
 
 describe('validates URIs', () => {
   const validRegistryUris = [
     'erc1319://snakecharmers.eth',
     'erc1319://snakecharmers.eth:1',
     'erc1319://snakecharmers.eth:1/',
+    new URL('erc1319://snakecharmers.eth:1/'),
   ];
 
   test.each(validRegistryUris)(
     'for valid registry URIs',
     (uri) => {
       const ethpmURI = new EthpmURI(uri);
+      expect(ethpmURI).toHaveProperty('raw');
       expect(ethpmURI).toHaveProperty('scheme');
       expect(ethpmURI).toHaveProperty('address');
       expect(ethpmURI).toHaveProperty('chainId');
       expect(ethpmURI).toHaveProperty('packageName');
       expect(ethpmURI).toHaveProperty('version');
       expect(ethpmURI).toHaveProperty('namespacedAsset');
+      expect(ethpmURI.raw).toEqual(uri);
       expect(ethpmURI.scheme).toEqual('erc1319');
       expect(ethpmURI.address).toEqual('snakecharmers.eth');
       expect(ethpmURI.chainId).toEqual(1);
@@ -32,18 +36,21 @@ describe('parses package names and versions', () => {
   const validPackageIdUris = [
     'ethpm://snakecharmers.eth:1/dai@1.0.0',
     'ethpm://snakecharmers.eth:1/dai@1.0.0/',
+    new URL('ethpm://snakecharmers.eth:1/dai@1.0.0/'),
   ];
 
   test.each(validPackageIdUris)(
     'for valid package URIs',
     (uri) => {
       const ethpmURI = new EthpmURI(uri);
+      expect(ethpmURI).toHaveProperty('raw');
       expect(ethpmURI).toHaveProperty('scheme');
       expect(ethpmURI).toHaveProperty('address');
       expect(ethpmURI).toHaveProperty('chainId');
       expect(ethpmURI).toHaveProperty('packageName');
       expect(ethpmURI).toHaveProperty('version');
       expect(ethpmURI).toHaveProperty('namespacedAsset');
+      expect(ethpmURI.raw).toEqual(uri);
       expect(ethpmURI.scheme).toEqual('ethpm');
       expect(ethpmURI.address).toEqual('snakecharmers.eth');
       expect(ethpmURI.chainId).toEqual(1);
@@ -57,18 +64,21 @@ describe('supports namespaced assets', () => {
   const validPackageIdUris = [
     'ethpm://snakecharmers.eth:1/dai@1.0.0/deployments/DSToken',
     'ethpm://snakecharmers.eth:1/dai@1.0.0/deployments/DSToken/',
+    new URL('ethpm://snakecharmers.eth:1/dai@1.0.0/deployments/DSToken/'),
   ];
 
   test.each(validPackageIdUris)(
     'for valid package URIs',
     (uri) => {
       const ethpmURI = new EthpmURI(uri);
+      expect(ethpmURI).toHaveProperty('raw');
       expect(ethpmURI).toHaveProperty('scheme');
       expect(ethpmURI).toHaveProperty('address');
       expect(ethpmURI).toHaveProperty('chainId');
       expect(ethpmURI).toHaveProperty('packageName');
       expect(ethpmURI).toHaveProperty('version');
       expect(ethpmURI).toHaveProperty('namespacedAsset');
+      expect(ethpmURI.raw).toEqual(uri);
       expect(ethpmURI.scheme).toEqual('ethpm');
       expect(ethpmURI.address).toEqual('snakecharmers.eth');
       expect(ethpmURI.chainId).toEqual(1);

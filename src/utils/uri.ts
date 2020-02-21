@@ -8,6 +8,7 @@ import { URL } from 'url';
 // i.e.
 // erc1319://snakecharmers.eth:1/dai@1.0.0
 export class EthpmURI {
+  raw: string;
   scheme: string;
   address: string;
   chainId: number;
@@ -16,11 +17,12 @@ export class EthpmURI {
   namespacedAsset: string;
 
   constructor(uri: string | URL) {
-    const parsedUri = typeof uri === 'string' ? new URL(uri) : uri;
-    this.scheme = EthpmURI.parseScheme(parsedUri);
-    this.chainId = EthpmURI.parseChainId(parsedUri);
-    this.address = parsedUri.hostname; // address or ensName
-    [this.packageName, this.version, this.namespacedAsset] = EthpmURI.parsePackageId(parsedUri);
+    const parsedURI = typeof uri === 'string' ? new URL(uri) : uri;
+    this.raw = uri;
+    this.scheme = EthpmURI.parseScheme(parsedURI);
+    this.chainId = EthpmURI.parseChainId(parsedURI);
+    this.address = parsedURI.hostname; // address or ensName
+    [this.packageName, this.version, this.namespacedAsset] = EthpmURI.parsePackageId(parsedURI);
   }
 
   static parsePackageId(url: URL) {
