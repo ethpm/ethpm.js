@@ -1,7 +1,9 @@
-import { Erc1319URI } from 'ethpm/utils/uri';
+import { EthpmURI } from 'ethpm/utils/uri';
+import { URL } from 'url';
 
 describe('validates URIs', () => {
   const validRegistryUris = [
+    'erc1319://snakecharmers.eth',
     'erc1319://snakecharmers.eth:1',
     'erc1319://snakecharmers.eth:1/',
   ];
@@ -9,17 +11,21 @@ describe('validates URIs', () => {
   test.each(validRegistryUris)(
     'for valid registry URIs',
     (uri) => {
-      const erc1319URI = new Erc1319URI(uri);
-      expect(erc1319URI).toHaveProperty('scheme');
-      expect(erc1319URI).toHaveProperty('address');
-      expect(erc1319URI).toHaveProperty('chainId');
-      expect(erc1319URI).toHaveProperty('packageName');
-      expect(erc1319URI).toHaveProperty('version');
-      expect(erc1319URI.scheme).toEqual('erc1319');
-      expect(erc1319URI.address).toEqual('snakecharmers.eth');
-      expect(erc1319URI.chainId).toEqual(1);
-      expect(erc1319URI.packageName).toEqual('');
-      expect(erc1319URI.version).toEqual('');
+      const ethpmURI = new EthpmURI(uri);
+      expect(ethpmURI).toHaveProperty('raw');
+      expect(ethpmURI).toHaveProperty('scheme');
+      expect(ethpmURI).toHaveProperty('address');
+      expect(ethpmURI).toHaveProperty('chainId');
+      expect(ethpmURI).toHaveProperty('packageName');
+      expect(ethpmURI).toHaveProperty('version');
+      expect(ethpmURI).toHaveProperty('namespacedAsset');
+      expect(ethpmURI.raw).toEqual(uri);
+      expect(ethpmURI.scheme).toEqual('erc1319');
+      expect(ethpmURI.address).toEqual('snakecharmers.eth');
+      expect(ethpmURI.chainId).toEqual(1);
+      expect(ethpmURI.packageName).toEqual('');
+      expect(ethpmURI.version).toEqual('');
+      expect(ethpmURI.namespacedAsset).toEqual('');
     },
   );
 });
@@ -27,24 +33,57 @@ describe('validates URIs', () => {
 
 describe('parses package names and versions', () => {
   const validPackageIdUris = [
-    'erc1319://snakecharmers.eth:1/dai@1.0.0',
-    'erc1319://snakecharmers.eth:1/dai@1.0.0/',
+    'ethpm://snakecharmers.eth/dai@1.0.0',
+    'ethpm://snakecharmers.eth:1/dai@1.0.0',
+    'ethpm://snakecharmers.eth:1/dai@1.0.0/',
   ];
 
   test.each(validPackageIdUris)(
     'for valid package URIs',
     (uri) => {
-      const erc1319URI = new Erc1319URI(uri);
-      expect(erc1319URI).toHaveProperty('scheme');
-      expect(erc1319URI).toHaveProperty('address');
-      expect(erc1319URI).toHaveProperty('chainId');
-      expect(erc1319URI).toHaveProperty('packageName');
-      expect(erc1319URI).toHaveProperty('version');
-      expect(erc1319URI.scheme).toEqual('erc1319');
-      expect(erc1319URI.address).toEqual('snakecharmers.eth');
-      expect(erc1319URI.chainId).toEqual(1);
-      expect(erc1319URI.packageName).toEqual('dai');
-      expect(erc1319URI.version).toEqual('1.0.0');
+      const ethpmURI = new EthpmURI(uri);
+      expect(ethpmURI).toHaveProperty('raw');
+      expect(ethpmURI).toHaveProperty('scheme');
+      expect(ethpmURI).toHaveProperty('address');
+      expect(ethpmURI).toHaveProperty('chainId');
+      expect(ethpmURI).toHaveProperty('packageName');
+      expect(ethpmURI).toHaveProperty('version');
+      expect(ethpmURI).toHaveProperty('namespacedAsset');
+      expect(ethpmURI.raw).toEqual(uri);
+      expect(ethpmURI.scheme).toEqual('ethpm');
+      expect(ethpmURI.address).toEqual('snakecharmers.eth');
+      expect(ethpmURI.chainId).toEqual(1);
+      expect(ethpmURI.packageName).toEqual('dai');
+      expect(ethpmURI.version).toEqual('1.0.0');
+    },
+  );
+});
+
+describe('supports namespaced assets', () => {
+  const validPackageIdUris = [
+    'ethpm://snakecharmers.eth/dai@1.0.0/deployments/DSToken',
+    'ethpm://snakecharmers.eth:1/dai@1.0.0/deployments/DSToken',
+    'ethpm://snakecharmers.eth:1/dai@1.0.0/deployments/DSToken/',
+  ];
+
+  test.each(validPackageIdUris)(
+    'for valid package URIs',
+    (uri) => {
+      const ethpmURI = new EthpmURI(uri);
+      expect(ethpmURI).toHaveProperty('raw');
+      expect(ethpmURI).toHaveProperty('scheme');
+      expect(ethpmURI).toHaveProperty('address');
+      expect(ethpmURI).toHaveProperty('chainId');
+      expect(ethpmURI).toHaveProperty('packageName');
+      expect(ethpmURI).toHaveProperty('version');
+      expect(ethpmURI).toHaveProperty('namespacedAsset');
+      expect(ethpmURI.raw).toEqual(uri);
+      expect(ethpmURI.scheme).toEqual('ethpm');
+      expect(ethpmURI.address).toEqual('snakecharmers.eth');
+      expect(ethpmURI.chainId).toEqual(1);
+      expect(ethpmURI.packageName).toEqual('dai');
+      expect(ethpmURI.version).toEqual('1.0.0');
+      expect(ethpmURI.namespacedAsset).toEqual('deployments/DSToken');
     },
   );
 });
@@ -64,14 +103,12 @@ describe('invalidates ', () => {
     'invalid uri schemes',
     (uri) => {
       expect(() => {
-        new Erc1319URI(uri);
+        new EthpmURI(uri);
       }).toThrow('Invalid scheme: ');
     },
   );
 
   const invalidChainIds = [
-    'erc1319://snakecharmers.eth',
-    'erc1319://snakecharmers.eth/',
     'erc1319://snakecharmers.eth:2',
     'erc1319://snakecharmers.eth:2/',
     'erc1319://snakecharmers.eth:41',
@@ -81,7 +118,7 @@ describe('invalidates ', () => {
     'invalid chain IDs',
     (uri) => {
       expect(() => {
-        new Erc1319URI(uri);
+        new EthpmURI(uri);
       }).toThrow('Invalid chain ID: ');
     },
   );
@@ -97,7 +134,7 @@ describe('invalidates ', () => {
     'invalid package IDs',
     (uri) => {
       expect(() => {
-        new Erc1319URI(uri);
+        new EthpmURI(uri);
       }).toThrow('Invalid package ID: ');
     },
   );
