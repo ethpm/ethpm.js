@@ -41,7 +41,7 @@ describe('registry functions', () => {
   
   it('gets the number of packages on small registry', async () => {
     const numPackages = await multisigRegistry.registries.numPackageIds();
-    const expected = new BN(1);
+    const expected = new BN(2);
     expect(numPackages).toEqual(expected);
   });
 
@@ -64,7 +64,7 @@ describe('registry functions', () => {
 
   it('can get all packages on registry with single package', async () => {
     const packages = await multisigRegistry.registries.packages();
-    expect(packages).toEqual(['gnosis']);
+    expect(packages).toEqual(['gnosis', 'gnosis-safe']);
   });
 
   it('can get all packages on registry with multiple packages', async () => {
