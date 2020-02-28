@@ -4,6 +4,14 @@
 
 import { URL } from 'url';
 
+const SUPPORTED_CHAIN_IDS = [
+  1, // mainnet
+  3, // ropsten
+  4, // rinkeby
+  5, // goerli
+  42 // kovan
+]
+
 // scheme://address:chainId/packageName@version
 // i.e.
 // erc1319://snakecharmers.eth:1/dai@1.0.0
@@ -45,14 +53,15 @@ export class EthpmURI {
   }
 
   static parseChainId(url: URL) {
-    // todo: support multiple chain ids
     const chainId = +url.port;
     if (chainId === 1 || chainId === 0) {
       return 1;
-    } else {
+    } else if (!SUPPORTED_CHAIN_IDS.includes(chainId)) {
       throw new Error(
         `Invalid chain ID: ${chainId}. Currently only mainnet is supported.`,
       );
+    } else {
+      return chainId
     }
   }
 

@@ -28,8 +28,23 @@ describe('validates URIs', () => {
       expect(ethpmURI.namespacedAsset).toEqual('');
     },
   );
-});
 
+  const supportedChainIds = [
+    ['erc1319://snakecharmers.eth', 1],
+    ['erc1319://snakecharmers.eth:1', 1],
+    ['erc1319://snakecharmers.eth:3', 3],
+    ['erc1319://snakecharmers.eth:4', 4],
+    ['erc1319://snakecharmers.eth:5', 5],
+    ['erc1319://snakecharmers.eth:42', 42],
+  ]
+  test.each(supportedChainIds)(
+    'for supported chain ids',
+    (uri, chainId) => {
+      const ethpmURI = new EthpmURI(uri);
+      expect(ethpmURI.chainId).toEqual(chainId);
+    },
+  );
+});
 
 describe('parses package names and versions', () => {
   const validPackageIdUris = [
