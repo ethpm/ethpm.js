@@ -3,6 +3,7 @@ import { parseTruffleArtifacts } from 'ethpm/utils/truffle';
 import { Package } from 'ethpm/package';
 const fs = require("fs");
 
+
 // MetaCoin deployed bytecode in artifact is not accurate, but adjusted for testing multiple linkrefs
 describe('handles truffle artifacts', () => {
   it(`for an iterator of artifact files: ctypes & deployments`, async() => {
@@ -42,4 +43,11 @@ describe('handles truffle artifacts', () => {
     const secondPkg = await v2.read(actualManifest)
     expect(pkg).toEqual(secondPkg)
   })
+
+
+  it('for artifacts that are installed via ethpm, w/o all default fields', async() => {
+    const artifact = JSON.parse(fs.readFileSync(`./src/utils/test/assets/Minimal.json`, 'utf8'))
+    const artifactConfig = await parseTruffleArtifacts([artifact])
+    expect(artifactConfig).toEqual({"contract_types": {"ConvertLib": { "abi": artifact.abi}}})
+  });
 });
