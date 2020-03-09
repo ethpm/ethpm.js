@@ -64,24 +64,36 @@ function parseBytecode(bytecode: string) {
   }
 }
 
-function parseTruffleArtifactToContractType(artifact: Artifact) {
-  const metadata = JSON.parse(artifact.metadata)
-  const config = {
-    abi: artifact.abi,
-    compiler: {
-      name: artifact.compiler.name,
-      version: artifact.compiler.version,
-      settings: {
-        optimize: metadata.settings.optimizer.enabled
-      }
-    },
-    // todo: no contract_name since truffle doesn't support aliasing
-    runtime_bytecode: parseBytecode(artifact.bytecode),
-    deployment_bytecode: parseBytecode(artifact.deployedBytecode),
-    natspec: Object.assign(artifact.devdoc, artifact.userdoc),
+function parseTruffleArtifactsToContractTypes(artifacts: Array<Artifact>) {
+  const contractTypes: Record<string, any> = {}
+  for (let artifact of artifacts) {
+    let metadata;
+    if (artifact.metadata !== undefined) {
+      metadata = JSON.parse(artifact.metadata);
+    }
+    const config = {
+      ...(artifact.abi) && {abi: artifact.abi},
+      ...(artifact.compiler) && {
+        compiler: {
+          ...(artifact.compiler.name) && {name: artifact.compiler.name},
+          ...(artifact.compiler.version) && {version: artifact.compiler.version},
+          ...(metadata && metadata.settings && metadata.settings.optimizer) && {
+            settings: {
+              optimize: metadata.settings.optimizer.enabled
+            }
+          }
+        }
+      },
+      // todo: no contract_name since truffle doesn't support aliasing
+      ...(artifact.bytecode) && {runtime_bytecode: parseBytecode(artifact.bytecode)},
+      ...(artifact.deployedBytecode) && {deployment_bytecode: parseBytecode(artifact.deployedBytecode)},
+      ...(artifact.devdoc || artifact.userdoc) && {natspec: Object.assign(artifact.devdoc, artifact.userdoc)},
+    }
+    contractTypes[artifact.contractName] = config
   }
-  return config
+  return contractTypes
 }
+
 function parseTruffleArtifactsToDeployments(artifacts: Array<Artifact>) {
   const allDeployments: Record<string, Record<string, DeploymentData>> = {}
   for (let artifact of artifacts) {
@@ -109,13 +121,8 @@ function parseTruffleArtifactsToDeployments(artifacts: Array<Artifact>) {
 }
 
 function parseTruffleArtifacts(artifacts: Array<Artifact>) {
-  const contractTypes: Record<string, any> = {}
   const composedArtifacts: any = {}
-  for (let artifact of artifacts) {
-    const contractType = parseTruffleArtifactToContractType(artifact)
-    contractTypes[artifact.contractName] = contractType
-  }
-  composedArtifacts.contract_types = contractTypes
+  composedArtifacts.contract_types = parseTruffleArtifactsToContractTypes(artifacts)
   const deployments = parseTruffleArtifactsToDeployments(artifacts)
   if (Object.entries(deployments).length !== 0) {
     composedArtifacts.deployments = deployments
