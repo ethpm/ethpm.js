@@ -68,7 +68,7 @@ function parseTruffleArtifactsToContractTypes(artifacts: Array<Artifact>) {
   const contractTypes: Record<string, any> = {}
   for (let artifact of artifacts) {
     let metadata;
-    if (artifact.metadata !== undefined) {
+    if (typeof artifact.metadata !== "undefined") {
       metadata = JSON.parse(artifact.metadata);
     }
     const config = {
@@ -110,7 +110,7 @@ function parseTruffleArtifactsToDeployments(artifacts: Array<Artifact>) {
           currentUri = storedUri
         }
       }
-      if (allDeployments[currentUri] !== undefined) {
+      if (typeof allDeployments[currentUri] !== "undefined") {
         allDeployments[currentUri][artifact.contractName] = ethpmDeploymentData
       } else {
         allDeployments[currentUri] = {[artifact.contractName]: ethpmDeploymentData}
