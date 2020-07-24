@@ -1,5 +1,6 @@
+
 /**
- * @module "ethpm/manifests/v2"
+ * @module "ethpm/manifests/v3"
  */
 
 import * as t from 'io-ts';
@@ -15,7 +16,7 @@ import * as manifests from 'ethpm/manifests/service';
 
 const deepEqual = require('deep-equal');
 
-const VERSION = '2';
+const VERSION = 'ethpm/3';
 
 namespace Fields {
   export function readContractTypes(contractTypes: schema.ContractTypes): pkg.ContractTypes {
@@ -50,13 +51,21 @@ namespace Fields {
     alias: string,
   ): pkg.ContractType {
     return {
-      contractName: contractType.contract_name || alias,
-      deploymentBytecode: lift(readBytecode)(contractType.deployment_bytecode),
-      runtimeBytecode: lift(readBytecode)(contractType.runtime_bytecode),
+      contractName: contractType.contractName || alias,
+      deploymentBytecode: lift(readBytecode)(contractType.deploymentBytecode),
+      runtimeBytecode: lift(readBytecode)(contractType.runtimeBytecode),
       abi: contractType.abi,
-      natspec: contractType.natspec,
-      compiler: lift(readCompiler)(contractType.compiler),
+      userdoc: contractType.userdoc,
+      devdoc: contractType.devdoc,
+      sourceId: contractType.sourceId,
+      //compiler: lift(readCompiler)(contractType.compiler),
     };
+  }
+
+  export function readCompilers(
+    compilers: schema.Compilers,
+  ): pkg.Compilers {
+    return compilers
   }
 
   export function readBytecode(
@@ -80,13 +89,13 @@ namespace Fields {
     return {
       bytecode: bytestring,
       linkReferences: [...(
-        (bytecode.link_references)
-          ? bytecode.link_references
+        (bytecode.linkReferences)
+          ? bytecode.linkReferences
           : (parent && parent.linkReferences)
             ? parent.linkReferences
             : []
       )],
-      linkDependencies: readLinkDependencies(bytecode.link_dependencies),
+      linkDependencies: readLinkDependencies(bytecode.linkDependencies),
     };
   }
 
@@ -113,9 +122,7 @@ namespace Fields {
   }
 
   export function readCompiler(compiler: schema.CompilerInformation): pkg.Compiler {
-    return {
-      name: compiler.name,
-      version: compiler.version,
+    return { name: compiler.name, version: compiler.version,
       settings: compiler.settings || {},
     };
   }
@@ -138,19 +145,14 @@ namespace Fields {
     types: pkg.ContractTypes,
   ): pkg.ContractInstance {
     return {
-      contractType: instance.contract_type,
+      contractType: instance.contractType,
       address: instance.address,
       transaction: instance.transaction,
       block: instance.block,
-      deploymentBytecode: readBytecode(
-        instance.deployment_bytecode,
-        (types[instance.contract_type] || {}).deploymentBytecode,
-      ),
       runtimeBytecode: readBytecode(
-        instance.runtime_bytecode,
-        (types[instance.contract_type] || {}).runtimeBytecode,
+        instance.runtimeBytecode,
+        (types[instance.contractType] || {}).runtimeBytecode,
       ),
-      compiler: lift(readCompiler)(instance.compiler),
     };
   }
 
@@ -182,16 +184,24 @@ namespace Fields {
     alias: pkg.ContractAlias,
   ): schema.ContractType {
     return {
-      deployment_bytecode: lift(writeBytecode)(contractType.deploymentBytecode),
-      runtime_bytecode: lift(writeBytecode)(contractType.runtimeBytecode),
+      deploymentBytecode: lift(writeBytecode)(contractType.deploymentBytecode),
+      runtimeBytecode: lift(writeBytecode)(contractType.runtimeBytecode),
       abi: contractType.abi,
-      natspec: contractType.natspec,
-      compiler: lift(writeCompiler)(contractType.compiler),
+      devdoc: contractType.devdoc,
+      userdoc: contractType.userdoc,
+      sourceId: contractType.sourceId,
+      //compiler: lift(writeCompiler)(contractType.compiler),
 
       ...((contractType.contractName != alias)
-        ? { contract_name: contractType.contractName }
+        ? { contractName: contractType.contractName }
         : {}),
     };
+  }
+
+  export function writeCompilers(
+    compilers: pkg.Compilers
+  ): schema.Compilers {
+    return compilers
   }
 
   export function writeBytecode(
@@ -199,7 +209,6 @@ namespace Fields {
     parent?: pkg.Bytecode,
   ): schema.BytecodeObject {
     return {
-
 
       // possibly include bytecode
       ...((!parent || bytecode.bytecode != parent.bytecode)
@@ -212,7 +221,7 @@ namespace Fields {
           !parent || !deepEqual(bytecode.linkReferences, parent.linkReferences)
         )
       )
-        ? { link_references: [...bytecode.linkReferences] }
+        ? { linkReferences: [...bytecode.linkReferences] }
         : {}),
 
       // possibly include link_dependencies
@@ -222,7 +231,7 @@ namespace Fields {
             || !deepEqual(bytecode.linkDependencies, parent.linkDependencies)
         )
       )
-        ? { link_dependencies: writeLinkDependencies(bytecode.linkDependencies) }
+        ? { linkDependencies: writeLinkDependencies(bytecode.linkDependencies) }
         : {}),
     };
   }
@@ -270,22 +279,12 @@ namespace Fields {
     // type ignore b/c undefined case is handled on 295
     // @ts-ignore
     return {
-      contract_type: instance.contractType,
+      contractType: instance.contractType,
       address: instance.address as schema.Address,
-      compiler: lift(writeCompiler)(instance.compiler),
-
-      ...((instance.deploymentBytecode)
-        ? {
-          deployment_bytecode: writeBytecode(
-            instance.deploymentBytecode,
-            (types[instance.contractType] || {}).deploymentBytecode,
-          ),
-        }
-        : {}),
 
       ...((instance.runtimeBytecode)
         ? {
-          runtime_bytecode: writeBytecode(
+          runtimeBytecode: writeBytecode(
             instance.runtimeBytecode,
             (types[instance.contractType] || {}).runtimeBytecode,
           ),
@@ -310,20 +309,32 @@ export class Reader {
     return {
       packageName: this.packageName,
       version: this.version,
+      manifest: this.manifestVersion,
       meta: this.meta,
       sources: this.sources,
       contractTypes: this.contractTypes,
+      compilers: this.compilers,
       deployments: this.deployments,
       buildDependencies: this.buildDependencies,
     };
   }
 
   get packageName() {
-    return this.manifest.package_name;
+    return this.manifest.name;
   }
 
   get version() {
     return this.manifest.version;
+  }
+
+  get manifestVersion() {
+    if (typeof this.manifest.manifest === 'undefined') {
+      return VERSION;
+    } else if (this.manifest.manifest !== VERSION) {
+      throw new Error(`Unsupported manifest version ${this.manifest.manifest}`);
+    } else {
+      return this.manifest.manifest;
+    }
   }
 
   get meta() {
@@ -346,18 +357,30 @@ export class Reader {
     return Object.assign(
       {},
       ...Object.entries(sources)
-        .map(([path, source]) => {
+        .map(([path, sourceObject]) => {
           try {
-            return { [path]: new URL(source) as pkg.ContentURI };
+            return { 
+              [path]: {
+                urls: [new URL(sourceObject['urls'][0]) as pkg.ContentURI],
+              }
+            };
           } catch (e) {
-            return { [path]: source as pkg.SourceString };
+            return { 
+              [path]: {
+                content: [sourceObject['content'] as pkg.SourceString],
+              }
+            };
           }
         }),
     );
   }
 
   get contractTypes() {
-    return Fields.readContractTypes(this.manifest.contract_types || {});
+    return Fields.readContractTypes(this.manifest.contractTypes || {});
+  }
+
+  get compilers() {
+    return Fields.readCompilers(this.manifest.compilers || []);
   }
 
   get deployments() {
@@ -370,7 +393,7 @@ export class Reader {
   get buildDependencies() {
     return Object.assign(
       {},
-      ...Object.entries(this.manifest.build_dependencies || {})
+      ...Object.entries(this.manifest.buildDependencies || {})
         .map(
           ([name, contentURI]) => ({
             [name]: new URL(contentURI),
@@ -387,7 +410,7 @@ export class Writer {
     this.package = package_;
   }
 
-  get package_name() {
+  get name() {
     return this.package.packageName;
   }
 
@@ -439,15 +462,19 @@ export class Writer {
     );
   }
 
-  get contract_types() {
+  get contractTypes() {
     return Fields.writeContractTypes(this.package.contractTypes);
+  }
+
+  get compilers() {
+    return Fields.writeCompilers(this.package.compilers);
   }
 
   get deployments() {
     return Fields.writeDeployments(this.package.deployments, this.package.contractTypes);
   }
 
-  get build_dependencies() {
+  get buildDependencies() {
     return Object.assign(
       {},
       ...Object.entries(this.package.buildDependencies)
@@ -462,16 +489,17 @@ export class Writer {
   write(): schema.PackageManifest {
     return Object.assign(
       {
-        manifest_version: VERSION,
-        package_name: this.package_name,
+        manifest: VERSION,
+        name: this.name,
         version: this.version,
       },
 
       ...Object.entries({
         deployments: this.deployments,
-        contract_types: this.contract_types,
+        contractTypes: this.contractTypes,
+        compilers: this.compilers,
         sources: this.sources,
-        build_dependencies: this.build_dependencies,
+        buildDependencies: this.buildDependencies,
         meta: this.meta,
       }).map(
         ([field, obj]) => ((Object.keys(obj).length > 0)
@@ -482,7 +510,7 @@ export class Writer {
   }
 }
 
-const v2 = {
+const v3 = {
   version: VERSION,
 
   readSync: (json: string) => new Reader(JSON.parse(json) as schema.PackageManifest).read(),
@@ -492,12 +520,12 @@ const v2 = {
   write: async (pkg: pkg.Package) => stringify(await new Writer(pkg).write()),
 };
 
-export { v2 };
+export { v3 };
 
 export default class Connector extends config.Connector<manifests.Service> {
   optionsType = t.interface({});
 
   async init(): Promise<manifests.Service> {
-    return v2;
+    return v3;
   }
 }

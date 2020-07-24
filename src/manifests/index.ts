@@ -2,7 +2,7 @@
  * @module "ethpm/manifests"
  */
 
-import * as v2 from './v2';
+import * as v3 from './v3';
 
 export * from './service';
-export { v2 };
+export { v3 };

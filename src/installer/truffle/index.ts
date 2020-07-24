@@ -73,7 +73,7 @@ export class TruffleService implements installer.Service {
     // update ethpm.lock
     //
     const lockfileData = {
-      [pkg.originalPackage.packageName]: {
+      [pkg.originalPackage.packageName as string]: {
         alias: pkg.originalPackage.packageName,
         install_uri: contentURI.href,
         registry_address: registryAddress,
@@ -117,8 +117,8 @@ export class TruffleService implements installer.Service {
     //
     if (Object.entries(pkg.buildDependencies).length !== 0) {
       let buildDependenciesInstaller = new TruffleService({workingDirectory: newPackageDir, ipfs: this.ipfsOptions})
-      for (const [name, contentURI] of Object.entries(pkg.originalPackage.buildDependencies)) {
-        await buildDependenciesInstaller.install(contentURI, registryAddress)
+      for (const [name, dependencyURI] of Object.entries(pkg.originalPackage.buildDependencies)) {
+        await buildDependenciesInstaller.install(dependencyURI, registryAddress)
       }
     }
 

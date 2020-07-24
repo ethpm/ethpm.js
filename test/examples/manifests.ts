@@ -16,7 +16,7 @@ const manifests: Record<string, string> = Object.assign(
     "wallet",
     "wallet-with-send",
   ].map(name => ({
-    [name]: exampleManifest(name)
+    [name]: exampleManifest(name, "v3")
   }))
 );
 
