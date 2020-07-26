@@ -1,20 +1,20 @@
 {
     "ds-auth": {
         "alias": "ds-auth",
-        "install_uri": "ipfs://QmcW3yXXtBA4oWAB9ENrnBXm2VqyjP7vwe9KSz2799bk76",
-        "registry_address": "0x808B53bF4D70A24bA5cb720D37A4835621A9df00",
-        "resolved_content_hash": "QmcW3yXXtBA4oWAB9ENrnBXm2VqyjP7vwe9KSz2799bk76",
+        "install_uri": "ipfs://QmNbZx361PBNcpt7yq7EgZ3KP6QGb16GfAFaG215Svxhdv",
+        "registry_address": "0xD230Dd91A049284a236f6ccba4412F647BDAAD9e",
+        "resolved_content_hash": "QmNbZx361PBNcpt7yq7EgZ3KP6QGb16GfAFaG215Svxhdv",
         "resolved_package_name": "ds-auth",
-        "resolved_uri": "ipfs://QmcW3yXXtBA4oWAB9ENrnBXm2VqyjP7vwe9KSz2799bk76",
-        "resolved_version": "dsautha1"
+        "resolved_uri": "ipfs://QmNbZx361PBNcpt7yq7EgZ3KP6QGb16GfAFaG215Svxhdv",
+        "resolved_version": "3.0.0"
     },
     "ds-note": {
         "alias": "ds-note",
-        "install_uri": "ipfs://QmVrJdAYHSLgL3EvCDXZzMwbiFweZP4pMe1o9XtyrAVAhK",
-        "registry_address": "0x808B53bF4D70A24bA5cb720D37A4835621A9df00",
-        "resolved_content_hash": "QmVrJdAYHSLgL3EvCDXZzMwbiFweZP4pMe1o9XtyrAVAhK",
+        "install_uri": "ipfs://QmeFvRgNFDArc7RVRnNyArD4CS5Z2RqEXvVuqu9diDmA4v",
+        "registry_address": "0xD230Dd91A049284a236f6ccba4412F647BDAAD9e",
+        "resolved_content_hash": "QmeFvRgNFDArc7RVRnNyArD4CS5Z2RqEXvVuqu9diDmA4v",
         "resolved_package_name": "ds-note",
-        "resolved_uri": "ipfs://QmVrJdAYHSLgL3EvCDXZzMwbiFweZP4pMe1o9XtyrAVAhK",
-        "resolved_version": "dsnotea1"
+        "resolved_uri": "ipfs://QmeFvRgNFDArc7RVRnNyArD4CS5Z2RqEXvVuqu9diDmA4v",
+        "resolved_version": "3.0.0"
     }
 }

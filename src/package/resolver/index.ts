@@ -3,7 +3,7 @@
  */
 
 import { IpfsService } from 'ethpm/storage/ipfs';
-import { v2 } from 'ethpm/manifests/v2';
+import { v3 } from 'ethpm/manifests/v3';
 import { Package, Sources, SourceWithContent, SourceWithUrls } from 'ethpm/package';
 import { URL } from 'url';
 
@@ -23,7 +23,7 @@ export class Resolver {
     if (!rawManifest) {
       throw new Error("Manifest at " + contentURI + " not found.")
     }
-    const originalPackage = await v2.read(rawManifest)
+    const originalPackage = await v3.read(rawManifest)
     let sources: Sources = {}
     let buildDependencies: ResolvedBuildDependencies = {}
     

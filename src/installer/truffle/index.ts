@@ -102,13 +102,13 @@ export class TruffleService implements installer.Service {
     if (Object.entries(pkg.sources).length !== 0) {
       const sourcesDir = path.join(newPackageDir, "_src")
       fs.mkdirSync(sourcesDir)
-      Object.entries(pkg.sources).forEach(([pth, src], idx) => {
+      Object.entries(pkg.sources).forEach(([pth, sourceObject], idx) => {
         const targetPath = path.join(sourcesDir, path.normalize(pth))
         const targetDir = path.parse(targetPath).dir
         if (!fs.existsSync(targetDir)) {
           fs.mkdirSync(targetDir, {recursive: true})
         }
-        fs.writeFileSync(targetPath, src)
+        fs.writeFileSync(targetPath, sourceObject['content'])
       })
     }
 
