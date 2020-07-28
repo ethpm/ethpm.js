@@ -18,10 +18,10 @@ it('reads examples', async () => {
   expect(pkg.version).toEqual('1.0.0');
   expect(pkg.manifest).toEqual('ethpm/3');
   expect(Object.keys(pkg.sources)).toContain('WalletWithSend.sol');
-  expect(Object.keys(pkg.contractTypes)).toContain("WalletWithSend");
-  expect(Object.keys(pkg.buildDependencies)).toContain("wallet");
-  expect(Object.keys(pkg.compilers[0])).toContain("contractTypes");
-  expect(Array.from(pkg.deployments.keys())).toContainEqual(new URL("blockchain://41941023680923e0fe4d74a34bdac8141f2540e3ae90623718e47d66d1ca4a2d/block/b6d0d43f61e5e36d20eb3d5caca12220b024ed2861a814795d1fd6596fe041bf"));
+  expect(Object.keys(pkg.contractTypes)).toContain('WalletWithSend');
+  expect(Object.keys(pkg.buildDependencies)).toContain('wallet');
+  expect(Object.keys(pkg.compilers[0])).toContain('contractTypes');
+  expect(Array.from(pkg.deployments.keys())).toContainEqual(new URL('blockchain://41941023680923e0fe4d74a34bdac8141f2540e3ae90623718e47d66d1ca4a2d/block/b6d0d43f61e5e36d20eb3d5caca12220b024ed2861a814795d1fd6596fe041bf'));
 });
 
 it('converts name', async () => {
@@ -55,7 +55,7 @@ it('inserts manifest field if not provided', async () => {
 
 describe('read -> write isomorphism', () => {
   for (const [packageName, manifest] of Object.entries(examples)) {
-    it(`holds true for example "${packageName}"`, async () => {
+    it(`holds true for example '${packageName}'`, async () => {
       const actual = await v3.write(await v3.read(manifest));
 
       expect(JSON.parse(actual)).toEqual(JSON.parse(manifest));
@@ -67,28 +67,28 @@ describe('read -> write isomorphism', () => {
 
 it('builds owned example from a template', async() => {
   const owned_template = {
-    packageName: "owned", // THIS KEY NAMING IS INCONSISTENT
-    version: "1.0.0",
-    manifest: "ethpm/3",
+    packageName: 'owned', // THIS KEY NAMING IS INCONSISTENT
+    version: '1.0.0',
+    manifest: 'ethpm/3',
     meta: {
-      authors: ["Piper Merriam <pipermerriam@gmail.com>"],
-      license: "MIT",
+      authors: ['Piper Merriam <pipermerriam@gmail.com>'],
+      license: 'MIT',
       description:
         "Reusable contracts which implement a privileged 'owner' model for authorization.",
-      keywords: ["authorization"],
+      keywords: ['authorization'],
       links: [
         {
-          resource: "documentation",
-          uri: "ipfs://QmUYcVzTfSwJoigggMxeo2g5STWAgJdisQsqcXHws7b1FW"
+          resource: 'documentation',
+          uri: 'ipfs://QmUYcVzTfSwJoigggMxeo2g5STWAgJdisQsqcXHws7b1FW'
         }
       ]
     },
     sources: {
       /* Embed source code inside manifest for now */
-      ["Owned.sol"]: {
-        type: "solidity",
-        "installPath": "./Owned.sol",
-        "urls": ["ipfs://QmU8QUSt56ZoBDJgjjXvAZEPro9LmK1m2gjVG5Q4s9x29W"]
+      ['Owned.sol']: {
+        type: 'solidity',
+        'installPath': './Owned.sol',
+        'urls': ['ipfs://QmU8QUSt56ZoBDJgjjXvAZEPro9LmK1m2gjVG5Q4s9x29W']
       }
     },
     compilers: [],
@@ -108,15 +108,15 @@ it('builds example with compilers from a template', async() => {
     meta: {},
     compilers: [
       {
-        "contractTypes": [
-          "Escrow",
-          "SafeSendLib"
+        'contractTypes': [
+          'Escrow',
+          'SafeSendLib'
         ],
-        "name": "solc",
-        "settings": {
-          "optimize": false
+        'name': 'solc',
+        'settings': {
+          'optimize': false
         },
-        "version": "0.6.8+commit.0bbfe453"
+        'version': '0.6.8+commit.0bbfe453'
       }
     ],
     contractTypes: {},
@@ -124,20 +124,43 @@ it('builds example with compilers from a template', async() => {
     buildDependencies: {}
   }
 
-  const expected = {"manifest": "ethpm/3", "compilers": [
+  const expected = {'manifest': 'ethpm/3', 'compilers': [
       {
-        "contractTypes": [
-          "Escrow",
-          "SafeSendLib"
+        'contractTypes': [
+          'Escrow',
+          'SafeSendLib'
         ],
-        "name": "solc",
-        "settings": {
-          "optimize": false
+        'name': 'solc',
+        'settings': {
+          'optimize': false
         },
-        "version": "0.6.8+commit.0bbfe453"
+        'version': '0.6.8+commit.0bbfe453'
       }
     ]}
 
   const manifest = await v3.write(compilers_template)
   expect(expected).toEqual(JSON.parse(manifest));
+});
+
+
+it('builds example with content from a template', async() => {
+  const content_template = {
+    sources: {
+      'Owned.sol' : {
+        'installPath': './Owned.sol',
+        'type': 'solidity',
+        'content': 'pragma solidity'
+      }
+    },
+    meta: {},
+    compilers: [],
+    contractTypes: {},
+    deployments: new Map(),
+    buildDependencies: {}
+  }
+
+  const expected = {'manifest': 'ethpm/3', 'sources': { 'Owned.sol': {'installPath': './Owned.sol', 'type': 'solidity', 'content': 'pragma solidity'}}}
+  const manifest = await v3.write(content_template)
+  expect(expected).toEqual(JSON.parse(manifest));
+
 });

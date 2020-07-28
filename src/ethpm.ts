@@ -24,7 +24,7 @@ export namespace EthPM {
    * ```javascript
    * import EthPM from "ethpm";
    * const builder = EthPM.configure({
-   *   manifests: "ethpm/manifests/v2",
+   *   manifests: "ethpm/manifests/v3",
    *   storage: "ethpm/storage/ipfs",
    *   registries: "ethpm/registries/web3"
    * })

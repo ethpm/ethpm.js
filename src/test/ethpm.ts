@@ -9,7 +9,7 @@ const IPFSFactory = require('ipfsd-ctl');
 describe('Configuration', () => {
   it('loads manifests plugin', async () => {
     const ethpm = await EthPM.configure({
-      manifests: 'ethpm/manifests/v2',
+      manifests: 'ethpm/manifests/v3',
     }).connect();
 
     const pkg = await ethpm.manifests.read(examples['wallet-with-send']);
@@ -30,7 +30,7 @@ describe('Configuration', () => {
 
   it('loads manifests and storage plugins', async () => {
     const ethpm = await EthPM.configure({
-      manifests: 'ethpm/manifests/v2',
+      manifests: 'ethpm/manifests/v3',
       storage: 'test/stub/storage/examples',
     }).connect();
 
@@ -97,7 +97,7 @@ describe('Configuration', () => {
 
   it('loads pre-required plugins', async () => {
     const ethpm = await EthPM.configure({
-      manifests: require('ethpm/manifests/v2'),
+      manifests: require('ethpm/manifests/v3'),
       storage: require('test/stub/storage/examples'),
     }).connect();
 
@@ -142,7 +142,7 @@ describe('Manual Packaging', () => {
      * initialize EthPM
      */
     const ethpm = await EthPM.configure({
-      manifests: 'ethpm/manifests/v2',
+      manifests: 'ethpm/manifests/v3',
       storage: 'ethpm/storage/ipfs',
       // registry: "ethpm/registries/web3"
     }).connect({
@@ -157,7 +157,7 @@ describe('Manual Packaging', () => {
     /*
      * read Owned.sol from disk
      */
-    const contractPath = './contracts/Owned.sol';
+    const contractPath = 'Owned.sol';
     const contractSource = sources.owned[contractPath];
 
     /*
@@ -179,7 +179,11 @@ describe('Manual Packaging', () => {
       packageName: 'owned',
       version: '1.0.0',
       sources: {
-        [contractPath]: contractUri,
+        [contractPath]: {
+          installPath: `./${contractPath}`,
+          type: "solidity",
+          urls: [contractUri],
+        },
       },
     };
 

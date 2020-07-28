@@ -58,7 +58,6 @@ namespace Fields {
       userdoc: contractType.userdoc,
       devdoc: contractType.devdoc,
       sourceId: contractType.sourceId,
-      //compiler: lift(readCompiler)(contractType.compiler),
     };
   }
 
@@ -190,7 +189,6 @@ namespace Fields {
       devdoc: contractType.devdoc,
       userdoc: contractType.userdoc,
       sourceId: contractType.sourceId,
-      //compiler: lift(writeCompiler)(contractType.compiler),
 
       ...((contractType.contractName != alias)
         ? { contractName: contractType.contractName }
@@ -215,7 +213,7 @@ namespace Fields {
         ? { bytecode: bytecode.bytecode }
         : {}),
 
-      // possibly include link_references
+      // possibly include linkReferences
       ...((
         bytecode.linkReferences.length > 0 && (
           !parent || !deepEqual(bytecode.linkReferences, parent.linkReferences)
@@ -224,7 +222,7 @@ namespace Fields {
         ? { linkReferences: [...bytecode.linkReferences] }
         : {}),
 
-      // possibly include link_dependencies
+      // possibly include linkDependencies
       ...((
         bytecode.linkDependencies.length > 0 && (
           !parent
@@ -358,16 +356,21 @@ export class Reader {
       {},
       ...Object.entries(sources)
         .map(([path, sourceObject]) => {
+          const installPath = path.startsWith("./") ? path : `./${path}`
           try {
             return { 
               [path]: {
+                installPath: installPath,
+                type: "solidity",
                 urls: [new URL(sourceObject['urls'][0]) as pkg.ContentURI],
               }
             };
           } catch (e) {
             return { 
               [path]: {
-                content: [sourceObject['content'] as pkg.SourceString],
+                installPath: installPath,
+                type: "solidity",
+                content: sourceObject['content'] as pkg.SourceString,
               }
             };
           }

@@ -3,7 +3,7 @@
  */
 
 import * as pkg from "ethpm/package";
-import { v2 } from "ethpm/manifests/v2";
+import { v3 } from "ethpm/manifests/v3";
 
 import manifests from "./manifests";
 
@@ -15,7 +15,7 @@ function getPackages(): PackageMap {
   const map: PackageMap = {};
 
   for (let [name, manifest] of Object.entries(manifests)) {
-    map[name] = v2.readSync(manifest);
+    map[name] = v3.readSync(manifest);
   }
 
   return map;
