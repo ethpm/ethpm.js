@@ -49,7 +49,7 @@ export class TruffleService implements installer.Service {
     }
   }
 
-  async install(contentURI: URL, registryAddress: string): Promise<void> {
+  async install(contentURI: URL, registryAddress: string, alias?: string): Promise<void> {
     // create temporary _ethpm_packages/
     const tmpEthpmDir = tmp.dirSync({unsafeCleanup: true});
     fs.copySync(this.ethpmDir, tmpEthpmDir.name)
@@ -58,11 +58,11 @@ export class TruffleService implements installer.Service {
 
     //
     // check for conflicts
-    // todo: support aliasing
-    const newPackageDir = path.join(tmpEthpmDir.name, pkg.originalPackage.packageName)
+    //
+    const packageAlias = (typeof alias != "undefined") ? alias : pkg.originalPackage.packageName;
+    const newPackageDir = path.join(tmpEthpmDir.name, packageAlias)
     if (fs.existsSync(newPackageDir)) {
-      throw new Error("Package: " + pkg.originalPackage.packageName + " already installed.")
-      //return false
+      throw new Error("Package: " + packageAlias + " already installed. Try using an alias.")
     } else {
       fs.mkdirSync(newPackageDir)
     }
@@ -73,8 +73,8 @@ export class TruffleService implements installer.Service {
     // update ethpm.lock
     //
     const lockfileData = {
-      [pkg.originalPackage.packageName as string]: {
-        alias: pkg.originalPackage.packageName,
+      [packageAlias as string]: {
+        alias: packageAlias,
         install_uri: contentURI.href,
         registry_address: registryAddress,
         resolved_content_hash: contentURI.host,

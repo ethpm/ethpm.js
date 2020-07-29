@@ -49,6 +49,14 @@ describe('the installer', () => {
     expect(result.same).toEqual(true)
   })
 
+  it('install a uri under an alias', async() => {
+    const contentUri = await ethpm.registries.package('ens').release('1.0.0')
+    await ethpm.installer.install(contentUri, ethpm.registries.address, "alias")
+    const options: Partial<Options> = {compareSize: true, compareContent: true, noDiffSet: false};
+    const result = compareSync(ethpm.installer.ethpmDir, './src/installer/test/assets/aliased', options)
+    expect(result.same).toEqual(true)
+  })
+
   it('raises an exception if installing an existing package', async() => {
     const contentUri = await ethpm.registries.package('ens').release('1.0.0')
     var flag = 0
@@ -58,7 +66,7 @@ describe('the installer', () => {
     } catch (error) {
       flag = 1
       expect(error).toBeInstanceOf(Error)
-      expect(error.message).toBe("Package: ens already installed.")
+      expect(error.message).toBe("Package: ens already installed. Try using an alias.")
     }
     expect(flag).toBe(1)
   })
@@ -72,8 +80,6 @@ describe('the installer', () => {
     const result = compareSync(ethpm.installer.ethpmDir, './src/installer/test/assets/multiple', options)
     expect(result.same).toEqual(true)
   })
-
-
 
   // ds-token: ipfs://Qmb8rFWXyLhR9gvMKswvE2n5EHRKYWF4U46nsgFRNPi1dU
   // ds-auth: ipfs://QmNbZx361PBNcpt7yq7EgZ3KP6QGb16GfAFaG215Svxhdv
