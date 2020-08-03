@@ -29,7 +29,7 @@ export class Web3RegistryService implements registries.Service {
   constructor(provider: Web3Provider, address: string) {
     this.web3 = new Web3(provider as any);
     this.address = address;
-    const registryABI = registryManifest.contract_types.PackageRegistry.abi;
+    const registryABI = registryManifest.contractTypes.PackageRegistry.abi;
     this.registry = new this.web3.eth.Contract(registryABI, this.address);
   }
 
