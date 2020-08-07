@@ -1,4 +1,5 @@
 import { Address, ChainURI, ContractInstance, TransactionHash, ABI, Compiler } from 'ethpm/package';
+import isEqual from 'lodash.isequal';
 
 
 interface Network {
@@ -76,27 +77,33 @@ function parseTruffleArtifactsToContractTypes(artifacts: Array<Artifact>) {
 
 
 function parseTruffleArtifactsToCompilers(artifacts: Array<Artifact>) {
-  const compilers: Array<any> = []
+  const compilers: Array<any> = [];
   for (let artifact of artifacts) {
     let metadata;
     if (typeof artifact.metadata !== "undefined") {
       metadata = JSON.parse(artifact.metadata);
     }
     if (typeof artifact.compiler !== "undefined") {
-      const compiler = {
-        ...(artifact.compiler.name) && {name: artifact.compiler.name},
-        ...(artifact.compiler.version) && {version: artifact.compiler.version},
-        ...(metadata && metadata.settings && metadata.settings.optimizer) && {
-          settings: {
-            optimize: metadata.settings.optimizer.enabled
-          }
+      const newCompiler: Compiler = {
+        name: artifact.compiler.name,
+        version: artifact.compiler.version,
+        settings: {
+          optimize: metadata.settings.optimizer.enabled
         }
       }
       // insert compiler information object if not already in compilers array
-      var position;
-      position = compilers.indexOf(compiler);
-      if (!~position) {
-        compilers.push(compiler);
+      var compilerAssigned = false;
+      for (let existingCompiler of compilers) {
+        var clone = Object.assign({}, existingCompiler);
+        delete clone.contractTypes;
+        if (isEqual(newCompiler, clone) && !compilerAssigned) {
+          existingCompiler.contractTypes.push(artifact.contractName);
+          compilerAssigned = true;
+        }
+      }
+      if (!compilerAssigned) {
+        newCompiler.contractTypes = [artifact.contractName];
+        compilers.push(newCompiler);
       }
     }
   }

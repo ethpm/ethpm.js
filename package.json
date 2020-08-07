@@ -1,6 +1,6 @@
 {
   "name": "ethpm",
-  "version": "0.1.0-next.25",
+  "version": "0.1.0-next.26",
   "description": "Javascript library for EthPM (EIPs 1123 / 1319)",
   "main": "index.js",
   "types": "main.d.ts",
@@ -61,6 +61,7 @@
     "vinyl-paths": "^2.1.0"
   },
   "dependencies": {
+    "@types/lodash.isequal": "^4.5.5",
     "bn.js": "^4.11.8",
     "debug": "^3.1.0",
     "deep-equal": "^1.0.1",
@@ -71,6 +72,7 @@
     "ipfsd-ctl": "^0.42.0",
     "ipld-dag-pb": "^0.14.11",
     "json-stable-stringify": "^1.0.1",
+    "lodash.isequal": "^4.5.0",
     "module-alias": "^2.1.0",
     "original-require": "^1.0.1",
     "source-map-support": "^0.5.9",

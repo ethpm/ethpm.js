@@ -23,6 +23,8 @@ describe('handles truffle artifacts', () => {
     expect(JSON.parse(actualManifest)).toEqual(actualJson)
     const secondPkg = await v3.read(actualManifest)
     expect(pkg).toEqual(secondPkg)
+    const expectedPackageWithCompilers = JSON.parse(fs.readFileSync("./src/utils/test/assets/pkgWithCompilers.json", "utf8"))
+    expect(JSON.parse(actualManifest)).toEqual(expectedPackageWithCompilers)
   })
   
   it(`for an iterator of artifact files: ctypes only`, async() => {

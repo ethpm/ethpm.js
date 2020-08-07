@@ -60,9 +60,7 @@ export interface ContractInstance {
   address: Address;
   transaction: Maybe<TransactionHash>;
   block: Maybe<BlockHash>;
-  //deploymentBytecode: Maybe<Bytecode>;
   runtimeBytecode: Maybe<Bytecode>;
-  //compiler: Maybe<Compiler>;
 }
 
 export type SourceId = string;
