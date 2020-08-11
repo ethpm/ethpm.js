@@ -25,7 +25,7 @@ export type ContractInstanceName = string;
 export type bytecode = string;
 export type CompilerName = string;
 export type CompilerVersion = string;
-export type CompilerSettings = any; // this should be object
+export type CompilerSettings = any;
 
 export type ABI = Array<any>;
 export type Devdoc = object;
@@ -35,8 +35,8 @@ export type Userdoc = object;
 export interface Compiler {
   name: CompilerName;
   version: CompilerVersion;
-  settings?: CompilerSettings; // why doesn't Maybe work here?
-  contractTypes?: Array<ContractTypeReference>; // why doesn't Maybe work here?
+  settings?: CompilerSettings;
+  contractTypes?: Array<ContractTypeReference>;
 }
 
 export interface Bytecode {

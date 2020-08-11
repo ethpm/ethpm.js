@@ -116,7 +116,7 @@ export class TruffleService implements installer.Service {
     // write build dependencies to tmpEthpmDir
     //
     if (Object.entries(pkg.buildDependencies).length !== 0) {
-      let buildDependenciesInstaller = new TruffleService({workingDirectory: newPackageDir, ipfs: this.ipfsOptions})
+      const buildDependenciesInstaller = new TruffleService({workingDirectory: newPackageDir, ipfs: this.ipfsOptions})
       for (const [name, dependencyURI] of Object.entries(pkg.originalPackage.buildDependencies)) {
         await buildDependenciesInstaller.install(dependencyURI, registryAddress)
       }

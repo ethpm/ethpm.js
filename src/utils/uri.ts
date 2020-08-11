@@ -46,7 +46,8 @@ export class EthpmURI {
       }
       
       let namespacedAsset;
-      let [packageName, version] = packageId
+      const packageName = packageId[0];
+      var version = packageId[1];
       if (!version) version = "";
       if (pathElements.length > 1) {
         namespacedAsset = pathElements.splice(1).join("/");

@@ -30,7 +30,7 @@ export class Resolver {
     // resolve any content-addressed sources
     if (originalPackage.sources) {
       for (const sourceId in originalPackage.sources) {
-        if (originalPackage.sources[sourceId].hasOwnProperty('urls')) {
+        if (Object.prototype.hasOwnProperty.call(originalPackage.sources[sourceId], 'urls')) {
           const sourceObject = originalPackage.sources[sourceId] as SourceWithUrls
           const source = await this.ipfsBackend.read(sourceObject['urls'][0] as URL)
           if (source) {

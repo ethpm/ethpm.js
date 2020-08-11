@@ -3,20 +3,20 @@ import isEqual from 'lodash.isequal';
 
 
 interface Network {
-  address: Address,
-  transactionHash: TransactionHash,
+  address: Address;
+  transactionHash: TransactionHash;
 }
 
 interface Artifact {
-  abi: ABI,
-  bytecode: any,
-  deployedBytecode: any,
-  contractName: string,
-  compiler: Compiler,
-  devdoc: any,
-  userdoc: any,
-  metadata: string,
-  networks: Record<string, Network>,
+  abi: ABI;
+  bytecode: any;
+  deployedBytecode: any;
+  contractName: string;
+  compiler: Compiler;
+  devdoc: any;
+  userdoc: any;
+  metadata: string;
+  networks: Record<string, Network>;
 }
 
 
@@ -30,7 +30,7 @@ function parseBytecode(bytecode: string) {
 
   // todo: hard coded length...
   // todo: support link dependencies
-  let linkRefs = []
+  const linkRefs = []
   while (bytecode.indexOf("_") > 0) {
     const index = bytecode.indexOf("_")
     const placeholder = bytecode.substring(index, index+40)
@@ -61,7 +61,7 @@ function parseBytecode(bytecode: string) {
 
 function parseTruffleArtifactsToContractTypes(artifacts: Array<Artifact>) {
   const contractTypes: Record<string, any> = {}
-  for (let artifact of artifacts) {
+  for (const artifact of artifacts) {
     const config = {
       ...(artifact.abi) && {abi: artifact.abi},
       // todo: no contractName since truffle doesn't support aliasing
@@ -78,7 +78,7 @@ function parseTruffleArtifactsToContractTypes(artifacts: Array<Artifact>) {
 
 function parseTruffleArtifactsToCompilers(artifacts: Array<Artifact>) {
   const compilers: Array<any> = [];
-  for (let artifact of artifacts) {
+  for (const artifact of artifacts) {
     let metadata;
     if (typeof artifact.metadata !== "undefined") {
       metadata = JSON.parse(artifact.metadata);
@@ -92,9 +92,9 @@ function parseTruffleArtifactsToCompilers(artifacts: Array<Artifact>) {
         }
       }
       // insert compiler information object if not already in compilers array
-      var compilerAssigned = false;
-      for (let existingCompiler of compilers) {
-        var clone = Object.assign({}, existingCompiler);
+      let compilerAssigned = false;
+      for (const existingCompiler of compilers) {
+        const clone = Object.assign({}, existingCompiler);
         delete clone.contractTypes;
         if (isEqual(newCompiler, clone) && !compilerAssigned) {
           existingCompiler.contractTypes.push(artifact.contractName);
@@ -112,8 +112,8 @@ function parseTruffleArtifactsToCompilers(artifacts: Array<Artifact>) {
 
 function parseTruffleArtifactsToDeployments(artifacts: Array<Artifact>) {
   const allDeployments: Record<string, Record<string, ContractInstance>> = {}
-  for (let artifact of artifacts) {
-    for (let [blockchainUri, deploymentData] of Object.entries(artifact.networks)) {
+  for (const artifact of artifacts) {
+    for (const [blockchainUri, deploymentData] of Object.entries(artifact.networks)) {
       let currentUri = blockchainUri
       const ethpmDeploymentData = {
         contractType: artifact.contractName,
@@ -122,7 +122,7 @@ function parseTruffleArtifactsToDeployments(artifacts: Array<Artifact>) {
         runtimeBytecode: undefined,
         block: undefined
       }
-      for (let storedUri of Object.keys(allDeployments)) {
+      for (const storedUri of Object.keys(allDeployments)) {
         // todo: validate latest block hash is used - needs w3
         if (storedUri.startsWith(currentUri.split("/block/")[0])) {
           currentUri = storedUri

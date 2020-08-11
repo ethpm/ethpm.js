@@ -10,7 +10,7 @@ describe('handles truffle artifacts', () => {
     const pkgConfig = {'name': 'pkg', 'version': '1', 'manifest': 'ethpm/3'}
     const iterator = ['ConvertLib', 'MetaCoin', 'Migrations']
     const artifacts = []
-    for (let file of iterator) {
+    for (const file of iterator) {
       const artifact = JSON.parse(fs.readFileSync(`./src/utils/test/assets/${file}.json`, 'utf8'))
       artifacts.push(artifact)
     }
@@ -31,7 +31,7 @@ describe('handles truffle artifacts', () => {
     const pkgConfig = {'name': 'pkg', 'version': '1', 'manifest': 'ethpm/3'}
     const iterator = ['ConvertLib', 'MetaCoin', 'Migrations']
     const artifacts = []
-    for (let file of iterator) {
+    for (const file of iterator) {
       const artifact = JSON.parse(fs.readFileSync(`./src/utils/test/assets/${file}.json`, 'utf8'))
       artifact.networks = {}
       artifacts.push(artifact)

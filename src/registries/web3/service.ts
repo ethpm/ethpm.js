@@ -40,14 +40,6 @@ export class Web3RegistryService implements registries.Service {
     manifest: URL,
   ): Promise<any> {
     await this.registry.methods.release(packageName, version, manifest).send({});
-    // estimate gas requirement, and pad it a bit because some clients don't
-    // handle gas refunds and such well
-    // let gas = await this.web3.eth.estimateGas(txParams)
-    // gas *= 1.2
-    // await this.web3.eth.sendTransaction({
-    // gas,
-    // ...txParams
-    // })
   }
 
   async numPackageIds(): Promise<BN> {
