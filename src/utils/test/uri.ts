@@ -48,10 +48,39 @@ describe('validates URIs', () => {
 
 describe('parses package names and versions', () => {
   const validPackageIdUris = [
+    'ethpm://snakecharmers.eth/dai',
+    'ethpm://snakecharmers.eth/dai/',
+    'ethpm://snakecharmers.eth:1/dai',
+    'ethpm://snakecharmers.eth:1/dai/',
+  ]
+
+  const validPackageVersionIdUris = [
     'ethpm://snakecharmers.eth/dai@1.0.0',
+    'ethpm://snakecharmers.eth/dai@1.0.0/',
     'ethpm://snakecharmers.eth:1/dai@1.0.0',
     'ethpm://snakecharmers.eth:1/dai@1.0.0/',
   ];
+
+  test.each(validPackageVersionIdUris)(
+    'for valid package version URIs',
+    (uri) => {
+      const ethpmURI = new EthpmURI(uri);
+      expect(ethpmURI).toHaveProperty('raw');
+      expect(ethpmURI).toHaveProperty('scheme');
+      expect(ethpmURI).toHaveProperty('address');
+      expect(ethpmURI).toHaveProperty('chainId');
+      expect(ethpmURI).toHaveProperty('packageName');
+      expect(ethpmURI).toHaveProperty('version');
+      expect(ethpmURI).toHaveProperty('namespacedAsset');
+      expect(ethpmURI.raw).toEqual(uri);
+      expect(ethpmURI.scheme).toEqual('ethpm');
+      expect(ethpmURI.address).toEqual('snakecharmers.eth');
+      expect(ethpmURI.chainId).toEqual(1);
+      expect(ethpmURI.packageName).toEqual('dai');
+      expect(ethpmURI.version).toEqual('1.0.0');
+      expect(ethpmURI.namespacedAsset).toEqual("");
+    },
+  );
 
   test.each(validPackageIdUris)(
     'for valid package URIs',
@@ -69,9 +98,11 @@ describe('parses package names and versions', () => {
       expect(ethpmURI.address).toEqual('snakecharmers.eth');
       expect(ethpmURI.chainId).toEqual(1);
       expect(ethpmURI.packageName).toEqual('dai');
-      expect(ethpmURI.version).toEqual('1.0.0');
+      expect(ethpmURI.version).toEqual("");
+      expect(ethpmURI.namespacedAsset).toEqual("");
     },
   );
+
 });
 
 describe('supports namespaced assets', () => {
@@ -139,9 +170,11 @@ describe('invalidates ', () => {
   );
 
   const invalidPackageIds = [
-    'erc1319://snakecharmers.eth:1/dai',
-    'erc1319://snakecharmers.eth:1/dai/',
-    'erc1319://snakecharmers.eth:1/dai/1',
+    'erc1319://snakecharmers.eth:1/dai@',
+    'erc1319://snakecharmers.eth:1/dai@/',
+    'erc1319://snakecharmers.eth:1/dai@1.0.0@1.0.0',
+    // doesn't define a version
+    'erc1319://snakecharmers.eth:1/dai/deployments/DSToken',
     'erc1319://snakecharmers.eth:1/@1',
     'erc1319://snakecharmers.eth:1/@1/',
   ];

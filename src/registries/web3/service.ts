@@ -4,7 +4,7 @@
 
 import { URL } from 'url';
 import * as t from 'io-ts';
-import { HttpProvider as Web3Provider } from 'web3-providers-http';
+import { WebsocketProvider as Web3Provider } from 'web3-providers-ws';
 import Web3 from 'web3';
 import { Contract } from 'web3-eth-contract/types';
 
@@ -27,9 +27,9 @@ export class Web3RegistryService implements registries.Service {
   private registry: Contract;
 
   constructor(provider: Web3Provider, address: string) {
-    this.web3 = new Web3(provider);
+    this.web3 = new Web3(provider as any);
     this.address = address;
-    const registryABI = registryManifest.contract_types.PackageRegistry.abi;
+    const registryABI = registryManifest.contractTypes.PackageRegistry.abi;
     this.registry = new this.web3.eth.Contract(registryABI, this.address);
   }
 
@@ -40,14 +40,6 @@ export class Web3RegistryService implements registries.Service {
     manifest: URL,
   ): Promise<any> {
     await this.registry.methods.release(packageName, version, manifest).send({});
-    // estimate gas requirement, and pad it a bit because some clients don't
-    // handle gas refunds and such well
-    // let gas = await this.web3.eth.estimateGas(txParams)
-    // gas *= 1.2
-    // await this.web3.eth.sendTransaction({
-    // gas,
-    // ...txParams
-    // })
   }
 
   async numPackageIds(): Promise<BN> {

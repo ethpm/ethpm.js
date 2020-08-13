@@ -3,8 +3,8 @@
  */
 
 import { IpfsService } from 'ethpm/storage/ipfs';
-import { v2 } from 'ethpm/manifests/v2';
-import { Package, Sources } from 'ethpm/package';
+import { v3 } from 'ethpm/manifests/v3';
+import { Package, Sources, SourceWithContent, SourceWithUrls } from 'ethpm/package';
 import { URL } from 'url';
 
 interface ResolvedBuildDependencies {
@@ -23,22 +23,32 @@ export class Resolver {
     if (!rawManifest) {
       throw new Error("Manifest at " + contentURI + " not found.")
     }
-    const originalPackage = await v2.read(rawManifest)
+    const originalPackage = await v3.read(rawManifest)
     let sources: Sources = {}
     let buildDependencies: ResolvedBuildDependencies = {}
     
     // resolve any content-addressed sources
     if (originalPackage.sources) {
-      for (const key in originalPackage.sources) {
-        if (originalPackage.sources[key] instanceof URL) {
-          const source = await this.ipfsBackend.read(originalPackage.sources[key] as URL)
+      for (const sourceId in originalPackage.sources) {
+        if (Object.prototype.hasOwnProperty.call(originalPackage.sources[sourceId], 'urls')) {
+          const sourceObject = originalPackage.sources[sourceId] as SourceWithUrls
+          const source = await this.ipfsBackend.read(sourceObject['urls'][0] as URL)
           if (source) {
-            sources[key] = source
+            sources[sourceId] = {
+              content: source,
+              type: "solidity", // should be optional
+              installPath: sourceId // should be optional
+            }
           } else {
-            throw new Error("No source found at " + originalPackage.sources[key])
+            throw new Error("No source found at " + originalPackage.sources[sourceId])
           }
         } else {
-          sources[key] = originalPackage.sources[key]
+          const sourceObject = originalPackage.sources[sourceId] as SourceWithContent
+          sources[sourceId] = {
+            content: sourceObject['content'],
+            type: "solidity",  // should be optional
+            installPath: sourceId  // should be optional
+          }
         }
       }
     }

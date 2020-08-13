@@ -12,6 +12,7 @@ export type Address = string;
 export type TransactionHash = string;
 export type BlockHash = string;
 export type PackageName = string;
+export type Manifest = string;
 export type Version = string;
 export type RelativePath = string;
 export type ChainURI = URL;
@@ -24,16 +25,18 @@ export type ContractInstanceName = string;
 export type bytecode = string;
 export type CompilerName = string;
 export type CompilerVersion = string;
-export type CompilerSettings = object;
+export type CompilerSettings = any;
 
 export type ABI = Array<any>;
-export type Natspec = object;
+export type Devdoc = object;
+export type Userdoc = object;
 
 
 export interface Compiler {
   name: CompilerName;
   version: CompilerVersion;
-  settings: CompilerSettings;
+  settings?: CompilerSettings;
+  contractTypes?: Array<ContractTypeReference>;
 }
 
 export interface Bytecode {
@@ -47,8 +50,9 @@ export interface ContractType {
   deploymentBytecode: Maybe<Bytecode>;
   runtimeBytecode: Maybe<Bytecode>;
   abi: Maybe<ABI>;
-  natspec: Maybe<Natspec>;
-  compiler: Maybe<Compiler>;
+  devdoc: Maybe<Devdoc>;
+  userdoc: Maybe<Userdoc>;
+  sourceId: Maybe<SourceId>;
 }
 
 export interface ContractInstance {
@@ -56,24 +60,37 @@ export interface ContractInstance {
   address: Address;
   transaction: Maybe<TransactionHash>;
   block: Maybe<BlockHash>;
-  deploymentBytecode: Maybe<Bytecode>;
   runtimeBytecode: Maybe<Bytecode>;
-  compiler: Maybe<Compiler>;
 }
 
-export type Source = ContentURI | SourceString;
+export type SourceId = string;
 
-export type Sources = Record<RelativePath, Source>;
+export interface SourceWithUrls {
+  type: Maybe<string>;
+  installPath: Maybe<RelativePath>;
+  urls: Array<ContentURI>;
+}
+
+export interface SourceWithContent {
+  type: Maybe<string>;
+  installPath: Maybe<RelativePath>;
+  content: SourceString;
+}
+
+export type Sources = Record<SourceId, SourceWithContent> | Record<SourceId, SourceWithUrls>;
 export type ContractTypes = Record<ContractAlias, ContractType>;
+export type Compilers = Array<Compiler>;
 export type Deployment = Record<ContractInstanceName, ContractInstance>;
 export type Deployments = Map<ChainURI, Deployment>;
 export type BuildDependencies = Record<PackageName, ContentURI>;
 
 export interface Package {
-  packageName: PackageName;
-  version: Version;
+  packageName: Maybe<PackageName>;
+  version: Maybe<Version>;
+  manifest: Manifest;
   meta: Meta.PackageMeta;
   sources: Sources;
+  compilers: Compilers;
   contractTypes: ContractTypes;
   deployments: Deployments;
   buildDependencies: BuildDependencies;

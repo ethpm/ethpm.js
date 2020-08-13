@@ -2,7 +2,7 @@ import { exampleStorage } from 'test/stub/storage/examples';
 import examples from 'test/examples/packages';
 
 import { Query } from 'ethpm/session/query';
-import { v2 } from 'ethpm/manifests/v2';
+import { v3 } from 'ethpm/manifests/v3';
 
 
 it('resolves package-level contract types', async () => {
@@ -10,7 +10,7 @@ it('resolves package-level contract types', async () => {
     package: examples['standard-token'],
     workspace: {
       storage: exampleStorage,
-      manifests: v2,
+      manifests: v3,
     },
   });
 
@@ -26,7 +26,7 @@ it('resolves deployed instances', async () => {
     package: examples['piper-coin'],
     workspace: {
       storage: exampleStorage,
-      manifests: v2,
+      manifests: v3,
     },
   });
 
@@ -45,7 +45,7 @@ it('resolves build dependencies', async () => {
     package: examples['piper-coin'],
     workspace: {
       storage: exampleStorage,
-      manifests: v2,
+      manifests: v3,
     },
   });
 
@@ -60,7 +60,7 @@ it('resolves contract types from a dependent package', async () => {
     package: examples['piper-coin'],
     workspace: {
       storage: exampleStorage,
-      manifests: v2,
+      manifests: v3,
     },
   });
 
@@ -75,7 +75,7 @@ it("resolves contract types from a dependency's dependency", async () => {
     package: examples['wallet-with-send'],
     workspace: {
       storage: exampleStorage,
-      manifests: v2,
+      manifests: v3,
     },
   });
 

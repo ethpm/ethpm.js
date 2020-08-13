@@ -1,11 +1,11 @@
 {
     "ds-token": {
         "alias": "ds-token",
-        "install_uri": "ipfs://Qmd4xvKG8cKFDMCYdzgbGN5rf98VfP4bYwqArPQ7mdyEwf",
-        "registry_address": "0x808B53bF4D70A24bA5cb720D37A4835621A9df00",
-        "resolved_content_hash": "Qmd4xvKG8cKFDMCYdzgbGN5rf98VfP4bYwqArPQ7mdyEwf",
+        "install_uri": "ipfs://Qmb8rFWXyLhR9gvMKswvE2n5EHRKYWF4U46nsgFRNPi1dU",
+        "registry_address": "0xD230Dd91A049284a236f6ccba4412F647BDAAD9e",
+        "resolved_content_hash": "Qmb8rFWXyLhR9gvMKswvE2n5EHRKYWF4U46nsgFRNPi1dU",
         "resolved_package_name": "ds-token",
-        "resolved_uri": "ipfs://Qmd4xvKG8cKFDMCYdzgbGN5rf98VfP4bYwqArPQ7mdyEwf",
-        "resolved_version": "1.0.0a1"
+        "resolved_uri": "ipfs://Qmb8rFWXyLhR9gvMKswvE2n5EHRKYWF4U46nsgFRNPi1dU",
+        "resolved_version": "3.0.0"
     }
 }

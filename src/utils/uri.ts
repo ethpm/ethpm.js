@@ -36,17 +36,30 @@ export class EthpmURI {
   static parsePackageId(url: URL) {
     if (url.pathname.replace('/', '') !== '') {
       const pathElements = url.pathname.split('/').filter((el) => el !== '');
-      const packageId = pathElements[0].split('@').filter((el) => el !== '');
+      const rawPackageId = pathElements[0]
+      const packageId = rawPackageId.split('@').filter((el) => el !== '');
 
-      if (packageId.length !== 2) {
+      if (rawPackageId.includes('@') && packageId.length !== 2) {
         throw new Error(
-          `Invalid package ID: ${packageId}. URI must include both a package name and version.`,
+          `Invalid package ID: ${packageId}. URI must define a version if it contains '@'.`,
         );
-      } else {
-        let [packageName, version] = packageId
-        let namespacedAsset = pathElements.splice(1).join("/")
-        return [packageName, version, namespacedAsset];
       }
+      
+      let namespacedAsset;
+      const packageName = packageId[0];
+      var version = packageId[1];
+      if (!version) version = "";
+      if (pathElements.length > 1) {
+        namespacedAsset = pathElements.splice(1).join("/");
+      } else {
+        namespacedAsset = "";
+      }
+      if (!version && namespacedAsset) {
+        throw new Error(
+          `Invalid package ID: ${packageId}. Version must be included to define a namespaced asset.`,
+        );
+      }
+      return [packageName, version, namespacedAsset];
     } else {
       return ['', '', ''];
     }

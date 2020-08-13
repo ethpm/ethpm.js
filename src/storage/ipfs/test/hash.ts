@@ -1,4 +1,4 @@
-import { v2 } from 'ethpm/manifests/v2';
+import { v3 } from 'ethpm/manifests/v3';
 
 import hash from 'ethpm/storage/ipfs/hash';
 
@@ -8,7 +8,7 @@ it('hashes manifests', async () => {
   const standardToken = examples['standard-token'];
   const piperCoin = examples['piper-coin'];
 
-  const { buildDependencies } = await v2.read(piperCoin);
+  const { buildDependencies } = await v3.read(piperCoin);
 
   const { hostname: expected } = buildDependencies['standard-token'];
   const actual: string = await hash(standardToken);

@@ -49,7 +49,7 @@ export class TruffleService implements installer.Service {
     }
   }
 
-  async install(contentURI: URL, registryAddress: string): Promise<void> {
+  async install(contentURI: URL, registryAddress: string, alias?: string): Promise<void> {
     // create temporary _ethpm_packages/
     const tmpEthpmDir = tmp.dirSync({unsafeCleanup: true});
     fs.copySync(this.ethpmDir, tmpEthpmDir.name)
@@ -58,11 +58,11 @@ export class TruffleService implements installer.Service {
 
     //
     // check for conflicts
-    // todo: support aliasing
-    const newPackageDir = path.join(tmpEthpmDir.name, pkg.originalPackage.packageName)
+    //
+    const packageAlias = (typeof alias != "undefined") ? alias : pkg.originalPackage.packageName;
+    const newPackageDir = path.join(tmpEthpmDir.name, packageAlias)
     if (fs.existsSync(newPackageDir)) {
-      throw new Error("Package: " + pkg.originalPackage.packageName + " already installed.")
-      //return false
+      throw new Error("Package: " + packageAlias + " already installed. Try using an alias.")
     } else {
       fs.mkdirSync(newPackageDir)
     }
@@ -73,8 +73,8 @@ export class TruffleService implements installer.Service {
     // update ethpm.lock
     //
     const lockfileData = {
-      [pkg.originalPackage.packageName]: {
-        alias: pkg.originalPackage.packageName,
+      [packageAlias as string]: {
+        alias: packageAlias,
         install_uri: contentURI.href,
         registry_address: registryAddress,
         resolved_content_hash: contentURI.host,
@@ -102,13 +102,13 @@ export class TruffleService implements installer.Service {
     if (Object.entries(pkg.sources).length !== 0) {
       const sourcesDir = path.join(newPackageDir, "_src")
       fs.mkdirSync(sourcesDir)
-      Object.entries(pkg.sources).forEach(([pth, src], idx) => {
+      Object.entries(pkg.sources).forEach(([pth, sourceObject], idx) => {
         const targetPath = path.join(sourcesDir, path.normalize(pth))
         const targetDir = path.parse(targetPath).dir
         if (!fs.existsSync(targetDir)) {
           fs.mkdirSync(targetDir, {recursive: true})
         }
-        fs.writeFileSync(targetPath, src)
+        fs.writeFileSync(targetPath, sourceObject['content'])
       })
     }
 
@@ -116,9 +116,9 @@ export class TruffleService implements installer.Service {
     // write build dependencies to tmpEthpmDir
     //
     if (Object.entries(pkg.buildDependencies).length !== 0) {
-      let buildDependenciesInstaller = new TruffleService({workingDirectory: newPackageDir, ipfs: this.ipfsOptions})
-      for (const [name, contentURI] of Object.entries(pkg.originalPackage.buildDependencies)) {
-        await buildDependenciesInstaller.install(contentURI, registryAddress)
+      const buildDependenciesInstaller = new TruffleService({workingDirectory: newPackageDir, ipfs: this.ipfsOptions})
+      for (const [name, dependencyURI] of Object.entries(pkg.originalPackage.buildDependencies)) {
+        await buildDependenciesInstaller.install(dependencyURI, registryAddress)
       }
     }
 
