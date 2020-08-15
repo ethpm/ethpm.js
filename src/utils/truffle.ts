@@ -65,8 +65,8 @@ function parseTruffleArtifactsToContractTypes(artifacts: Array<Artifact>) {
     const config = {
       ...(artifact.abi) && {abi: artifact.abi},
       // todo: no contractName since truffle doesn't support aliasing
-      ...(artifact.bytecode) && {runtimeBytecode: parseBytecode(artifact.bytecode)},
-      ...(artifact.deployedBytecode) && {deploymentBytecode: parseBytecode(artifact.deployedBytecode)},
+      ...(artifact.deployedBytecode) && {runtimeBytecode: parseBytecode(artifact.deployedBytecode)},
+      ...(artifact.bytecode) && {deploymentBytecode: parseBytecode(artifact.bytecode)},
       ...(artifact.devdoc) && {devdoc: artifact.devdoc},
       ...(artifact.userdoc) && {userdoc: artifact.userdoc},
     }
