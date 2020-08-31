@@ -22,7 +22,10 @@
       "test/*": ["test/*"],
       "ethpm": ["src"],
       "ethpm/*": ["src/*"]
-    }
+    },
+	"plugins": [
+      { "transform": "@zerollup/ts-transform-paths", "exclude": "*" }
+    ]
   },
   "include": [
     "src/**/*",
