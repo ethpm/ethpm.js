@@ -3,6 +3,11 @@
  */
 
 import * as config from './config';
+import * as v3 from 'ethpm/manifests/v3';
+import * as ipfs from 'ethpm/storage/ipfs';
+import * as installer from 'ethpm/installer/truffle';
+import * as registries from 'ethpm/registries/web3';
+
 
 const originalRequire: any = require("original-require");
 
@@ -11,10 +16,18 @@ const cleanPackagePath = (plugin: string): string => plugin.replace(
   "../"
 );
 
+// This is required to enable webpack to include these modules when bundling
+const mappings: { [key: string]: any; } = {
+  "ethpm/manifests/v3": v3,
+  "ethpm/storage/ipfs": ipfs,
+  "ethpm/installer/truffle": installer,
+  "ethpm/registries/web3": registries,
+}
+
 export function load<S>(plugin: config.ConfigValue<S>): config.Connector<S> {
   const required = (typeof plugin === 'string')
     ? plugin.startsWith("ethpm/")
-      ? require(cleanPackagePath(plugin))
+      ? mappings[plugin]
       : originalRequire(plugin)
     : (typeof plugin === 'function')
       ? plugin
