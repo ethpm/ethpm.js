@@ -112,7 +112,7 @@ Description: Publishes packages to on-chain package registries, and fetches rele
 Configuration: 
 ```typescript
 const ethpm = await EthPM.configure({
-  storage: "ethpm/storage/ipfs",
+  registries: "ethpm/registries/web3",
 }).connect({
   provider: web3,
   registryAddress: '0x123abc...'

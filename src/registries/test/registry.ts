@@ -98,12 +98,12 @@ describe('registry functions', () => {
     ]);
   });
 
-  it("can get all of a package's releases if non-existent release", async () => {
+  it("will raise exception for non-existent release", async () => {
     try {
-      await ensRegistry.registries.package('ens').release('xxx');
+      await ensRegistry.registries.package('ens').release('100');
     } catch (error) {
       expect(error).toBeInstanceOf(Error)
-      expect(error.message).toBe("Package: ens@xxx not found.")
+      expect(error.message).toContain("release-does-not-exist")
     }
   });
 
@@ -117,9 +117,13 @@ describe('registry functions', () => {
     expect(releases).toEqual(new URL(resolversV1URI));
   });
 
-  it("can get all of a package's releases if non-existent release", async () => {
-    const releases = await ensRegistry.registries.package('dne').releases();
-    expect(releases).toEqual({});
+  it("will raise exception to get a non-existent package's releases", async () => {
+    try {
+      await ensRegistry.registries.package('dne').releases();
+    } catch(error) {
+      expect(error).toBeInstanceOf(Error)
+      expect(error.message).toContain("package-does-not-exist")
+    }
   });
 
   it("can get all of a package's releases if a single release", async () => {
